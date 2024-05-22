@@ -1,0 +1,300 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+:root {
+  /* Color */
+  --main-color: #293573;
+  --primary-white: white;
+  --warning-color: #E45151;
+  --blue-success: #36ABFF;
+  --black-color: #000000;
+  --placeholder-color: #969696;
+  --neutral-navbar: rgba(255, 255, 255, 0.5);
+
+  /* Poppins */
+  --font: "Poppins", sans-serif;
+
+  /* Poppins Title */
+  --title-weight: 700;
+  --title-size: 48px;
+  --lh-64: 64px;
+
+  /* Poppins Heading 1 */
+  --h1-weight: 600;
+  --h1-size: 36px;
+
+  /* Poppins Heading 2 */
+  --h2-weight: 500;
+  --h2-size: 28px;
+
+  /* Poppins Heading 3 */
+  --h3-weight: 400;
+  --h3-size: 24px;
+
+  /* Poppins Paragraph */
+  --prg-weight: 300;
+  --prg-size: 18px;
+
+  /* Poppins Paragraph Bold */
+  --prg-weight: 600;
+  --prg-size: 18px;
+
+  /* Poppins Paragraph Medium */
+  --prg-med-weight: 500;
+  --prg-med-size: 18px;
+
+  /* Poppins Bar */
+  --bar-weight: 600;
+  --bar-size: 16px;
+
+  /* Poppins Table*/
+  --table-weight: 400;
+  --table-size: 13px;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-family: var(--font);
+  color: var(--main-color);
+  line-height: var(--lh-64);
+  font-weight: var(--bar-weight);
+  font-size: var(--bar-size);
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.header {
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 10px 0;
+  background-color: var(--main-color);
+}
+
+.header .logo {
+  transition: 0.3s;
+}
+
+.header .logo img {
+  max-height: 40px;
+  margin-right: 8px;
+}
+
+.header .logo h1 {
+  font-size: var(--h1-size);
+  margin: 0;
+  font-weight: var(--h1-weight);
+  color: var(--primary-white);
+  font-family: var(--font);
+  text-decoration: none;
+}
+
+.header .logo i {
+  font-size: var(--h1-size);
+  margin-right: 8px;
+  line-height: 0;
+}
+
+@media (max-width: 575px) {
+  .header .logo h1 {
+    font-size: var(--h1-size);
+  }
+
+  .header .logo i {
+    font-size: var(--h1-size);
+  }
+}
+
+.header .header-right {
+  padding-right: 15px;
+}
+
+.header .header-right a {
+  color: var(--warning-color);
+  padding-left: 15px;
+  display: inline-block;
+  line-height: 0px;
+  transition: 0.3s;
+  font-size: var(--bar-size);
+  text-decoration: none;
+}
+
+.header .header-right a:hover {
+  color: var(--primary-white);
+}
+
+@media (max-width: 575px) {
+  .header .header-right a {
+    padding-left: 5px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Desktop Navigation
+--------------------------------------------------------------*/
+.navbar {
+  padding: 0;
+  height: 60px;
+  /* Set the height for the navbar */
+  display: flex;
+  align-items: center;
+  background-color: var(--main-color);
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  height: 100%;
+  /* Ensure ul takes full height of navbar */
+}
+
+.navbar li {
+  position: relative;
+  height: 100%;
+  /* Ensure li takes full height of navbar */
+}
+
+.navbar a,
+.navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-family: var(--font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--primary-white);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: none;
+  height: 100%;
+  /* Ensure a takes full height of navbar */
+}
+
+.navbar a i,
+.navbar a:focus i {
+  font-size: var(--bar-size);
+  line-height: 0;
+  margin-left: 5px;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+  color: var(--primary-white);
+  font-size: 16.5px;
+  transition: 0.3s;
+  text-decoration: underline;
+}
+
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 14px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: var(--placeholder-color);
+  transition: 0.3s;
+  border-radius: 4px;
+}
+
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  font-size: var(--bar-size);
+  text-transform: none;
+  font-weight: var(--bar-weight);
+}
+
+.navbar .dropdown ul a i {
+  font-size: var(--bar-size);
+}
+
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover>a {
+  color: var(--primary-white);
+}
+
+.navbar .dropdown:hover>ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+.navbar .dropdown .dropdown ul {
+  top: 0;
+  left: calc(100% - 30px);
+  visibility: hidden;
+}
+
+.navbar .dropdown .dropdown:hover>ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  visibility: visible;
+}
+
+@media (max-width: 1279px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-color);
+    padding: 10px;
+    height: 60px;
+    /* Set height for the navbar */
+  }
+
+  .navbar ul {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* Ensure ul takes full height of navbar */
+  }
+
+  .navbar li {
+    margin: 0 5px;
+    height: 100%;
+    /* Ensure li takes full height of navbar */
+  }
+
+  .navbar a {
+    padding: 10px 15px;
+    font-size: var(--bar-size);
+    height: 100%;
+    /* Ensure a takes full height of navbar */
+  }
+
+  .navbar .dropdown ul {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--main-color);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .navbar .dropdown:hover>ul {
+    opacity: 1;
+    visibility: visible;
+  }
+}
