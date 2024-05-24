@@ -11,5 +11,6 @@ Route::get('/dokter', function () {
 });
 
 Route::get('/pasien', function () {
-    return view('pasien.master-pasien');
+    // return view('pasien.master-pasien');
+    return view('pasien.home-pasien');
 });
