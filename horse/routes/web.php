@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/karyawan', function () {
-    return view('karyawan.master-karyawan');
+    // return view('karyawan.master-karyawan');
+    return view('karyawan.list-karyawan');
 });
 
 Route::get('/dokter', function () {
