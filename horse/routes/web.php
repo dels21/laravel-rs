@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/karyawan', function () {
     // return view('karyawan.master-karyawan');
-    return view('karyawan.list-karyawan');
+    return view('karyawan.list-modalitas');
 });
 
 Route::get('/dokter', function () {
@@ -15,4 +15,10 @@ Route::get('/pasien', function () {
     // return view('pasien.master-pasien');
     // return view('pasien.home-pasien');
     return view('pasien.list-pemeriksaan-pasien');
+});
+
+Route::get('/', function () {
+    // return view('pasien.master-pasien');
+    // return view('pasien.home-pasien');
+    return 'hello_world';
 });
