@@ -1,17 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/karyawan', function () {
-    return view('karyawan.master-karyawan');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/dokter', function () {
-    return view('dokter.master-dokter');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/pasien', function () {
-    // return view('pasien.master-pasien');
-    // return view('pasien.home-pasien');
-    return view('pasien.list-pemeriksaan-pasien');
-});
+require __DIR__.'/auth.php';
