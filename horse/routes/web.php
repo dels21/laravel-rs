@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/karyawan', function () {
     // return view('karyawan.master-karyawan');
-    return view('karyawan.list-modalitas');
+    // return view('karyawan.list-modalitas');
+    // return view('karyawan.list-dokter');
+    return view('karyawan.list-pasien');
 });
 
 Route::get('/dokter', function () {
