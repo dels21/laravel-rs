@@ -1,7 +1,7 @@
-@section('title', 'Manage Dokter')
-@section('setAktifListDokter', 'active')
+@section('title', 'Manage Karyawan')
+@section('setAktifListKaryawan', 'active')
 
-@section('ListDokter')
+@section('ListKaryawan')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -12,7 +12,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Dokter</h1>
+        <h1 class="title">Karyawan</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Staff</th>
+                                <th>ID Karyawan</th>
                                 <th>Nama</th>
                                 <th>Telepon Rumah</th>
                                 <th>Alamat</th>
@@ -137,6 +137,9 @@
 
     </div>
     <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="/list-pemeriksaan-pasien-assets/vendor/jquery/jquery.min.js"></script>

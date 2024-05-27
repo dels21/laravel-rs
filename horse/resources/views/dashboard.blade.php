@@ -1,17 +1,56 @@
+@section('content')
+<link rel="stylesheet" href="css/root/style.css">
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
     </x-slot>
+    
+    {{-- Admin --}}
+    @if ($user == 'admin')
+        @if ($page == 'list-karyawan')
+            @include('admin.list-karyawan')
+        @endif
+    @endif
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- Karyawan --}}
+    @if ($user == 'karyawan')
+        @if ($page == 'list-dokter')
+            @include('karyawan.list-dokter')
+        @endif
+
+        @if ($page == 'list-pasien')
+            @include('karyawan.list-pasien')
+        @endif
+
+        @if ($page == 'list-modalitas')
+            @include('karyawan.list-modalitas')
+        @endif
+
+        @if ($page == 'list-pemeriksaan')
+            @include('karyawan.list-pemeriksaan-karyawan')
+        @endif
+    @endif
+    
+    {{-- Dokter --}}
+    @if ($user == 'dokter')
+        @if ($page == 'dashboard')
+            
+        @endif
+
+        @if ($page == 'list-pasien')
+            @include('dokter.list-pemeriksaan-dokter')
+        @endif
+    @endif
+
+    {{-- Pasien --}}
+    @if ($user == 'pasien')
+        @if ($page == 'halaman-utama')
+            @include('pasien.home-pasien')
+        @endif
+
+        @if ($page == 'pemeriksaan-saya')
+            @include('pasien.list-pemeriksaan-pasien')
+        @endif
+    @endif
+ 
 </x-app-layout>
+

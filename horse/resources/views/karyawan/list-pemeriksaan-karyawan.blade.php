@@ -1,7 +1,7 @@
-@section('title', 'Pemeriksaan Saya')
-@section('setAktifPemeriksaanSaya', 'active')
+@section('title', 'Manage Pemeriksaan')
+@section('setAktifListPemeriksaan', 'active')
 
-@section('PemeriksaanSaya')
+@section('ListPemeriksaan')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -12,7 +12,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Pemeriksaan Saya</h1>
+        <h1 class="title">Pemeriksaan</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
