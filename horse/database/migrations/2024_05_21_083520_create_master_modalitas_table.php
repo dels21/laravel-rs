@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('master_modalitas', function (Blueprint $table) {
-            $table->id("kodeModalitas");
+            $table->id('kodeModalitas');
             $table->string("namaModalitas",length:50);
             $table->enum('jenisModalitas',array('CT Scan', 'Radiografi', 'Fluoroskopi', 'Angiografi', 'Mamografi', 'USG', 'MRI'));
             $table->string("merekModalitas",length:50);
             $table->string("tipeModalitas",length:50);
             $table->string("nomorSeriModalitas",length:50);
-            $table->foreign('alamatIp')->references('alamatIp')->on('master_dicom');
+            $table->ipAddress('alamatIp')->references('alamatIp')->on('master_dicom');
             $table->string("kodeRuang",length:20);
             // $table->enum('status',array());
             $table->timestamps();

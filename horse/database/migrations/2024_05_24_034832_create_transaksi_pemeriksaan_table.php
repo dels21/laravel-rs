@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('transaksi_pemeriksaan', function (Blueprint $table) {
             $table->id("nomorPemeriksaan");
-            $table->foreignId("nomorPendaftaran")->constrained("pendaftaran_pemeriksaan");
-            $table->foreignId("idKaryawanRadiografer")->constrained("karyawan");
-            $table->foreignId("idKaryawanDokterRadiologi")->constrained("karyawan");
+            $table->foreignId("nomorPendaftaran")->constrained("pendaftaran_pemeriksaan",'nomorPendaftaran');
+            $table->foreignId("idKaryawanRadiografer")->constrained("karyawan",'idKaryawan');
+            $table->foreignId("idKaryawanDokterRadiologi")->constrained("karyawan",'idKaryawan');
             $table->string("namaDokterPengirim",length: 50);
             $table->date("tanggalPemeriksaan");
             $table->text("diagnosis");
