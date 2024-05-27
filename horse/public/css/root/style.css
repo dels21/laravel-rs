@@ -1,0 +1,5 @@
+/* Gunanya buat ngasih margin left ke content karena kita tau size dari sidebar nya static */
+main {
+    margin-left: 300px;
+    max-width: calc(100vw - 300px);
+}

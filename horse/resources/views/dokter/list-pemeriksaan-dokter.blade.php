@@ -1,7 +1,7 @@
-@section('title', 'Pemeriksaan Saya')
-@section('setAktifPemeriksaanSaya', 'active')
+@section('title', 'ListPasien')
+@section('setAktifListPasien', 'active')
 
-@section('PemeriksaanSaya')
+@section('ListPasienDokter')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -12,7 +12,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Pemeriksaan Saya</h1>
+        <h1 class="title">List Pasien</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -39,7 +39,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -49,7 +49,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -59,7 +59,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -69,7 +69,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -79,7 +79,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -89,7 +89,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -99,7 +99,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -109,7 +109,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -119,7 +119,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -129,7 +129,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -139,7 +139,7 @@
                                 <td>Perempuan</td>
                                 <td>MRI Scan</td>
                                 <td>Selesai</td>
-                                <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i></td>
                             </tr>
                         </tbody>
                     </table>
