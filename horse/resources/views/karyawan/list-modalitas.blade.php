@@ -14,16 +14,16 @@
         <!-- Page Heading -->
         <h1 class="title">Modalitas</h1>
         <!-- DataTales Example -->
-        <div class="container">
+        <div class="container" style="margin-left:7.8rem; margin-top: 1.5rem; margin-bottom: 2.5rem">
             <div class="row">
-                <div class="col-1">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                        <i class="fas fa-plus"></i> Tambah
+                <div class="col d-flex justify-content-start">
+                    <button type="button" class="btn btn-primary mx-2 d-flex align-items-center justify-content-center"
+                        style="width: 120px;" data-toggle="modal" data-target="#myModal">
+                        <i class="bi bi-plus-lg me-2"></i> Tambah
                     </button>
-                </div>
-                <div class="col-1">
-                    <button type="button" class="btn btn-danger">
-                        <i class="fas fa-trash-alt"></i> Hapus
+                    <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+                        style="width: 120px;">
+                        <i class="bi bi-trash3-fill me-2"></i> Hapus
                     </button>
                 </div>
             </div>
@@ -42,16 +42,6 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-row form-row-with-border">
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputTambahKode" class="col-sm-4 col-form-label">Tambah Kode</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTambahKode"
-                                            placeholder="Enter text">
-                                    </div>
-                                    <button type="button" class="btn btn-primary">GO</button>
-                                </div>
-                            </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputKodeModalitas" class="col-sm-4 col-form-label">Kode

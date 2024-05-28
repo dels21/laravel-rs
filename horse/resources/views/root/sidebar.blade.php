@@ -107,7 +107,7 @@
         </li><!-- End Pemeriksaan Saya -->
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link @yield('setAktifDaftarPemeriksaan')" href="/pasien/daftar-pemeriksaan">
                 <i class="bi bi-bookmark-plus-fill"></i><span>Daftar Pemeriksaan</span>
             </a>
         </li><!-- End Daftar Pemeriksaan -->

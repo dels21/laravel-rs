@@ -1,5 +1,15 @@
 /* Gunanya buat ngasih margin left ke content karena kita tau size dari sidebar nya static */
 main {
-    margin-left: 300px;
-    max-width: calc(100vw - 300px);
+    width: 100vw;
+    margin-left: 18.75rem;
+    max-width: calc(100vw - 18.75rem);
+}
+
+.title {
+    font-family: var(--font);
+    color: var(--main-color);
+    line-height: var(--lh-64);
+    font-weight: var(--title-weight);
+    font-size: var(--title-size);
+    margin: 2.5rem 0 2.5rem 0;
 }

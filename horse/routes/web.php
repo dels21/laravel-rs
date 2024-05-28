@@ -52,6 +52,10 @@ Route::prefix('/pasien')->group(function(){
     
     Route::get('/pemeriksaan', function() {
         return view('dashboard', ['user' => 'pasien', 'page' => 'pemeriksaan-saya']);
+    });
+
+    Route::get('/daftar-pemeriksaan', function() {
+        return view('dashboard', ['user' => 'pasien', 'page' => 'daftar-pemeriksaan']);
     });  
 });
 

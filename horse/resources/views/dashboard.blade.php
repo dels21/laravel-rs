@@ -50,6 +50,10 @@
         @if ($page == 'pemeriksaan-saya')
             @include('pasien.list-pemeriksaan-pasien')
         @endif
+
+        @if ($page == 'daftar-pemeriksaan')
+            @include('pasien.form-pendaftaran-pemeriksaan')
+        @endif
     @endif
  
 </x-app-layout>
