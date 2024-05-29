@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("karyawan", function (Blueprint $table) {
-            $table-> id("idKaryawan");
+        Schema::create("dokter", function (Blueprint $table) {
+            $table-> id("idDokter");
             $table-> foreignId("idUser") -> constrained('users','id');
             $table-> bigInteger('idKtp');   
             $table-> enum('jenisKelamin',array('laki','perempuan'));
@@ -23,6 +23,10 @@ return new class extends Migration
             $table-> string('nomorTelpRumah',length: 10);
             $table->timestamps();
         });
+
+// INSERT INTO users () 
+// VALUES ();
+
     }
 
     /**
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists("karyawan");
+        Schema::dropIfExists("dokter");
     }
 };

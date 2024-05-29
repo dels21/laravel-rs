@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id("nomorPemeriksaan");
             $table->foreignId("nomorPendaftaran")->constrained("pendaftaran_pemeriksaan",'nomorPendaftaran');
             $table->foreignId("idKaryawanRadiografer")->constrained("karyawan",'idKaryawan');
-            $table->foreignId("idKaryawanDokterRadiologi")->constrained("karyawan",'idKaryawan');
+            $table->foreignId("idKaryawanDokterRadiologi")->constrained("dokter",'idDokter');
             $table->string("namaDokterPengirim",length: 50);
             $table->date("tanggalPemeriksaan");
             $table->text("diagnosis");
