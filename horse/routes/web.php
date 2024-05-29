@@ -33,6 +33,10 @@ Route::prefix('/karyawan')->group(function(){
     Route::get('/list-pemeriksaan', function() {
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-pemeriksaan']);
     });  
+
+    Route::get('/list-jenis-pemeriksaan', function() {
+        return view('dashboard', ['user' => 'karyawan', 'page' => 'list-jenis-pemeriksaan']);
+    });
 });
 
 Route::prefix('/dokter')->group(function(){
