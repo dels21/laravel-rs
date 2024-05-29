@@ -38,16 +38,21 @@
         {{-- <main> --}}
         <main>
             {{-- Admin --}}
+            @yield('DashboardAdmin')
             @yield('ListKaryawan')
 
             {{-- Karyawan --}}
+            @yield('DashboardKaryawan')
             @yield('ListDokter')
             @yield('ListPasien')
             @yield('ListModalitas')
             @yield('ListPemeriksaan')
+            @yield('ListDICOM')
+            @yield('ListJenisPemeriksaan')
 
             {{-- Dokter --}}
             @yield('ListPasienDokter')
+            @yield('DashboardDokter')
 
             {{-- Pasien --}}
             @yield('HalamanUtama')

@@ -11,10 +11,10 @@
 
         {{-- Navigation Admin --}}
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link @yield('setAktifDashboardKaryawan')" href="/admin/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
             </a>
-        </li><!-- End Dashboard -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -32,10 +32,10 @@
         
         {{-- Navigation Karyawan --}}
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link @yield('setAktifDashboardKaryawan')" href="/karyawan/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
             </a>
-        </li><!-- End Dashboard -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -55,6 +55,16 @@
                 <li>
                     <a href="/karyawan/list-modalitas">
                         <span>Modalitas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/karyawan/list-DICOM">
+                        <span>DICOM</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/karyawan/list-jenis-pemeriksaan">
+                        <span>Jenis Pemeriksaan</span>
                     </a>
                 </li>
             </ul>
@@ -81,7 +91,7 @@
 
         {{-- Navigation Dokter --}}
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link @yield('setAktifDashboardDokter')" href="/dokter/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
             </a>
         </li><!-- End Dashboard -->

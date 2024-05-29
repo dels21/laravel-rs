@@ -1,7 +1,7 @@
-@section('title', 'Dashboard Karyawan')
-@section('setAktifDashboardKaryawan', 'active')
+@section('title', 'Dashboard Admin')
+@section('setAktifDashboardAdmin', 'active')
 
-@section('DashboardKaryawan')
+@section('DashboardAdmin')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -26,8 +26,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Jumlah Pasien</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">9.412 Pasien</div>
+                                    Jumlah Karyawan</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">9.412 Karyawan</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -40,8 +40,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Jumlah Dokter</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1.250 Dokter</div>
+                                    Karyawan Aktif</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">500 Karyawan</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -54,8 +54,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Jumlah Karyawan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1.500 Karyawan</div>
+                                    Karyawan Non-Aktif</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">100 Karyawan</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -72,7 +72,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Jumlah Pasien</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Jumlah Karyawan</h6>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -84,7 +84,6 @@
                 </div>
             </div>
 
-
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-body">
@@ -93,11 +92,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal Pemeriksaan</th>
-                                    <th>Jam Pemeriksaan</th>
-                                    <th>ID Pasien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Jenis Pemeriksaan</th>
+                                    <th>ID Karyawan</th>
+                                    <th>Nama</th>
+                                    <th>Telepon Rumah</th>
+                                    <th>Alamat</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -105,113 +103,102 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                    <td>UAC90</td>
+                                    <td>Jahja Setiaatmadja</td>
+                                    <td>08999999999</td>
+                                    <td>Menara BCA</td>
+                                    <td>Aktif</td>
+                                    <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
                                 </tr>
                             </tbody>
                         </table>

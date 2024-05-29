@@ -449,8 +449,8 @@ pre code {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -0.75rem;
-  margin-left: -0.75rem;
+  margin-right: 9.375rem;
+  margin-left: 9.375rem;
 }
 
 .no-gutters {
@@ -535,7 +535,7 @@ pre code {
 .col-xl,
 .col-xl-auto {
   position: relative;
-  width: 100%;
+  width: 200rem;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -1422,66 +1422,6 @@ pre code {
   .col-xl-auto {
     flex: 0 0 auto;
     width: auto;
-    max-width: 100%;
-  }
-
-  .col-xl-1 {
-    flex: 0 0 8.33333%;
-    max-width: 8.33333%;
-  }
-
-  .col-xl-2 {
-    flex: 0 0 16.66667%;
-    max-width: 16.66667%;
-  }
-
-  .col-xl-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-
-  .col-xl-4 {
-    flex: 0 0 33.33333%;
-    max-width: 33.33333%;
-  }
-
-  .col-xl-5 {
-    flex: 0 0 41.66667%;
-    max-width: 41.66667%;
-  }
-
-  .col-xl-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .col-xl-7 {
-    flex: 0 0 58.33333%;
-    max-width: 58.33333%;
-  }
-
-  .col-xl-8 {
-    flex: 0 0 66.66667%;
-    max-width: 66.66667%;
-  }
-
-  .col-xl-9 {
-    flex: 0 0 75%;
-    max-width: 75%;
-  }
-
-  .col-xl-10 {
-    flex: 0 0 83.33333%;
-    max-width: 83.33333%;
-  }
-
-  .col-xl-11 {
-    flex: 0 0 91.66667%;
-    max-width: 91.66667%;
-  }
-
-  .col-xl-12 {
-    flex: 0 0 100%;
     max-width: 100%;
   }
 
@@ -4272,7 +4212,6 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid #e3e6f0;
   border-radius: 0.35rem;
-  margin: 0px 150px 0 150px;
 }
 
 .card>hr {
@@ -10019,11 +9958,11 @@ button.bg-dark:focus {
 }
 
 .text-white {
-  color: #fff !important;
+  color: var(--primary-white) !important;
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: var(--main-color) !important;
 }
 
 a.text-primary:hover,
