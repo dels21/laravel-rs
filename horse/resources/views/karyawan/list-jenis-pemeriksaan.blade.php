@@ -40,64 +40,64 @@
                         </button>
                         <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Tambah Jenis Pemeriksaan</h1>
                     </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <h1>Tambah Jenis Pemeriksaan</h1>
+                    < class="modal-body">
 
-                            <form action="{{ route('jenis-pemeriksaan.store') }}" method="POST">
-                                @csrf
+                        <form>
+                                <div class="form-row">
+                                    <div class="mb-3">
+                                            <label for="kode_modalitas" class="form-label">Kode Modalitas:</label>
+                                            <input type="text" class="form-control" id="kode_modalitas" name="kode_modalitas" required>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <label for="kode_modalitas" class="form-label">Kode Modalitas:</label>
-                                    <input type="text" class="form-control" id="kode_modalitas" name="kode_modalitas" required>
+                                        <div class="mb-3">
+                                            <label for="nama" class="form-label">Nama:</label>
+                                            <input type="text" class="form-control" id="nama" name="nama" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="kelompok" class="form-label">Kelompok:</label>
+                                            <select class="form-select" id="kelompok" name="kelompok" required>
+                                                <option value="">Pilih Kelompok</option>
+                                                <option value="1">CT Scan</option>
+                                                <option value="2">X Ray</option>
+                                                <option value="3">Kelompok 3</option>
+                                            </select>
+                                        </div> 
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="nama" class="form-label">Nama:</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="kelompok" class="form-label">Kelompok:</label>
-                                    <select class="form-select" id="kelompok" name="kelompok" required>
-                                        <option value="">Pilih Kelompok</option>
-                                        <option value="1">Kelompok 1</option>
-                                        <option value="2">Kelompok 2</option>
-                                        <option value="3">Kelompok 3</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="durasi_pemeriksaan" class="form-label">Durasi Pemeriksaan:</label>
-                                    <input type="number" class="form-control" id="durasi_pemeriksaan" name="durasi_pemeriksaan" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="harga" class="form-label">Harga:</label>
-                                    <input type="number" class="form-control" id="harga" name="harga" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="masa_berlaku" class="form-label">Masa Berlaku:</label>
-                                    <input type="number" class="form-control" id="masa_berlaku" name="masa_berlaku" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="pemakaian_kontras" class="form-label">Pemakaian Kontras:</label>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="pemakaian_kontras_ya" name="pemakaian_kontras" value="1" required>
-                                        <label class="form-check-label" for="pemakaian_kontras_ya">Ya</label>
+                                <div class="form-row">
+                                    <div class="mb-3">
+                                        <label for="durasi_pemeriksaan" class="form-label">Durasi Pemeriksaan:</label>
+                                        <input type="number" class="form-control" id="durasi_pemeriksaan" name="durasi_pemeriksaan" required>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="pemakaian_kontras_tidak" name="pemakaian_kontras" value="0" required>
-                                        <label class="form-check-label" for="pemakaian_kontras_tidak">Tidak</label>
+
+                                    <div class="mb-3">
+                                        <label for="harga" class="form-label">Harga:</label>
+                                        <input type="number" class="form-control" id="harga" name="harga" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="masa_berlaku" class="form-label">Masa Berlaku:</label>
+                                        <input type="number" class="form-control" id="masa_berlaku" name="masa_berlaku" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pemakaian_kontras" class="form-label">Pemakaian Kontras:</label>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="pemakaian_kontras_ya" name="pemakaian_kontras" value="1" required>
+                                            <label class="form-check-label" for="pemakaian_kontras_ya">Ya</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-center mt-4">
+                                        <div class="col-auto">
+                                            <button type="reset" class="btn btn-secondary">Reset</button>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
-                                
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
