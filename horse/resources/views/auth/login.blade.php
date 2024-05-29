@@ -4,11 +4,32 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
+        {{-- <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example11">Email</label>
+            <input type="email" id="form2Example11" class="form-control"
+                placeholder="Masukkan alamat email anda disini" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example22">Password</label>
+            <input type="password" id="form2Example22" class="form-control" 
+            placeholder="Masukkan password anda disini"/>
+        </div>
+
+        <div class="text-center pt-1 mb-5 pb-1">
+            <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Login</button>
+            <!-- <a class="text-muted" href="#!">Forgot password?</a> -->
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center pb-4 ">
+            <p class="mb-0 mr-3">Tidak punya akun?</p>
+            <button  type="button" class="btn btn-outline-danger">Buat akun</button>
+        </div> --}}
 
         <!-- Email Address -->
-        <div>
+        <div class="form-outline mb-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input placeholder="Masukkan alamat email anda disini" id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -16,7 +37,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <x-text-input placeholder="Masukkan password anda disini" id="password" class="form-control"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
@@ -31,17 +52,18 @@
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+        <div class="d-flex justify-content-center ">
+            <div class="flex items-center justify-center mt-4">
+                {{-- @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif --}}
+    
+                <x-primary-button class="ms-3">
+                    {{ __('Log in') }}
+                </x-primary-button>
+            </div>
         </div>
     </form>
 </x-guest-layout>
