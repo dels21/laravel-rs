@@ -1,4 +1,4 @@
-@section('title', 'Manage Jenis Pemeriksaan')
+@section('title', 'Manage Pemeriksaan')
 @section('setAktifListJenisPemeriksaan', 'active')
 
 @section('ListJenisPemeriksaan')
