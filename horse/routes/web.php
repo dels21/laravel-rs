@@ -58,12 +58,20 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::prefix('/admin')->group(function(){
+    Route::get('/dashboard', function() {
+        return view('dashboard', ['user' => 'admin', 'page' => 'dashboard']);
+    });
+
     Route::get('/list-karyawan', function() {
         return view('dashboard', ['user' => 'admin', 'page' => 'list-karyawan']);
     });  
 });
 
 Route::prefix('/karyawan')->group(function(){
+    Route::get('/dashboard', function() {
+        return view('dashboard', ['user' => 'karyawan', 'page' => 'dashboard']);
+    }); 
+
     Route::get('/list-dokter', function() {
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-dokter']);
     }); 
@@ -79,10 +87,12 @@ Route::prefix('/karyawan')->group(function(){
     Route::get('/list-pemeriksaan', function() {
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-pemeriksaan']);
     });  
-
+    Route::get('/list-DICOM', function() {
+        return view('dashboard', ['user' => 'karyawan', 'page' => 'list-DICOM']);
+    });  
     Route::get('/list-jenis-pemeriksaan', function() {
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-jenis-pemeriksaan']);
-    });
+    });  
 });
 
 Route::prefix('/dokter')->group(function(){

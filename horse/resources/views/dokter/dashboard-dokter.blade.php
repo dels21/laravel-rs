@@ -1,7 +1,7 @@
-@section('title', 'Dashboard Karyawan')
-@section('setAktifDashboardKaryawan', 'active')
+@section('title', 'Dashboard Dokter')
+@section('setAktifDashboardDokter', 'active')
 
-@section('DashboardKaryawan')
+@section('DashboardDokter')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -40,8 +40,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Jumlah Dokter</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1.250 Dokter</div>
+                                    Laporan Selesai</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">250 Laporan</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -54,8 +54,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Jumlah Karyawan</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">1.500 Karyawan</div>
+                                    Laporan Pending</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">500 Laporan</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -72,7 +72,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Jumlah Pasien</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Jumlah Laporan</h6>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
