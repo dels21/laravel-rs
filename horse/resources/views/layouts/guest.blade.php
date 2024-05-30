@@ -33,7 +33,7 @@
         </style>
         <!-- Scripts -->
     </head>
-    <body class=" text-gray-900 antialiased">
+    <body class=" text-gray-900 antialiased" style="overflow: hidden">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 border border-primary" >
             <div>
                 <a href="/">
@@ -71,13 +71,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script>
-          $(document).ready(function() {
-              $('#tanggalLahir').datepicker({
-                  format: 'dd/mm/yyyy',
-                  autoclose: true,
-                  todayHighlight: true
-              });
+          var inputField = document.getElementById('tanggalLahir');
+          
+          inputField.addEventListener('change', function() {
+              var selectedDate = inputField.value;
+              // console.log(selectedDate);
           });
       </script>
+      
       </body>
 </html>
