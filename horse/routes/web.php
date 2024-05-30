@@ -8,6 +8,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth', 'pasien'])->group(function () {
+    Route::get('/tesreroutepasien',function(){
+        return 'Middleware pasien berhasil';
+    });
+});
+
+Route::middleware(['auth', 'dokter'])->group(function () {
+    Route::get('/tesreroutedokter',function(){
+        return 'Middleware dokter berhasil';
+    });
+});
+
+Route::middleware(['auth', 'karyawan'])->group(function () {
+    Route::get('/tesreroutekaryawan',function(){
+        return 'Middleware karyawan berhasil';
+    });
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/tesrerouteadmin',function(){
+        return 'Middleware admin berhasil';
+    });
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
