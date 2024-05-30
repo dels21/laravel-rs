@@ -13,27 +13,41 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('css/root/root.css')}}">
         <link rel="stylesheet" href="{{asset('css/authentication/login.css')}}">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        <style>
+        .scrollable-container {
+            max-height: 100vh;
+            overflow-y: scroll;
+            min-height: 100vh;
+            scrollbar-color: transparent;
+        }
+        /* Hide scrollbar for Webkit-based browsers (Chrome, Safari) */
+        .scrollable-container::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge, and Firefox */
+        .scrollable-container {
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        </style>
         <!-- Scripts -->
     </head>
     <body class=" text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 border border-primary" >
             <div>
                 <a href="/">
                     {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
                 </a>
             </div>
 
-            {{-- <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div> --}}
             <section class="gradient-form" style="background-color: #eee;">
-                <div class="card rounded-3 text-black container-fluid h-100">
+                <div class="card rounded-3 text-black container-fluid ">
                   <div class="row g-0 h-100">
                     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" class="col-lg-6 " style="object-fit: cover;padding: 0;">
                       
-                    <div class="col-lg-6">
-                      <div class="card-body p-md-5 mx-md-4">
+                    <div class="col-lg-6 ">
+                      <div class="card-body p-md-5 mx-md-4 scrollable-container"  style="scrollbar-width: none;">
         
                         <div class="text-center">
                           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
@@ -55,5 +69,15 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script>
+          $(document).ready(function() {
+              $('#tanggalLahir').datepicker({
+                  format: 'dd/mm/yyyy',
+                  autoclose: true,
+                  todayHighlight: true
+              });
+          });
+      </script>
+      </body>
 </html>
