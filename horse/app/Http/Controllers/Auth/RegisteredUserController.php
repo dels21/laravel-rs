@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $this->pasienController->create($user->id, $request);
+        $this->pasienController->store($user->id, $request);
 
         // dd($user->id);
 
@@ -66,6 +66,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('/pasien/dashboard', absolute: false));
     }
 }

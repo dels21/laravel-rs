@@ -14,14 +14,25 @@ class PasienController extends Controller
      */
     public function index()
     {
-        //
+        $pasien = Pasien::all();
+
+        return view('isi_nanti', compact('pasien'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(int $userId, Request $request)
+    public function create(Request $request)
     {
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(int $userId, Request $request)
+    {
+        //
         Pasien::create([
             'idUser' =>$userId,
             'tempatLahir' =>$request->tempatLahir,
@@ -38,14 +49,6 @@ class PasienController extends Controller
             'tinggiBadan' =>$request->tinggiBadan,
             'beratBadan' =>$request->beratBadan
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -70,6 +73,24 @@ class PasienController extends Controller
     public function update(Request $request, Pasien $pasien)
     {
         //
+        $pasien->update([
+            'tempatLahir' =>$request->tempatLahir,
+            'tanggalLahir' =>$request->tanggalLahir,
+            'noIdentitas' =>$request->noIdentitas,
+            'nomorRumah' =>$request->nomorRumah,
+            'nomorHp' =>$request->nomorHp,
+            'namaKontakDarurat' =>$request->namaKontakDarurat,
+            'nomorDarurat' =>$request->nomorDarurat,
+            'kewarganegaraan' =>$request->kewarganegaraan,
+            'alergi' =>$request->alergi,
+            'golonganDarah' =>$request->golonganDarah,
+            'tinggiBadan' =>$request->tinggiBadan,
+            'beratBadan' =>$request->beratBadan
+        ]);
+
+
+        return redirect()->route('isi_nanti')->with('success','Pasien berhasil diupdate');
+
     }
 
     /**
@@ -78,5 +99,8 @@ class PasienController extends Controller
     public function destroy(Pasien $pasien)
     {
         //
+        $pasien->delete();
+
+        return redirect()->route('isi_nanti')->with('success','Pasien berhasil dihapus');
     }
 }

@@ -12,7 +12,10 @@ class DokterController extends Controller
      */
     public function index()
     {
-        //
+        
+        $dokter = Dokter::all();
+
+        return view('isi_nanti', compact('dokter'));
     }
 
     /**
@@ -26,15 +29,25 @@ class DokterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(int $userId, Request $request)
     {
-        //
+        Dokter::create([
+            'idDokter'=>$request->idDokter,
+            'idUser'=>$userId,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(dokter $dokter)
+    public function show(Dokter $dokter)
     {
         //
     }
@@ -42,24 +55,41 @@ class DokterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(dokter $dokter)
+    public function edit(Dokter $dokter)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, dokter $dokter)
+    public function update(Request $request, Dokter $dokter)
     {
         //
+                //
+        $dokter->update([
+            'idDokter'=>$request->idDokter,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
+        ]);
+
+        return redirect()->route('isi_nanti')->with('success','Dokter berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(dokter $dokter)
+    public function destroy(Dokter $dokter)
     {
         //
+
+        $dokter->delete();
+
+        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
     }
 }

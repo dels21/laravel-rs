@@ -12,7 +12,10 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        //
+                
+        $karyawan = Karyawan::all();
+
+        return view('isi_nanti', compact('karyawan'));
     }
 
     /**
@@ -26,10 +29,21 @@ class KaryawanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(int $userId, Request $request)
     {
-        //
+        Karyawan::create([
+            'idKaryawan'=>$request->idDokter,
+            'idUser'=>$userId,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
+        ]);
     }
+
 
     /**
      * Display the specified resource.
@@ -53,6 +67,19 @@ class KaryawanController extends Controller
     public function update(Request $request, Karyawan $karyawan)
     {
         //
+                //
+        $karyawan->update([
+            'idKaryawan'=>$request->idKaryawan,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
+        ]);
+
+        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil diupdate');
     }
 
     /**
@@ -60,6 +87,8 @@ class KaryawanController extends Controller
      */
     public function destroy(Karyawan $karyawan)
     {
-        //
+        $karyawan->delete();
+
+        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil dihapus');
     }
 }
