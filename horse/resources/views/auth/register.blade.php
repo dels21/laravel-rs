@@ -180,6 +180,7 @@
     <div class="mt-4 col p-0">
         <x-input-label for="tanggalDaftar" :value="__('Tanggal Daftar')" />
         <input id="tanggalDaftar" class="block mt-1 w-full form-control" type="date" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}" required autofocus autocomplete="tanggalDaftar" placeholder="DD/MM/YYYY" disabled>
+        <input type="hidden" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}">
     </div>
     
 </div>
@@ -187,7 +188,7 @@
 <!-- Alergi and Golongan Darah -->
 <div class="row p-0">
     <div class="mt-4 col p-0 shadow-sm">
-        <x-input-label for="alergi" :value="__('Alergi')" />
+        <label for="alergi">Alergi</label>
         <input id="alergi" class="block mt-1 w-full form-control" name="alergi" required autofocus autocomplete="alergi">{{ old('alergi') }}</input>
     </div>
     <div class="p-1"></div>
