@@ -80,7 +80,7 @@
         </li><!-- End Pemeriksaan -->
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link @yield('setAktifVerifikasi')" href="/karyawan/verifikasi">
                 <i class="bi bi-patch-check-fill"></i><span>Verifikasi</span>
             </a>
         </li><!-- End Verifikasi -->

@@ -2,7 +2,8 @@
 @section('title', 'Halaman Utama Pasien')
 @section('setAktifHalamanUtama', 'active')
 
-@section('content')
+@section('customCSS')
+
     <!-- Vendor CSS Files -->
     <link href="/home-pasien-assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="/home-pasien-assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -15,6 +16,10 @@
 
     <!-- Template Main CSS File -->
     <link href="/home-pasien-assets/css/style.css" rel="stylesheet">
+
+@endsection
+
+@section('content')
 
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">

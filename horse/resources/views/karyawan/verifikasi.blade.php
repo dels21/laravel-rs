@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Pemeriksaan Saya')
-@section('setAktifPemeriksaanSaya', 'active')
+@section('title', 'Verifikasi Pendaftaran')
+@section('setAktifVerifikasi', 'active')
 
 @section('customCSS')
 
@@ -20,16 +20,17 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Detail Pemeriksaan</h1>
+                    <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Detail Pendaftaran</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -51,11 +52,18 @@
                                             <td>Perempuan</td>
                                             <td>MRI Scan</td>
                                             <td>Selesai</td>
-                                            <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                            <td class="d-flex">
+                                                <button class="btn btn-success">Terima</button>
+                                                <button class="btn btn-danger ml-1">Tolak</button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success">Terima Semua</button>
+                            <button class="btn btn-danger">Tolak Semua</button>
                         </div>
                     </div>
                 </div>
@@ -67,7 +75,8 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Pemeriksaan Saya</h1>
+        <h1 class="title">Verifikasi Pendaftaran</h1>
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -82,7 +91,7 @@
                                 <th>Jenis Kelamin</th>
                                 <th>Jenis Pemeriksaan</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,9 +110,9 @@
                 </div>
             </div>
         </div>
+
     </div>
     <!-- /.container-fluid -->
-
 
 @endsection
 
