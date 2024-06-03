@@ -1,7 +1,8 @@
+@extends('layouts.app')
 @section('title', 'Dashboard Admin')
 @section('setAktifDashboardAdmin', 'active')
 
-@section('DashboardAdmin')
+@section('content')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 

@@ -69,7 +69,6 @@
   line-height: var(--lh-64);
   font-weight: var(--title-weight);
   font-size: var(--title-size);
-  margin: 3.375rem 9.375rem 3.375rem 9.375rem;
 }
 
 h1 {
@@ -444,13 +443,6 @@ pre code {
   .container-xl {
     max-width: 1140px;
   }
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: 9.375rem;
-  margin-left: 9.375rem;
 }
 
 .no-gutters {
@@ -10210,8 +10202,8 @@ a:focus {
 .container-md,
 .container-lg,
 .container-xl {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 9.375rem;
+  padding-right: 9.375rem;
 }
 
 .scroll-to-top {

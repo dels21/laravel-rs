@@ -1,7 +1,8 @@
+@extends('layouts.app')
 @section('title', 'Halaman Utama Pasien')
 @section('setAktifHalamanUtama', 'active')
 
-@section('HalamanUtama')
+@section('content')
     <!-- Vendor CSS Files -->
     <link href="/home-pasien-assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="/home-pasien-assets/vendor/animate.css/animate.min.css" rel="stylesheet">

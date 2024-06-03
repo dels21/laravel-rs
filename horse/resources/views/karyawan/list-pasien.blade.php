@@ -1,7 +1,8 @@
+@extends('layouts.app')
 @section('title', 'Manage Pasien')
 @section('setAktifListPasien', 'active')
 
-@section('ListPasien')
+@section('content')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
@@ -15,19 +16,15 @@
         <h1 class="title">Pasien</h1>
 
         <!-- DataTales Example -->
-        <div class="container" style="margin-left:7.8rem; margin-top: 1.5rem; margin-bottom: 2.5rem">
-            <div class="row">
-                <div class="col d-flex justify-content-start">
-                    <button type="button" class="btn btn-primary mx-2 d-flex align-items-center justify-content-center"
-                        style="width: 120px;" data-toggle="modal" data-target="#myModal">
-                        <i class="bi bi-plus-lg me-2"></i> Tambah
-                    </button>
-                    <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
-                        style="width: 120px;">
-                        <i class="bi bi-trash3-fill me-2"></i> Hapus
-                    </button>
-                </div>
-            </div>
+        <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
+            <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                <i class="bi bi-plus-lg me-2"></i> Tambah
+            </button>
+            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+                style="width: 7.5rem;">
+                <i class="bi bi-trash3-fill me-2"></i> Hapus
+            </button>
         </div>
 
         <!-- Modal -->

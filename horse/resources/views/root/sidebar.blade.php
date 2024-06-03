@@ -10,6 +10,7 @@
         </li><!-- End Profile -->
 
         {{-- Navigation Admin --}}
+        @if (Auth::user()->role == 'admin')
         <li class="nav-item">
             <a class="nav-link @yield('setAktifDashboardKaryawan')" href="/admin/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
@@ -28,9 +29,11 @@
                 </li>
             </ul>
         </li><!-- End List Data -->
+        @endif
         {{-- End Navigation Admin --}}
         
         {{-- Navigation Karyawan --}}
+        @if (Auth::user()->role == 'karyawan')
         <li class="nav-item">
             <a class="nav-link @yield('setAktifDashboardKaryawan')" href="/karyawan/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
@@ -87,9 +90,11 @@
                 <i class="bi bi-box-seam-fill"></i><span>Kirim Data</span>
             </a>
         </li><!-- End Verifikasi -->
+        @endif
         {{-- End Navigation Karyawan --}}
 
         {{-- Navigation Dokter --}}
+        @if (Auth::user()->role == 'dokter')
         <li class="nav-item">
             <a class="nav-link @yield('setAktifDashboardDokter')" href="/dokter/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
@@ -101,9 +106,11 @@
                 <i class="bi bi-view-list"></i><span>List Pasien</span>
             </a>
         </li><!-- End List Pasien -->
+        @endif
         {{-- End Navigation Dokter --}}
 
         {{-- Navigation Pasien --}}
+        @if (Auth::user()->role == 'pasien')
         <li class="nav-item">
             <a class="nav-link @yield('setAktifHalamanUtama')" href="/pasien/dashboard">
                 <i class="bi bi-house-door-fill"></i><span>Halaman Utama</span>
@@ -121,6 +128,7 @@
                 <i class="bi bi-bookmark-plus-fill"></i><span>Daftar Pemeriksaan</span>
             </a>
         </li><!-- End Daftar Pemeriksaan -->
+        @endif
         {{-- End Navigation Pasien --}}
     </ul>
 </aside><!-- End Sidebar -->
