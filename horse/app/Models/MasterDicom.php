@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class master_dicom extends Model
+class MasterDicom extends Model
 {
     use HasFactory;
 
@@ -16,4 +16,7 @@ class master_dicom extends Model
         'aet',
         'port',
     ];
+
+    protected $table = 'master_dicom';
+    protected $primaryKey = 'alamatIp';
 }

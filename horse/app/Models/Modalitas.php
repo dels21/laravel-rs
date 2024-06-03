@@ -14,14 +14,17 @@ class Modalitas extends Model
         'namaModalitas',
         'jenisModalitas',
         'merekModalitas',
-        'tiperModalitas',
+        'tipeModalitas',
         'nomorSeriModalitas',
         'alamatIp',
         'kodeRuang',
     ];
 
+    protected $table = 'master_modalitas';
+    protected $primaryKey = 'kodeModalitas';
+
     public function master_dicom(): HasOne
     {
-        return $this->hasOne(master_dicom::class);
+        return $this->hasOne(MasterDicom::class);
     }
 }
