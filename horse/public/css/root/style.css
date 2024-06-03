@@ -1,8 +1,6 @@
 /* Gunanya buat ngasih margin left ke content karena kita tau size dari sidebar nya static */
 main {
-    width: 100vw;
     margin-left: 18.75rem;
-    max-width: calc(100vw - 18.75rem);
 }
 
 .title {

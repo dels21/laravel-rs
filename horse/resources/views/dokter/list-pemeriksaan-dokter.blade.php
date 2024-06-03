@@ -1,7 +1,8 @@
+@extends('layouts.app')
 @section('title', 'ListPasien')
 @section('setAktifListPasien', 'active')
 
-@section('ListPasienDokter')
+@section('content')
     <!-- Custom styles for this template -->
     <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
 
