@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Karyawan;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 
-class KaryawanController extends Controller
+class DokterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-                
-        $karyawan = Karyawan::all();
+        
+        $dokter = Dokter::all();
 
-        return view('isi_nanti', compact('karyawan'));
+        return view('isi_nanti', compact('dokter'));
     }
 
     /**
@@ -31,8 +31,8 @@ class KaryawanController extends Controller
      */
     public function store(int $userId, Request $request)
     {
-        Karyawan::create([
-            'idKaryawan'=>$request->idDokter,
+        Dokter::create([
+            'idDokter'=>$request->idDokter,
             'idUser'=>$userId,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
@@ -44,11 +44,10 @@ class KaryawanController extends Controller
         ]);
     }
 
-
     /**
      * Display the specified resource.
      */
-    public function show(Karyawan $karyawan)
+    public function show(Dokter $dokter)
     {
         //
     }
@@ -56,20 +55,20 @@ class KaryawanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Karyawan $karyawan)
+    public function edit(Dokter $dokter)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Karyawan $karyawan)
+    public function update(Request $request, Dokter $dokter)
     {
         //
                 //
-        $karyawan->update([
-            'idKaryawan'=>$request->idKaryawan,
+        $dokter->update([
+            'idDokter'=>$request->idDokter,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
             'tanggalLahir'=>$request->tanggalLahir,
@@ -79,16 +78,18 @@ class KaryawanController extends Controller
             'nomorTelpRumah'=>$request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil diupdate');
+        return redirect()->route('isi_nanti')->with('success','Dokter berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Karyawan $karyawan)
+    public function destroy(Dokter $dokter)
     {
-        $karyawan->delete();
+        //
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil dihapus');
+        $dokter->delete();
+
+        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
     }
 }

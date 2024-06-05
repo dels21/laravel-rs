@@ -43,7 +43,8 @@
                         <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Tambah Modalitas</h1>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST" action="/karyawan/store-modalitas">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputKodeModalitas" class="col-sm-4 col-form-label">Kode
@@ -71,7 +72,7 @@
                                         Modalitas:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputNamaModalitas"
-                                            placeholder="Enter name">
+                                            placeholder="Enter name" name="namaModalitas">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
@@ -88,7 +89,7 @@
                                         Modalitas:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputMerkModalitas"
-                                            placeholder="Enter brand">
+                                            placeholder="Enter brand" name = "merekModalitas">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
@@ -105,15 +106,14 @@
                                         Modalitas:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputTipeModalitas"
-                                            placeholder="Enter type">
+                                            placeholder="Enter type" name = "tipeModalitas">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputNoDokumenKalibrasi" class="col-sm-4 col-form-label">No Dokumen
-                                        Kalibrasi:</label>
+                                    <label for="inputNoDokumenKalibrasi" class="col-sm-4 col-form-label">Alamat IP:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputNoDokumenKalibrasi"
-                                            placeholder="Enter document number">
+                                            placeholder="Enter alamat IP" name = "alamatIp">
                                     </div>
                                 </div>
                             </div>
@@ -123,15 +123,14 @@
                                         Number:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputSerialNumber"
-                                            placeholder="Enter serial number">
+                                            placeholder="Enter serial number" name = "nomorSeriModalitas">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputNoSuratIjin" class="col-sm-4 col-form-label">No Surat
-                                        Ijin:</label>
+                                    <label for="inputNoSuratIjin" class="col-sm-4 col-form-label">Nomor Ruangan: </label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputNoSuratIjin"
-                                            placeholder="Enter permit number">
+                                            placeholder="Enter permit number" name="kodeRuang">
                                     </div>
                                 </div>
                             </div>
