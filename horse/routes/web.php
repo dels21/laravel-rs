@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DicomController;
+use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route; 
 
@@ -80,16 +82,22 @@ Route::prefix('/karyawan')->group(function(){
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-pasien']);
     });  
 
-    Route::get('/list-modalitas', function() {
-        return view('dashboard', ['user' => 'karyawan', 'page' => 'list-modalitas']);
-    });  
+    // Route::get('/list-modalitas', function() {
+    //     return view('dashboard', ['user' => 'karyawan', 'page' => 'list-modalitas']);
+    // });   
+    
+    Route::get('/list-modalitas', [ModalitasController::class, 'index']);  
+    Route::post('/store-modalitas', [ModalitasController::class, 'store']);  
+
+    Route::get('/list-dicom', [DicomController::class, 'index']);  
+    Route::post('/store-dicom', [DicomController::class, 'store']);
 
     Route::get('/list-pemeriksaan', function() {
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-pemeriksaan']);
     });  
-    Route::get('/list-DICOM', function() {
-        return view('dashboard', ['user' => 'karyawan', 'page' => 'list-DICOM']);
-    });  
+    // Route::get('/list-DICOM', function() {
+    //     return view('dashboard', ['user' => 'karyawan', 'page' => 'list-DICOM']);
+    // });  
     Route::get('/list-jenis-pemeriksaan', function() {
         return view('dashboard', ['user' => 'karyawan', 'page' => 'list-jenis-pemeriksaan']);
     });  
