@@ -18,7 +18,7 @@ class ModalitasController extends Controller
             [
                 'namaModalitas' => 'required|max:255',
                 'jenisModalitas' => '',
-                'merekModalitas' => '',
+                'merekModalit   as' => '',
                 'nomorSeriModalitas' => '',
                 'alamatIp' => '',
                 'kodeRuang' => '',
@@ -26,5 +26,10 @@ class ModalitasController extends Controller
             );
             Modalitas::create($request->all());
             return redirect()->route('dashboard');
+    }
+
+    public function edit(Request $request)
+    {
+        
     }
 }
