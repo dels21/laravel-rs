@@ -1,68 +1,3 @@
-/*!
- * Start Bootstrap - SB Admin 2 v4.1.3 (https://startbootstrap.com/theme/sb-admin-2)
- * Copyright 2013-2021 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
- */
-
-/*!
- * Bootstrap v4.6.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
-:root {
-  /* Color */
-  --main-color: #293573;
-  --primary-white: white;
-  --warning-color: #E45151;
-  --blue-success: #36ABFF;
-  --black-color: #000000;
-  --placeholder-color: #969696;
-  --neutral-navbar: rgba(255, 255, 255, 0.5);
-
-  /* Poppins */
-  --font: "Poppins", sans-serif;
-
-  /* Poppins Title */
-  --title-weight: 700;
-  --title-size: 48px;
-  --lh-64: 64px;
-
-  /* Poppins Heading 1 */
-  --h1-weight: 600;
-  --h1-size: 36px;
-
-  /* Poppins Heading 2 */
-  --h2-weight: 500;
-  --h2-size: 28px;
-
-  /* Poppins Heading 3 */
-  --h3-weight: 400;
-  --h3-size: 24px;
-
-  /* Poppins Paragraph */
-  --prg-weight: 300;
-  --prg-size: 18px;
-
-  /* Poppins Paragraph Bold */
-  --prg-weight: 600;
-  --prg-size: 18px;
-
-  /* Poppins Paragraph Medium */
-  --prg-med-weight: 500;
-  --prg-med-size: 18px;
-
-  /* Poppins Bar */
-  --bar-weight: 600;
-  --bar-size: 16px;
-
-  /* Poppins Table*/
-  --table-weight: 400;
-  --table-size: 13px;
-  scroll-behavior: smooth;
-}
-
 .title {
   font-family: var(--font);
   color: var(--main-color);
@@ -83,17 +18,6 @@ h1 {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: var(--font);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #858796;
-  text-align: left;
-  background-color: #fff;
 }
 
 table {
@@ -392,57 +316,6 @@ pre code {
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll;
-}
-
-.container,
-.container-fluid,
-.container-sm,
-.container-md,
-.container-lg,
-.container-xl {
-  width: 100rem;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 576px) {
-
-  .container,
-  .container-sm {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-
-  .container,
-  .container-sm,
-  .container-md {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-
-  .container,
-  .container-sm,
-  .container-md,
-  .container-lg {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-
-  .container,
-  .container-sm,
-  .container-md,
-  .container-lg,
-  .container-xl {
-    max-width: 1140px;
-  }
 }
 
 .no-gutters {
@@ -4435,39 +4308,6 @@ input[type="button"].btn-block {
 .accordion>.card>.card-header {
   border-radius: 0;
   margin-bottom: -1px;
-}
-
-.breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  background-color: #eaecf4;
-  border-radius: 0.35rem;
-}
-
-.breadcrumb-item+.breadcrumb-item {
-  padding-left: 0.5rem;
-}
-
-.breadcrumb-item+.breadcrumb-item::before {
-  float: left;
-  padding-right: 0.5rem;
-  color: #858796;
-  content: "/";
-}
-
-.breadcrumb-item+.breadcrumb-item:hover::before {
-  text-decoration: underline;
-}
-
-.breadcrumb-item+.breadcrumb-item:hover::before {
-  text-decoration: none;
-}
-
-.breadcrumb-item.active {
-  color: #858796;
 }
 
 .pagination {

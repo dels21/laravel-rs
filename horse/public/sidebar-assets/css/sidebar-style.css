@@ -1,81 +1,29 @@
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* General */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-:root 
-{
-    /* Color */
-    --main-color: #293573;
-    --primary-white: white;
-    --warning-color: #E45151;
-    --blue-success: #36ABFF;
-    --black-color: #000000;
-    --placeholder-color: #969696;
-    --hover-sidebar: #404A7D;
-    --active-sidebar: #4763F3;
-
-    /* Poppins */
-    --font: "Poppins", sans-serif;
-
-    /* Poppins Title */
-    --title-weight: 700;
-    --title-size: 48px;
-    --lh-64: 64px;
-
-    /* Poppins Heading 1 */
-    --h1-weight: 600;
-    --h1-size: 36px;
-
-    /* Poppins Heading 2 */
-    --h2-weight: 500;
-    --h2-size: 28px;
-
-    /* Poppins Heading 3 */
-    --h3-weight: 400;
-    --h3-size: 24px;
-
-    /* Poppins Paragraph */
-    --prg-weight: 300;
-    --prg-size: 18px;
-
-    /* Poppins Paragraph Bold */
-    --prg-weight: 600;
-    --prg-size: 18px;
-    
-    /* Poppins Paragraph Medium */
-    --prg-med-weight: 500;
-    --prg-med-size: 18px;
-
-    /* Poppins Bar */
-    --bar-weight: 600;
-    --bar-size: 16px;
-
-    /* Poppins Table*/
-    --table-weight: 400;
-    --table-size: 13px;
-    scroll-behavior: smooth;
+:root {
+  --main-color: #293573;
+  --primary-white: white;
+  --warning-color: #E45151;
+  --hover-sidebar: #404A7D;
+  --active-sidebar: #4763F3;
+  --font: "Poppins", sans-serif;
+  --bar-weight: 600;
+  --bar-size: 16px;
 }
 
-h1
-{
-    font-family: var(--font);
-    color: var(--main-color);
-    line-height: var(--lh-64);
-    font-weight: var(--bar-weight);
-    font-size: var(--bar-size);
+h1 {
+  font-family: var(--font);
+  color: var(--main-color);
+  font-size: 48px;
+  line-height: 64px;
+  font-weight: 700;
 }
 
-/*--------------------------------------------------------------
-# Sidebar
---------------------------------------------------------------*/
+/* Sidebar */
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  z-index: 996;
+  width: 18.75rem;
   height: 100vh;
   transition: all 0.3s;
   padding: 20px;
@@ -83,49 +31,21 @@ h1
   scrollbar-width: none;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: var(--main-color);
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1199px) {
   .sidebar {
     padding: 10px;
-    width: 250px;
+    width: 15.625rem;
   }
 }
 
-.sidebar::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-  background-color: var(--main-color);
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
-}
-
-@media (min-width: 1200px) {
-
-  #main,
-  #footer {
-    margin-left: 300px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .toggle-sidebar .sidebar {
-    left: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-
-  .toggle-sidebar #main,
-  .toggle-sidebar #footer {
-    margin-left: 0;
-  }
-
-  .toggle-sidebar .sidebar {
-    left: -300px;
-  }
+.sidebar-nav-wrapper {
+  flex-grow: 1;
+  /* This allows the wrapper to take up all the available space */
+  overflow-y: auto;
 }
 
 .sidebar-nav {
@@ -144,21 +64,13 @@ h1
   margin-bottom: 5px;
 }
 
-.sidebar-nav .nav-heading {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--main-color);
-  font-weight: 600;
-  margin: 10px 0 5px 15px;
-}
-
 .sidebar-nav .nav-link {
   display: flex;
   align-items: center;
   font-size: var(--bar-size);
   font-weight: var(--bar-weight);
-  color:  var(--primary-white);
-  transition: 0.3;
+  color: var(--primary-white);
+  transition: 0.3s;
   background: var(--main-color);
   padding: 10px 15px;
   border-radius: 4px;
@@ -167,33 +79,19 @@ h1
 .sidebar-nav .nav-link i {
   font-size: 1.5rem;
   margin-right: 10px;
-  color: var(--primary-white);
-}
-
-.sidebar-nav .nav-link.collapsed {
-  color:  var(--primary-white);
-  background: var(--main-color);
-}
-
-.sidebar-nav .nav-link.collapsed i {
-  color: var(--primary-white);
 }
 
 .sidebar-nav .profile {
   display: flex;
   align-items: center;
-  color:  var(--primary-white);
+  color: var(--primary-white);
   background: var(--main-color);
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin: 1.5rem 0.5rem;
 }
 
 .sidebar-nav .profile i {
   font-size: 2.75rem;
   margin-right: 1rem;
-  color: var(--primary-white);
 }
 
 .sidebar-nav .nav-link:hover {
@@ -201,26 +99,14 @@ h1
   background: var(--hover-sidebar);
 }
 
-a.nav-link:focus, a.nav-link {
+a.nav-link:focus,
+a.nav-link {
   color: var(--primary-white);
 }
 
 .sidebar-nav .nav-link:active {
   color: var(--primary-white) !important;
   background-color: var(--active-sidebar);
-}
-
-.sidebar-nav .nav-link:hover i {
-  color: var(--primary-white);
-}
-
-.sidebar-nav .nav-link .bi-chevron-down {
-  margin-right: 0;
-  transition: transform 0.2s ease-in-out;
-}
-
-.sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
-  transform: rotate(180deg);
 }
 
 .sidebar-nav .nav-content {
@@ -238,4 +124,31 @@ a.nav-link:focus, a.nav-link {
   padding: 10px 0 10px 40px;
   transition: 0.3s;
   text-decoration: none;
+}
+
+.logout {
+  margin-top: auto;
+}
+
+.logout .nav-link {
+  padding: 1rem;
+  color: var(--warning-color);
+  display: flex;
+  align-items: center;
+}
+
+.logout .nav-link i{
+  margin-right: 10px;
+  color: var(--warning-color);
+  display: flex;
+  align-items: center;
+}
+
+.logout .nav-link:hover {
+  padding: 1rem;
+  border-radius: 4px;
+  color: var(--warning-color);
+  background-color: var(--hover-sidebar);
+  display: flex;
+  align-items: center;
 }
