@@ -18,7 +18,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Modalitas</h1>
+        <h1 class="biggest-font mt-5 mb-5">Modalitas</h1>
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
@@ -40,7 +40,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Tambah Modalitas</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Modalitas</h1>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="/karyawan/store-modalitas">
@@ -183,97 +183,7 @@
                                 <td>22-04-2023</td>
                                 <td>12-09-2025</td>
                                 <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>MRI Scan</td>
-                                <td>Samsung</td>
-                                <td>22-04-2023</td>
-                                <td>12-09-2025</td>
-                                <td>Tersedia</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
                         </tbody>
                     </table>

@@ -1,26 +1,48 @@
-/* General */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-:root {
-  --main-color: #293573;
-  --primary-white: white;
-  --warning-color: #E45151;
-  --hover-sidebar: #404A7D;
-  --active-sidebar: #4763F3;
-  --font: "Poppins", sans-serif;
-  --bar-weight: 600;
-  --bar-size: 16px;
-}
-
-h1 {
-  font-family: var(--font);
-  color: var(--main-color);
-  font-size: 48px;
-  line-height: 64px;
-  font-weight: 700;
-}
-
 /* Sidebar */
+:root 
+{
+    /* Color */
+    --main-color: #293573;
+    --primary-white: white;
+    --warning-color: #E45151;
+    --blue-success: #36ABFF;
+    --black-color: #000000;
+    --placeholder-color: #969696;
+    --hover-sidebar: #404A7D;
+    --active-sidebar: #4763F3;
+
+    /* Poppins */
+    --font: "Poppins", sans-serif;
+    --bold: 600;
+    --semi-bold: 500;
+    --regular: 400;
+    --light: 300;
+
+    /* Line Height */
+    --lh-64: 64px;
+
+    /* Poppins Title */
+    --title-size: 48px;
+
+    /* Poppins Heading 1 */
+    --h1-size: 36px;
+
+    /* Poppins Heading 2 */
+    --h2-size: 28px;
+
+    /* Poppins Heading 3 */
+    --h3-size: 24px;
+
+    /* Poppins Paragraph */
+    --prg-size: 18px;
+
+    /* Poppins Sidebar */
+    --sidebar-size: 16px;
+
+    /* Poppins Table*/
+    --table-size: 13px;
+}
+
 .sidebar {
   position: fixed;
   width: 18.75rem;
@@ -44,7 +66,6 @@ h1 {
 
 .sidebar-nav-wrapper {
   flex-grow: 1;
-  /* This allows the wrapper to take up all the available space */
   overflow-y: auto;
 }
 
@@ -99,14 +120,14 @@ h1 {
   background: var(--hover-sidebar);
 }
 
+.sidebar-nav .nav-link:active {
+  color: var(--primary-white);
+  background-color: var(--active-sidebar);
+}
+
 a.nav-link:focus,
 a.nav-link {
   color: var(--primary-white);
-}
-
-.sidebar-nav .nav-link:active {
-  color: var(--primary-white) !important;
-  background-color: var(--active-sidebar);
 }
 
 .sidebar-nav .nav-content {
@@ -126,6 +147,16 @@ a.nav-link {
   text-decoration: none;
 }
 
+.sidebar-nav .nav-content a:hover {
+  color: var(--primary-white);
+  background: var(--hover-sidebar);
+}
+
+.sidebar-nav .nav-content a:active {
+  color: var(--primary-white);
+  background: var(--active-sidebar);
+}
+
 .logout {
   margin-top: auto;
 }
@@ -137,7 +168,7 @@ a.nav-link {
   align-items: center;
 }
 
-.logout .nav-link i{
+.logout .nav-link i {
   margin-right: 10px;
   color: var(--warning-color);
   display: flex;

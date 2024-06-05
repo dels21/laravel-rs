@@ -18,7 +18,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Dokter</h1>
+        <h1 class="biggest-font mt-5 mb-5">Dokter</h1>
 
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
@@ -41,7 +41,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Tambah Dokter</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Dokter</h1>
                     </div>
                     <div class="modal-body">
                         <form>
@@ -190,97 +190,7 @@
                                 <td>08999999999</td>
                                 <td>Menara BCA</td>
                                 <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
                         </tbody>
                     </table>

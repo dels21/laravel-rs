@@ -19,7 +19,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="title">Dashboard</h1>
+            <h1 class="biggest-font mt-5 mb-5">Dashboard</h1>
         </div>
 
         <!-- Content Row -->

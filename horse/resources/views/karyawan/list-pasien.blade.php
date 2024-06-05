@@ -18,7 +18,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Pasien</h1>
+        <h1 class="biggest-font mt-5 mb-5">Pasien</h1>
 
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
@@ -41,7 +41,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Tambah Pasien</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Pasien</h1>
                     </div>
                     <div class="modal-body">
                         <form>
@@ -261,107 +261,7 @@
                                 <td>24/04/2024</td>
                                 <td>Aktif</td>
                                 <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
+                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
                         </tbody>
                     </table>

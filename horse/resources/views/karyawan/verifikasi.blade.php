@@ -20,7 +20,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title w-100 text-center" id="myExtraLargeModalLabel">Detail Pendaftaran</h1>
+                    <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Detail Pendaftaran</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -75,7 +75,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="title">Verifikasi Pendaftaran</h1>
+        <h1 class="biggest-font mt-5 mb-5">Verifikasi Pendaftaran</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
