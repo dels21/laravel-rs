@@ -40,11 +40,11 @@ class DicomController extends Controller
     public function edit(Request $request, MasterDicom $dicom)
     {
         $dicom->update([
-            'netMask' => $request->namaModalitas,
-            'layananDicom' => $request->jenisModalitas,
-            'peran' => $request->merekModalitas,
-            'aet' => $request->nomorSeriModalitas,
-            'port' => $request->alamatIp,
+            'netMask' => $request->netMask,
+            'layananDicom' => $request->layananDicom,
+            'peran' => $request->peran,
+            'aet' => $request->aet,
+            'port' => $request->port,
         ]);
         return redirect()->route('dashboard')->with('success', 'Dicom berhasil diubah');
     }

@@ -14,7 +14,7 @@ class ModalitasController extends Controller
 
     public function create(Request $request)
     {
-        
+
     }
 
     public function store(Request $request)
@@ -23,7 +23,7 @@ class ModalitasController extends Controller
             [
                 'namaModalitas' => 'required|max:255',
                 'jenisModalitas' => '',
-                'merekModalit   as' => '',
+                'merekModalitas' => '',
                 'nomorSeriModalitas' => '',
                 'alamatIp' => '',
                 'kodeRuang' => '',
