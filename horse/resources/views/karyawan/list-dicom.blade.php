@@ -1,12 +1,18 @@
+@extends('layouts.app')
 @section('title', 'Manage DICOM')
 @section('setAktifListDICOM', 'active')
 
-@section('ListDICOM')
+@section('customCSS')
+
     <!-- Custom styles for this template -->
-    <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/templating-assets/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="/list-pemeriksaan-pasien-assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+@endsection
+
+@section('content')
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -14,19 +20,15 @@
         <!-- Page Heading -->
         <h1 class="title">DICOM</h1>
         <!-- DataTales Example -->
-        <div class="container" style="margin-left:7.8rem; margin-top: 1.5rem; margin-bottom: 2.5rem">
-            <div class="row">
-                <div class="col d-flex justify-content-start">
-                    <button type="button" class="btn btn-primary mx-2 d-flex align-items-center justify-content-center"
-                        style="width: 120px;" data-toggle="modal" data-target="#myModal">
-                        <i class="bi bi-plus-lg me-2"></i> Tambah
-                    </button>
-                    <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
-                        style="width: 120px;">
-                        <i class="bi bi-trash3-fill me-2"></i> Hapus
-                    </button>
-                </div>
-            </div>
+        <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
+            <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                <i class="bi bi-plus-lg me-2"></i> Tambah
+            </button>
+            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+                style="width: 7.5rem;">
+                <i class="bi bi-trash3-fill me-2"></i> Hapus
+            </button>
         </div>
 
         <!-- Modal -->
@@ -46,13 +48,15 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputAlamatIP" class="col-sm-4 col-form-label">Alamat IP:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputAlamatIP" placeholder="Masukan Alamat IP">
+                                        <input type="text" class="form-control" id="inputAlamatIP"
+                                            placeholder="Masukan Alamat IP">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNetmask" class="col-sm-4 col-form-label">Netmask:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNetmask" placeholder="Masukan Netmask">
+                                        <input type="text" class="form-control" id="inputNetmask"
+                                            placeholder="Masukan Netmask">
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +94,8 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputPort" class="col-sm-4 col-form-label">Port:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputPort" placeholder="Masukan Port">
+                                        <input type="text" class="form-control" id="inputPort"
+                                            placeholder="Masukan Port">
                                     </div>
                                 </div>
                             </div>
@@ -256,20 +261,25 @@
     </div>
     <!-- /.container-fluid -->
 
+@endsection
+
+@section('customJS')
+
     <!-- Bootstrap core JavaScript-->
-    <script src="/list-pemeriksaan-pasien-assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/list-pemeriksaan-pasien-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/templating-assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/templating-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/list-pemeriksaan-pasien-assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/templating-assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/list-pemeriksaan-pasien-assets/js/sb-admin-2.min.js"></script>
+    <script src="/templating-assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/list-pemeriksaan-pasien-assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/list-pemeriksaan-pasien-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/templating-assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/list-pemeriksaan-pasien-assets/js/demo/datatables-demo.js"></script>
+    <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+
 @endsection

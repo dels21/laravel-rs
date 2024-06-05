@@ -1,12 +1,18 @@
+@extends('layouts.app')
 @section('title', 'Dashboard Dokter')
 @section('setAktifDashboardDokter', 'active')
 
-@section('DashboardDokter')
+@section('customCSS')
+
     <!-- Custom styles for this template -->
-    <link href="/list-pemeriksaan-pasien-assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/templating-assets/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="/list-pemeriksaan-pasien-assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+@endsection
+
+@section('content')
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -224,20 +230,26 @@
     </div>
     <!-- End of Main Content -->
 
+@endsection
+
+@section('customJS')
+
     <!-- Bootstrap core JavaScript-->
-    <script src="/list-pemeriksaan-pasien-assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/list-pemeriksaan-pasien-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/templating-assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/templating-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/list-pemeriksaan-pasien-assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/templating-assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/list-pemeriksaan-pasien-assets/js/sb-admin-2.min.js"></script>
+    <script src="/templating-assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/list-pemeriksaan-pasien-assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/list-pemeriksaan-pasien-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/templating-assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/list-pemeriksaan-pasien-assets/js/demo/datatables-demo.js"></script>
+    <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+
+
 @endsection
