@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
 use App\Http\Controllers\ModalitasController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,9 +49,10 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.list-dokter');
         });
 
-        Route::get('/list-pasien', function () {
-            return view('karyawan.list-pasien');
-        });
+        // Route::get('/list-pasien', function () {
+        //     return view('karyawan.list-pasien');
+        // });
+        Route::get('/list-pasien', [PasienController::class,'pasienFromUser']);
 
         Route::get('/list-modalitas', function () {
             return view('karyawan.list-modalitas');

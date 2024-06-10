@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('tempatLahir',length: 100);
             $table->date('tanggalLahir');
             $table->bigInteger('noIdentitas');
+            $table->string('tipeIdentitas', length: 10);
+            $table->enum('jenisKelamin',array('laki','perempuan'));
+            $table->string('pekerjaan',length: 30);
+            $table->string('alamat',length: 100);
+            $table->string('kota',length: 30);
             $table->string('nomorRumah',length: 10);
             $table->string('nomorHp',length: 15);
             $table->string('namaKontakDarurat',length: 100);
