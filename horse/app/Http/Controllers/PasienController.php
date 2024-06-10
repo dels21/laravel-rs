@@ -22,7 +22,7 @@ class PasienController extends Controller
         $usersWithPasien = User::join('pasien', 'users.id', '=', 'pasien.idUser')
             ->where('users.role', 'pasien')
             ->get(['users.*', 'pasien.*']);
-
+        // dd($usersWithPasien);
         return view('karyawan.list-pasien', compact('usersWithPasien'));
      }
     public function index()

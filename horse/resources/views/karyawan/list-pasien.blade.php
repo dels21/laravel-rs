@@ -266,50 +266,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                                <td>1</td>
-                                <td>UTP99</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>Menara BCA</td>
-                                <td>24/04/2024</td>
-                                <td>Aktif</td>
-                                <td>xxx</td>
-                                <td>
-                                    <i class="bi bi-pencil-square"></i>
-                                    <i class="bi bi-trash3-fill text-danger"></i>
-                                </td>
-                            </tr> --}}
-                           
-                            {{-- @foreach ($user as $userUnit)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                @foreach ($pasien as $pasienUnit)
-                                    @if ($userUnit->id == $pasienUnit->idUser)
-                                        <td>{{$pasienUnit->idPasien}}</td>
-                                        <td>{{$userUnit->name}}</td>
-                                        <td>{{$pasienUnit->alamat}}</td>
-                                        <td>{{$pasienUnit->tanggalDaftar}}</td>
-                                        <td>{{$userUnit->status}}</td>
-                                        <td>
-                                            <i class="bi bi-pencil-square"></i>
-                                            <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
-                                                <i class="bi bi-trash3-fill text-danger"></i>
-                                            </a>
-                                            
-                                            <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_pasien') }}" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('POST')
-                                                <input type="hidden" name="idUser" value="{{$userUnit->id}}">
-                                            </form>
-                                            
-                                        </td>
-                                    @endif
-                                @endforeach --}}
-                                @foreach ($usersWithPasien as $item)
+                            @foreach ($usersWithPasien as $item)
+                                <tr>
                                     <td>{{$loop->iteration}}</td>
-                                @endforeach
-
-                            </tr>
+                                    <td>{{$item->idPasien}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->alamat}}</td>
+                                    <td>{{$item->tanggalDaftar}}</td>
+                                    <td>{{$item->status}}</td>
+                                    <td>
+                                        <i class="bi bi-pencil-square"></i>
+                                        <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
+                                            <i class="bi bi-trash3-fill text-danger"></i>
+                                        </a>
+                                        
+                                        <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_pasien') }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('POST')
+                                            <input type="hidden" name="idUser" value="{{$item->id}}">
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
