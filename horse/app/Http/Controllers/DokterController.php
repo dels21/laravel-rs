@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DokterController extends Controller
 {
@@ -41,11 +42,17 @@ class DokterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $userId, Request $request)
+    public function store(Request $request)
     {
+        // dd($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
         Dokter::create([
             'idDokter'=>$request->idDokter,
-            'idUser'=>$userId,
+            'idUser'=>$user->id,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
             'tanggalLahir'=>$request->tanggalLahir,

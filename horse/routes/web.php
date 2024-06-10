@@ -48,6 +48,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         });
 
         Route::get('/list-dokter', [DokterController::class, 'dokterFromUser'])->name('show_list_dokter');
+        Route::post('/store-dokter', [DokterController::class, 'store'])->name('store_dokter');
 
         // Route::get('/list-pasien', function () {
         //     return view('karyawan.list-pasien');

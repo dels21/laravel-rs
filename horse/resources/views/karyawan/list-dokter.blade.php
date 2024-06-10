@@ -44,27 +44,41 @@
                         <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Dokter</h1>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST" action="{{route('store_dokter')}}">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputDKTP" class="col-sm-4 col-form-label">DKTP:</label>
+                                    <label for="inputNama" class="col-sm-4 col-form-label">Nama:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputDKTP" placeholder="Masukan DKTP">
+                                        <input type="text" class="form-control" id="inputNama" name="name" placeholder="Masukkan Nama">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputNamaKaryawan" class="col-sm-4 col-form-label">Nama Karyawan:</label>
+                                    <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNamaKaryawan" placeholder="Masukan Nama Karyawan">
+                                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Masukkan Email">
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6 d-flex align-items-center">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Masukkan Password">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 d-flex align-items-center">
+                                    <label for="inputIdKTP" class="col-sm-4 col-form-label">ID KTP:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="inputIdKTP" name="idKtp" placeholder="Masukkan ID KTP">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputJenisKelamin" class="col-sm-4 col-form-label">Jenis Kelamin:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputJenisKelamin">
+                                        <select class="form-control" name="jenisKelamin" id="inputJenisKelamin">
                                             <option value="laki">Laki-Laki</option>
                                             <option value="perempuan">Perempuan</option>
                                         </select>
@@ -73,50 +87,38 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTanggalLahir" class="col-sm-4 col-form-label">Tanggal Lahir:</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="form-control" id="inputTanggalLahir">
+                                        <input type="date" class="form-control" name="tanggalLahir" id="inputTanggalLahir">
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-start">
                                     <label for="inputAlamat" class="col-sm-4 col-form-label">Alamat:</label>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control" id="inputAlamat" placeholder="Masukan Alamat" style="height: 10rem"></textarea>
+                                        <input type="text" class="form-control" id="inputAlamat" name="alamat" placeholder="Masukkan Alamat"></input>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputKota" class="col-sm-4 col-form-label">Kota:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputKota" placeholder="Masukan Kota">
+                                        <input type="text" class="form-control" id="inputKota" name="kota" placeholder="Masukkan Kota">
                                     </div>
                                 </div>
                             </div>
-                        
                             <div class="form-row">
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
-                                    <div class="col-sm-8">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Masukan Email">
-                                    </div>
-                                </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNomorHP" class="col-sm-4 col-form-label">Nomor HP:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNomorHP" placeholder="Masukan Nomor HP">
+                                        <input type="text" class="form-control" id="inputNomorHP" name="nomorHp" placeholder="Masukkan Nomor HP">
                                     </div>
                                 </div>
-                            </div>
-                        
-                            <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNomorTelpRumah" class="col-sm-4 col-form-label">Nomor Telp Rumah:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNomorTelpRumah" placeholder="Masukan Nomor Telp Rumah">
+                                        <input type="text" class="form-control" id="inputNomorTelpRumah" name='nomorTelpRumah' placeholder="Masukkan Nomor Telp Rumah">
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="row justify-content-center mt-4">
                                 <div class="col-auto">
                                     <button type="reset" class="btn btn-secondary">Reset</button>
@@ -126,6 +128,8 @@
                                 </div>
                             </div>
                         </form>
+                        
+                        
                         
                     </div>
                 </div>
@@ -171,7 +175,7 @@
                                         <i class="bi bi-trash3-fill text-danger"></i>
                                     </a>
                                     
-                                    <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_pasien') }}" method="POST" style="display: none;">
+                                    <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_dokter') }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('POST')
                                         <input type="hidden" name="idUser" value="{{$item->id}}">
