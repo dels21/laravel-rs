@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
@@ -18,6 +19,17 @@ class DokterController extends Controller
         return view('isi_nanti', compact('dokter'));
     }
 
+
+    public function dokterFromUser()
+    {
+        
+        $dokterFromUser = User::join('dokter', 'users.id', '=', 'dokter.idUser')
+            ->where('users.role', 'dokter')
+            ->get(['users.*', 'dokter.*']);
+        // dd($dokterFromUser->all());
+
+        return view('karyawan.list-dokter', compact('dokterFromUser'));
+    }
     /**
      * Show the form for creating a new resource.
      */

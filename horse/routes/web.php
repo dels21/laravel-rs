@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
+use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\PasienController;
@@ -46,9 +47,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.dashboard-karyawan');
         });
 
-        Route::get('/list-dokter', function () {
-            return view('karyawan.list-dokter');
-        });
+        Route::get('/list-dokter', [DokterController::class, 'dokterFromUser'])->name('show_list_dokter');
 
         // Route::get('/list-pasien', function () {
         //     return view('karyawan.list-pasien');
