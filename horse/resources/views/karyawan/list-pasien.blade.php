@@ -46,18 +46,19 @@
                         <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Pasien</h1>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaPasien" class="col-sm-4 col-form-label">Nama Pasien:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNamaPasien" placeholder="Masukan Nama Pasien">
+                                        <input type="text" class="form-control" id="inputNamaPasien" placeholder="Masukkan Nama Pasien">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTelpRumah" class="col-sm-4 col-form-label">Telp Rumah:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTelpRumah" placeholder="Masukan Telp Rumah">
+                                        <input type="text" class="form-control" id="inputTelpRumah" placeholder="Masukkan Telp Rumah">
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +66,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTempatLahir" class="col-sm-4 col-form-label">Tempat Lahir:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTempatLahir" placeholder="Masukan Tempat Lahir">
+                                        <input type="text" class="form-control" id="inputTempatLahir" placeholder="Masukkan Tempat Lahir">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
@@ -110,7 +111,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputKota" class="col-sm-4 col-form-label">Kota:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputKota" placeholder="Masukan Kota">
+                                        <input type="text" class="form-control" id="inputKota" placeholder="Masukkan Kota">
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +119,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputPekerjaan" class="col-sm-4 col-form-label">Pekerjaan:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukan Pekerjaan">
+                                        <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukkan Pekerjaan">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
@@ -135,13 +136,13 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNomorRumah" class="col-sm-4 col-form-label">Nomor Rumah:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNomorRumah" placeholder="Masukan Nomor Rumah">
+                                        <input type="text" class="form-control" id="inputNomorRumah" placeholder="Masukkan Nomor Rumah">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTelpHP" class="col-sm-4 col-form-label">Telp HP:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTelpHP" placeholder="Masukan Telp HP">
+                                        <input type="text" class="form-control" id="inputTelpHP" placeholder="Masukkan Telp HP">
                                     </div>
                                 </div>
                             </div>
@@ -150,14 +151,14 @@
                                     <label for="inputNamaKontakDarurat" class="col-sm-4 col-form-label">Nama Kontak Darurat:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputNamaKontakDarurat"
-                                            placeholder="Masukan Nama Kontak Darurat">
+                                            placeholder="Masukkan Nama Kontak Darurat">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTelpDarurat" class="col-sm-4 col-form-label">Telp Darurat:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputTelpDarurat"
-                                            placeholder="Masukan Telp Darurat">
+                                            placeholder="Masukkan Telp Darurat">
                                     </div>
                                 </div>
                             </div>
@@ -166,31 +167,34 @@
                                     <label for="inputWargaNegara" class="col-sm-4 col-form-label">Warga Negara:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputWargaNegara"
-                                            placeholder="Masukan Warga Negara">
+                                            placeholder="Masukkan Warga Negara">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTanggalDaftar" class="col-sm-4 col-form-label">Tanggal Daftar:</label>
-                                    <div class="col-sm-8">
-                                        <input type="date" class="form-control" id="inputTanggalDaftar">
-                                    </div>
+                                    <input id="tanggalDaftar" class="block mt-1 w-full form-control" type="date" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}" required autofocus autocomplete="tanggalDaftar" placeholder="DD/MM/YYYY" disabled>
+                                    <input type="hidden" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputAlergi" class="col-sm-4 col-form-label">Alergi:</label>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control" id="inputAlergi" placeholder="Masukan Alergi" style="height: 10rem"></textarea>
+                                        <input type="text" class="form-control" id="inputAlergi" placeholder="Masukkan Alergi">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputGolonganDarah" class="col-sm-4 col-form-label">Golongan Darah:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputGolonganDarah">
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>AB</option>
-                                            <option>O</option>
+                                            <option value="A+">A+</option>
+                                            <option value="B+">B+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="O+">O+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O-">O-</option>
                                         </select>
                                     </div>
                                 </div>
@@ -199,34 +203,29 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTinggiBadan" class="col-sm-4 col-form-label">Tinggi Badan:</label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputTinggiBadan" placeholder="Masukan Tinggi Badan">
+                                        <input type="number" class="form-control" id="inputTinggiBadan" placeholder="Masukkan Tinggi Badan">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputBeratBadan"
                                     class="col-sm-4 col-form-label">Berat Badan:</label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputBeratBadan" placeholder="Masukan Berat Badan">
+                                        <input type="number" class="form-control" id="inputBeratBadan" placeholder="Masukkan Berat Badan">
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputName" class="col-sm-4 col-form-label">Name:</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputName" placeholder="Masukan Name">
-                                    </div>
-                                </div>
+                               
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
                                     <div class="col-sm-8">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Masukan Email">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Masukkan Email">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
                                     <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="inputPassword" placeholder="Masukan Password">
+                                        <input type="password" class="form-control" id="inputPassword" placeholder="Masukkan Password">
                                     </div>
                                 </div>
                             </div>
@@ -276,16 +275,7 @@
                                     <i class="bi bi-trash3-fill text-danger"></i>
                                 </td>
                             </tr> --}}
-                            {{-- @forelse ($pasien as $item)
-                                <td>{{$loop->iteration }}</td>
-                                <td>{{$item->id }}</td>
-                                <td>{{$item-> }}</td>
-                                <td>{{$item-> }}</td>
-                                <td>{{$item-> }}</td>
-                                <td>{{$item-> }}</td>
-                                <td>{{$loop->iteration }}</td>
-                            @endforelse --}}
-                            {{-- @dd($pasien) --}}
+                           
                             @foreach ($user as $userUnit)
                             <tr>
                                 <td>{{$loop->iteration}}</td>

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class KaryawanController extends Controller
 {
+    public function __construct(PasienController $pasienController){
+        $this->pasienController = $pasienController;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -80,6 +85,18 @@ class KaryawanController extends Controller
         ]);
 
         return redirect()->route('isi_nanti')->with('success','Karyawan berhasil diupdate');
+    }
+
+    public function store_pasien(Request $request){
+        dd($request);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $this->pasienController->store($user->id, $request);
     }
 
     /**
