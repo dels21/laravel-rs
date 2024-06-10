@@ -49,10 +49,15 @@ class DokterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'dokter'
         ]);
+        // dd($user->role);
+        
+        $userId = $user->id;
+        // dd($userId);
+        
         Dokter::create([
-            'idDokter'=>$request->idDokter,
-            'idUser'=>$user->id,
+            'idUser'=>$userId,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
             'tanggalLahir'=>$request->tanggalLahir,
@@ -61,6 +66,8 @@ class DokterController extends Controller
             'nomorHp'=>$request->nomorHp,
             'nomorTelpRumah'=>$request->nomorTelpRumah
         ]);
+
+        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil ditambahkan');
     }
 
     /**
@@ -103,12 +110,15 @@ class DokterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dokter $dokter)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::findOrFail($request->idUser);
+        $dokter = Dokter::where('idUser', $request->idUser);
 
         $dokter->delete();
+        $user->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil dihapus');
     }
+
 }

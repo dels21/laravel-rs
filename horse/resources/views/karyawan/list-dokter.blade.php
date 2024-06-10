@@ -151,7 +151,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            {{-- <tr>
                                 <td>1</td>
                                 <td>UAC90</td>
                                 <td>Jahja Setiaatmadja</td>
@@ -159,7 +159,7 @@
                                 <td>Menara BCA</td>
                                 <td>Aktif</td>
                                 <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
-                            </tr>
+                            </tr> --}}
 
                             @foreach ($dokterFromUser as $item)
                             <tr>
@@ -169,7 +169,7 @@
                                 <td>{{$item->nomorTelpRumah}}</td>
                                 <td>{{$item->alamat}}</td>
                                 <td>{{$item->status}}</td>
-                                {{-- <td>
+                                <td>
                                     <i class="bi bi-pencil-square"></i>
                                     <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                         <i class="bi bi-trash3-fill text-danger"></i>
@@ -180,7 +180,7 @@
                                         @method('POST')
                                         <input type="hidden" name="idUser" value="{{$item->id}}">
                                     </form>
-                                </td> --}}
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
