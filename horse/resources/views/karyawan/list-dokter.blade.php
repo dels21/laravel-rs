@@ -203,7 +203,7 @@
 
 @endsection
 
-@section('customeJS')
+@section('customJS')
 
     <!-- Bootstrap core JavaScript-->
     <script src="/templating-assets/vendor/jquery/jquery.min.js"></script>

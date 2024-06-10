@@ -15,10 +15,15 @@ class PasienController extends Controller
      */
 
      public function pasienFromUser(){
-        $user = User::where('role','pasien')->get();
-        $pasien = Pasien::all();
+        // $user = User::where('role','pasien')->get();
+        // $pasien = Pasien::all();
         // dd($pasien);
-        return view('karyawan.list-pasien', compact('pasien','user'));
+
+        $usersWithPasien = User::join('pasien', 'users.id', '=', 'pasien.idUser')
+            ->where('users.role', 'pasien')
+            ->get(['users.*', 'pasien.*']);
+
+        return view('karyawan.list-pasien', compact('usersWithPasien'));
      }
     public function index()
     {

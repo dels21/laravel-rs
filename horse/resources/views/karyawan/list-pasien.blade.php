@@ -280,7 +280,7 @@
                                 </td>
                             </tr> --}}
                            
-                            @foreach ($user as $userUnit)
+                            {{-- @foreach ($user as $userUnit)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 @foreach ($pasien as $pasienUnit)
@@ -304,9 +304,12 @@
                                             
                                         </td>
                                     @endif
+                                @endforeach --}}
+                                @foreach ($usersWithPasien as $item)
+                                    <td>{{$loop->iteration}}</td>
                                 @endforeach
+
                             </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
