@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -77,9 +78,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
-        Route::get('/list-karyawan', function () {
-            return view('admin.list-karyawan');
-        });
+        Route::get('/list-karyawan', 
+        [KaryawanController::class, 'showListKaryawan']    
+    );
     });
 });
 

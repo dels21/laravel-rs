@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
@@ -91,4 +92,15 @@ class KaryawanController extends Controller
 
         return redirect()->route('isi_nanti')->with('success','Karyawan berhasil dihapus');
     }
+
+    public function showListKaryawan()
+    {
+        $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
+            ->where('users.role', 'karyawan')
+            ->get(['users.*', 'karyawan.*']);
+            dd($usersWithKaryawan->all());    
+        return view('admin.list-karyawan', compact('usersWithKaryawan'));
+    }
+
+
 }
