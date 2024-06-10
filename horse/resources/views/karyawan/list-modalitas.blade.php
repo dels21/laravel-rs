@@ -145,6 +145,20 @@
                                             placeholder="Enter validity period">
                                     </div>
                                 </div>
+                                <div class="form-group col-md-6 d-flex align-items-center">
+                                    <label for="inputJenisModalitas" class="col-sm-4 col-form-label">Jenis
+                                        Modalitas:</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="inputKodeModalitas">
+                                            <option>CT Scan</option>
+                                            <option>MRI</option>
+                                            <option>Fluoroskopi</option>
+                                            <option>Angiografi</option>
+                                            <option>Mamografi</option>
+                                            <option>USG</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row justify-content-center mt-4">
                                 <div class="col-auto">
