@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PendaftaranPemeriksaanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,13 +17,15 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.dashboard-pasien');
         });
         
-        Route::get('/pemeriksaan', function () {
-            return view('pasien.list-pemeriksaan-pasien');
-        });
+        // Route::get('/pemeriksaan', function () {
+        //     return view('pasien.list-pemeriksaan-pasien');
+        // });
         
         Route::get('/daftar-pemeriksaan', function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
+
+        Route::get('/list-pemeriksaan', [PendaftaranPemeriksaanController::class,'detailWithPendaftaran'])->name('show_pendaftaran_pemeriksaan');
     });
 });
 
