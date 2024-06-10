@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
@@ -52,7 +53,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         // Route::get('/list-pasien', function () {
         //     return view('karyawan.list-pasien');
         // });
-        Route::get('/list-pasien', [PasienController::class,'pasienFromUser']);
+        Route::get('/list-pasien', [PasienController::class,'pasienFromUser'])->name('show_list_pasien');
+        Route::post('/store-pasien', [KaryawanController::class,'store_pasien'])->name('store_pasien');
+        Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
 
         Route::get('/list-modalitas', function () {
             return view('karyawan.list-modalitas');

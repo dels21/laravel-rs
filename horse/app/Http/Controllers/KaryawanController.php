@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\Pasien;
 use App\Models\User;
+use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class KaryawanController extends Controller
 {
+    protected $pasienController;
     public function __construct(PasienController $pasienController){
         $this->pasienController = $pasienController;
     }
@@ -88,7 +91,7 @@ class KaryawanController extends Controller
     }
 
     public function store_pasien(Request $request){
-        dd($request);
+        // dd($request->all());
 
         $user = User::create([
             'name' => $request->name,
@@ -97,6 +100,8 @@ class KaryawanController extends Controller
         ]);
 
         $this->pasienController->store($user->id, $request);
+
+        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil ditambahkan');
     }
 
     /**
@@ -107,5 +112,15 @@ class KaryawanController extends Controller
         $karyawan->delete();
 
         return redirect()->route('isi_nanti')->with('success','Karyawan berhasil dihapus');
+    }
+
+    public function destroy_pasien(Request $request)
+    {
+        $user = User::findOrFail($request->idUser);
+        $pasien = Pasien::where('idUser', $request->idUser);
+
+        $pasien->delete();
+        $user->delete();
+        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil dihapus');
     }
 }

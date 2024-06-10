@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('namaKontakDarurat',length: 100);
             $table->string('nomorDarurat',length: 15);
             $table->string('kewarganegaraan',length: 30);
+            $table->string('statusPerkawinan',length: 20);
             $table->date('tanggalDaftar');
             $table->text('alergi');
             $table->enum('golonganDarah',array('A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-'));

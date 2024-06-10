@@ -57,11 +57,13 @@ class PasienController extends Controller
             'namaKontakDarurat' =>$request->namaKontakDarurat,
             'nomorDarurat' =>$request->nomorDarurat,
             'kewarganegaraan' =>$request->kewarganegaraan,
+            'statusPerkawinan' =>$request->statusPerkawinan,
             'tanggalDaftar' =>$request->input('tanggalDaftar'),
             'alergi' =>$request->alergi,
             'golonganDarah' =>$request->golonganDarah,
             'tinggiBadan' =>$request->tinggiBadan,
-            'beratBadan' =>$request->beratBadan
+            'beratBadan' =>$request->beratBadan,
+
         ]);
     }
 

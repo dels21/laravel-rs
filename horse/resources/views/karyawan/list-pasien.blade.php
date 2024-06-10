@@ -46,19 +46,19 @@
                         <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Pasien</h1>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('store_pasien') }}">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaPasien" class="col-sm-4 col-form-label">Nama Pasien:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNamaPasien" placeholder="Masukkan Nama Pasien">
+                                        <input type="text" class="form-control" id="inputNamaPasien" name="name" placeholder="Masukkan Nama Pasien">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTelpRumah" class="col-sm-4 col-form-label">Telp Rumah:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTelpRumah" placeholder="Masukkan Telp Rumah">
+                                        <input type="text" class="form-control" id="inputTelpRumah" name="nomorRumah" placeholder="Masukkan Telp Rumah">
                                     </div>
                                 </div>
                             </div>
@@ -66,13 +66,13 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTempatLahir" class="col-sm-4 col-form-label">Tempat Lahir:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTempatLahir" placeholder="Masukkan Tempat Lahir">
+                                        <input type="text" class="form-control" id="inputTempatLahir" name="tempatLahir" placeholder="Masukkan Tempat Lahir">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTglLahir" class="col-sm-4 col-form-label">Tgl Lahir:</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="form-control" id="inputTglLahir">
+                                        <input type="date" class="form-control" id="inputTglLahir" name="tanggalLahir">
                                     </div>
                                 </div>
                             </div>
@@ -80,13 +80,13 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNoIdentitas" class="col-sm-4 col-form-label">No Identitas:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNoIdentitas" placeholder="No Identitas">
+                                        <input type="text" class="form-control" id="inputNoIdentitas" name="noIdentitas" placeholder="No Identitas">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTipeIdentitas" class="col-sm-4 col-form-label">Tipe Identitas:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputTipeIdentitas">
+                                        <select class="form-control" id="inputTipeIdentitas" name="tipeIdentitas">
                                             <option value="KTP">KTP</option>
                                             <option value="Paspor">Paspor</option>
                                             <option value="SIM">SIM</option>
@@ -95,23 +95,17 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label class="col-sm-4 col-form-label">Jenis Kelamin:</label>
-                                    <div class="col-sm-8">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="laki">
-                                            <label class="form-check-label" for="genderMale">Pria</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="perempuan">
-                                            <label class="form-check-label" for="genderFemale">Wanita</label>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputKota" class="col-sm-4 col-form-label">Kota:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputKota" placeholder="Masukkan Kota">
+                                        <input type="text" class="form-control" id="inputKota" name="kota" placeholder="Masukkan Kota">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 d-flex align-items-center">
+                                    <label for="inputAlamat" class="col-sm-4 col-form-label">Alamat:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="inputAlamat" name="alamat" placeholder="Masukkan Alamat">
                                     </div>
                                 </div>
                             </div>
@@ -119,13 +113,13 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputPekerjaan" class="col-sm-4 col-form-label">Pekerjaan:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputPekerjaan" placeholder="Masukkan Pekerjaan">
+                                        <input type="text" class="form-control" id="inputPekerjaan" name="pekerjaan" placeholder="Masukkan Pekerjaan">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputStatusKawin" class="col-sm-4 col-form-label">Status Kawin:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputStatusKawin">
+                                        <select class="form-control" id="inputStatusKawin" name="statusPerkawinan">
                                             <option value="menikah">Menikah</option>
                                             <option value="tidak menikah">Tidak Menikah</option>
                                         </select>
@@ -136,13 +130,13 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNomorRumah" class="col-sm-4 col-form-label">Nomor Rumah:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNomorRumah" placeholder="Masukkan Nomor Rumah">
+                                        <input type="text" class="form-control" id="inputNomorRumah" name="nomorRumah" placeholder="Masukkan Nomor Rumah">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTelpHP" class="col-sm-4 col-form-label">Telp HP:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTelpHP" placeholder="Masukkan Telp HP">
+                                        <input type="text" class="form-control" id="inputTelpHP" name="nomorHp" placeholder="Masukkan Telp HP">
                                     </div>
                                 </div>
                             </div>
@@ -150,15 +144,13 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaKontakDarurat" class="col-sm-4 col-form-label">Nama Kontak Darurat:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNamaKontakDarurat"
-                                            placeholder="Masukkan Nama Kontak Darurat">
+                                        <input type="text" class="form-control" id="inputNamaKontakDarurat" name="namaKontakDarurat" placeholder="Masukkan Nama Kontak Darurat">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTelpDarurat" class="col-sm-4 col-form-label">Telp Darurat:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputTelpDarurat"
-                                            placeholder="Masukkan Telp Darurat">
+                                        <input type="text" class="form-control" id="inputTelpDarurat" name="nomorDarurat" placeholder="Masukkan Telp Darurat">
                                     </div>
                                 </div>
                             </div>
@@ -166,8 +158,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputWargaNegara" class="col-sm-4 col-form-label">Warga Negara:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputWargaNegara"
-                                            placeholder="Masukkan Warga Negara">
+                                        <input type="text" class="form-control" id="inputWargaNegara" name="kewarganegaraan" placeholder="Masukkan Warga Negara">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
@@ -180,65 +171,78 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputAlergi" class="col-sm-4 col-form-label">Alergi:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputAlergi" placeholder="Masukkan Alergi">
+                                        <input type="text" class="form-control" id="inputAlergi" name="alergi" placeholder="Masukkan Alergi">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputGolonganDarah" class="col-sm-4 col-form-label">Golongan Darah:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputGolonganDarah">
-                                            <option value="A+">A+</option>
-                                            <option value="B+">B+</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="O+">O+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B-">B-</option>
-                                            <option value="AB-">AB-</option>
-                                            <option value="O-">O-</option>
-                                        </select>
+                                        <select class="form-control" id="inputGolonganDarah" name="golonganDarah">
+                                            <option value="A+">
+                                                <option value="A+">A+</option>
+                                                <option value="B+">B+</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="O+">O+</option>
+                                                <option value="A-">A-</option>
+                                                <option value="B-">B-</option>
+                                                <option value="AB-">AB-</option>
+                                                <option value="O-">O-</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputTinggiBadan" class="col-sm-4 col-form-label">Tinggi Badan:</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputTinggiBadan" placeholder="Masukkan Tinggi Badan">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 d-flex align-items-center">
+                                        <label for="inputTinggiBadan" class="col-sm-4 col-form-label">Tinggi Badan:</label>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control" id="inputTinggiBadan" name="tinggiBadan" placeholder="Masukkan Tinggi Badan">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 d-flex align-items-center">
+                                        <label for="inputBeratBadan" class="col-sm-4 col-form-label">Berat Badan:</label>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control" id="inputBeratBadan" name="beratBadan" placeholder="Masukkan Berat Badan">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputBeratBadan"
-                                    class="col-sm-4 col-form-label">Berat Badan:</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputBeratBadan" placeholder="Masukkan Berat Badan">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 d-flex align-items-center">
+                                        <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Masukkan Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 d-flex align-items-center">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
+                                        <div class="col-sm-8">
+                                            <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Masukkan Password">
+                                        </div>
                                     </div>
                                 </div>
-                               
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
-                                    <div class="col-sm-8">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Masukkan Email">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 d-flex align-items-center">
+                                        <label class="col-sm-4 col-form-label">Jenis Kelamin:</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="jenisKelamin" id="genderMale" value="laki">
+                                                <label class="form-check-label" for="genderMale">Laki</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="jenisKelamin" id="genderFemale" value="perempuan">
+                                                <label class="form-check-label" for="genderFemale">Perempuan</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
-                                    <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="inputPassword" placeholder="Masukkan Password">
+                                <div class="row justify-content-center mt-4">
+                                    <div class="col-auto">
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row justify-content-center mt-4">
-                                <div class="col-auto">
-                                    <button type="reset" class="btn btn-secondary">Reset</button>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                        
+                            </form>
                         
                     </div>
                 </div>
@@ -288,7 +292,16 @@
                                         <td>{{$userUnit->status}}</td>
                                         <td>
                                             <i class="bi bi-pencil-square"></i>
-                                            <i class="bi bi-trash3-fill text-danger"></i>
+                                            <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
+                                                <i class="bi bi-trash3-fill text-danger"></i>
+                                            </a>
+                                            
+                                            <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_pasien') }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="idUser" value="{{$userUnit->id}}">
+                                            </form>
+                                            
                                         </td>
                                     @endif
                                 @endforeach
