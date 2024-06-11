@@ -3,7 +3,7 @@
 @section('setAktifDaftarPemeriksaan', 'active')
 
 @section('content')
-    <div class="container" style="width: 100vw; margin: 0 0 0 9.375rem;">
+    <div class="container" style="margin: 0 0 0 9.375rem;">
         <h1 class="title">Surat Daftar Pemeriksaan</h1>
 
         <form action="" method="post">

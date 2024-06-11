@@ -35,6 +35,10 @@ Route::middleware(['auth', 'dokter'])->group(function () {
         Route::get('/list-pasien', function () {
             return view('dokter.list-pemeriksaan-dokter');
         });
+
+        Route::get('/form-detail', function () {
+            return view('dokter.form_detail');
+        });
     });
 });
 

@@ -29,7 +29,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -51,7 +51,7 @@
                                             <td>Perempuan</td>
                                             <td>MRI Scan</td>
                                             <td>Selesai</td>
-                                            <td><i class="bi bi-pencil-square"></i></td>
+                                            <td><a href="/dokter/form-detail"><i class="bi bi-pencil-square"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
