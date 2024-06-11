@@ -192,30 +192,6 @@
                                 <td>Aktif</td>
                                 <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
-                            <tr>
-                                @foreach ($usersWithPasien as $item)
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->idKaryawan}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->nomorTelpRumah}}</td>
-                                    <td>{{$item->alamat}}</td>
-                                    <td>{{$item->status}}</td>
-                                    {{-- <td>
-                                        <i class="bi bi-pencil-square"></i>
-                                        <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
-                                            <i class="bi bi-trash3-fill text-danger"></i>
-                                        </a>
-                                        
-                                        <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_pasien') }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('POST')
-                                            <input type="hidden" name="idUser" value="{{$item->id}}">
-                                        </form>
-                                    </td> --}}
-                                </tr>
-                            @endforeach
-                            </tr>
                         </tbody>
                     </table>
                 </div>

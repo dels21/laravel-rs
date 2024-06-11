@@ -98,7 +98,7 @@ class KaryawanController extends Controller
         $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
             ->where('users.role', 'karyawan')
             ->get(['users.*', 'karyawan.*']);
-            dd($usersWithKaryawan->all());    
+            // dd($usersWithKaryawan->all());    
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
     }
 
