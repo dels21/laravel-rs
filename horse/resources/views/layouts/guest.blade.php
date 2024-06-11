@@ -34,7 +34,7 @@
         <!-- Scripts -->
     </head>
     <body class=" text-gray-900 antialiased" style="overflow: hidden">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 border border-primary" >
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100" >
             <div>
                 <a href="/">
                     {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
@@ -44,7 +44,7 @@
             <section class="gradient-form" style="background-color: #eee;">
                 <div class="card rounded-3 text-black container-fluid ">
                   <div class="row g-0 h-100">
-                    <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" class="col-lg-6 " style="object-fit: cover;padding: 0;">
+                    <img src="https://media.istockphoto.com/id/1312706504/photo/modern-hospital-building.jpg?s=612x612&w=0&k=20&c=DT6YDRZMH5G5dL-Qv6VwPpVDpIDxJqkAY4Gg0ojGi58=" class="col-lg-6 " style="object-fit: cover;padding: 0;">
                       
                     <div class="col-lg-6 ">
                       <div class="card-body p-md-5 mx-md-4 scrollable-container"  style="scrollbar-width: none;">

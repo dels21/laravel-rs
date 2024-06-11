@@ -9,5 +9,5 @@ class PendaftaranPemeriksaan extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'pendaftaranpemeriksaan';
+    protected $table = 'pendaftaran_pemeriksaan';
 }

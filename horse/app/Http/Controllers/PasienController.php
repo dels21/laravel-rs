@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Pa;
 use App\Models\Pasien;
+use App\Models\User;
 use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,23 @@ class PasienController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function pasienFromUser(){
+        // $user = User::where('role','pasien')->get();
+        // $pasien = Pasien::all();
+        // dd($pasien);
+
+        $usersWithPasien = User::join('pasien', 'users.id', '=', 'pasien.idUser')
+            ->where('users.role', 'pasien')
+            ->get(['users.*', 'pasien.*']);
+        // dd($usersWithPasien);
+        return view('karyawan.list-pasien', compact('usersWithPasien'));
+     }
     public function index()
     {
         $pasien = Pasien::all();
 
-        return view('isi_nanti', compact('pasien'));
+        return view('karyawan.list-pasien', compact('pasien'));
     }
 
     /**
@@ -33,21 +46,29 @@ class PasienController extends Controller
     public function store(int $userId, Request $request)
     {
         //
+
         Pasien::create([
             'idUser' =>$userId,
             'tempatLahir' =>$request->tempatLahir,
             'tanggalLahir' =>$request->tanggalLahir,
             'noIdentitas' =>$request->noIdentitas,
+            'tipeIdentitas' =>$request->tipeIdentitas,
+            'jenisKelamin' =>$request->jenisKelamin,
+            'pekerjaan' =>$request->pekerjaan,
+            'alamat' =>$request->alamat,
+            'kota' =>$request->kota,
             'nomorRumah' =>$request->nomorRumah,
             'nomorHp' =>$request->nomorHp,
             'namaKontakDarurat' =>$request->namaKontakDarurat,
             'nomorDarurat' =>$request->nomorDarurat,
             'kewarganegaraan' =>$request->kewarganegaraan,
+            'statusPerkawinan' =>$request->statusPerkawinan,
             'tanggalDaftar' =>$request->input('tanggalDaftar'),
             'alergi' =>$request->alergi,
             'golonganDarah' =>$request->golonganDarah,
             'tinggiBadan' =>$request->tinggiBadan,
-            'beratBadan' =>$request->beratBadan
+            'beratBadan' =>$request->beratBadan,
+
         ]);
     }
 

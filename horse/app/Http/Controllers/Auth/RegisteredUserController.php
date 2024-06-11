@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // dd();
+        dd($request);
         
         // $request->validate([
         //     'name' => ['required', 'string', 'max:255'],
@@ -68,4 +68,8 @@ class RegisteredUserController extends Controller
 
         return redirect(route('/pasien/dashboard', absolute: false));
     }
+
+    
+
+    
 }

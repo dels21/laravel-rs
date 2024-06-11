@@ -33,26 +33,30 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tanggal Pemeriksaan</th>
-                                            <th>Jam Pemeriksaan</th>
+                                            <th>No. Pendaftaran</th>
                                             <th>ID Pasien</th>
-                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Pemeriksaan</th>
+                                            <th>Jam Mulai Pemeriksaan</th>
+                                            <th>Jam Selesai Pemeriksaan</th>
                                             <th>Jenis Pemeriksaan</th>
-                                            <th>Status</th>
+                                            <th>Keterangan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($mergedDetails as $item)
                                         <tr>
-                                            <td>1</td>
-                                            <td>12-09-2025</td>
-                                            <td>10.00</td>
-                                            <td>ABC12345</td>
-                                            <td>Perempuan</td>
-                                            <td>MRI Scan</td>
-                                            <td>Selesai</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->noPendaftaran}}</td>
+                                            <td>{{$item->idPasien}}</td>
+                                            <td>{{$item->tanggalDaftar}}</td>
+                                            <td>{{$item->jamMulai}}</td>
+                                            <td>{{$item->jamSelesai}}</td>
+                                            <td>{{$item->namaJenisPemeriksaan}}</td>
+                                            <td>{{$item->keteranganKetersediaan}}</td>
                                             <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -76,26 +80,24 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>No. Pendaftaran</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Jam Pemeriksaan</th>
-                                <th>ID Pasien</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Jenis Pemeriksaan</th>
+                                <th>Nama Dokter Pengirim</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($mergedDetails as $item)
                             <tr>
-                                <td>1</td>
-                                <td>12-09-2025</td>
-                                <td>10.00</td>
-                                <td>ABC12345</td>
-                                <td>Perempuan</td>
-                                <td>MRI Scan</td>
-                                <td>Selesai</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$item->noPendaftaran}}</td>
+                                <td>{{$item->tanggalDaftar}}</td>
+                                <td>{{$item->namaDokterPengirim}}</td>
+                                <td>{{$item->statusKetersediaan}}</td>
                                 <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
