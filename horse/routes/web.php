@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use App\Http\Controllers\KaryawanController;
@@ -48,13 +51,16 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.dashboard-karyawan');
         });
 
-        Route::get('/list-dokter', function () {
-            return view('karyawan.list-dokter');
-        });
+        Route::get('/list-dokter', [DokterController::class, 'dokterFromUser'])->name('show_list_dokter');
+        Route::post('/store-dokter', [DokterController::class, 'store'])->name('store_dokter');
+        Route::post('/delete-dokter', [DokterController::class, 'destroy'])->name('destroy_dokter');
 
-        Route::get('/list-pasien', function () {
-            return view('karyawan.list-pasien');
-        });
+        // Route::get('/list-pasien', function () {
+        //     return view('karyawan.list-pasien');
+        // });
+        Route::get('/list-pasien', [PasienController::class,'pasienFromUser'])->name('show_list_pasien');
+        Route::post('/store-pasien', [KaryawanController::class,'store_pasien'])->name('store_pasien');
+        Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
 
         Route::get('/list-modalitas', function () {
             return view('karyawan.list-modalitas');
