@@ -7,6 +7,8 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,13 +21,15 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.dashboard-pasien');
         });
         
-        Route::get('/pemeriksaan', function () {
-            return view('pasien.list-pemeriksaan-pasien');
-        });
+        // Route::get('/pemeriksaan', function () {
+        //     return view('pasien.list-pemeriksaan-pasien');
+        // });
         
         Route::get('/daftar-pemeriksaan', function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
+
+        Route::get('/list-pemeriksaan', [PendaftaranPemeriksaanController::class,'detailWithPendaftaran'])->name('show_pendaftaran_pemeriksaan');
     });
 });
 
@@ -83,9 +87,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
-        Route::get('/list-karyawan', function () {
-            return view('admin.list-karyawan');
-        });
+        Route::get('/list-karyawan', 
+        [KaryawanController::class, 'showListKaryawan']    
+    );
     });
 });
 

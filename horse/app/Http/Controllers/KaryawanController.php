@@ -6,6 +6,7 @@ use App\Models\Karyawan;
 use App\Models\Pasien;
 use App\Models\User;
 use Brick\Math\BigInteger;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -123,4 +124,16 @@ class KaryawanController extends Controller
         $user->delete();
         return redirect()->route('show_list_pasien')->with('success','Pasien berhasil dihapus');
     }
+
+    public function showListKaryawan()
+    {
+        $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
+            ->where('users.role', 'karyawan')
+            ->get(['users.*', 'karyawan.*']);
+            // dd($usersWithKaryawan->all());    
+        return view('admin.list-karyawan', compact('usersWithKaryawan'));
+    }
+
+
+
 }
