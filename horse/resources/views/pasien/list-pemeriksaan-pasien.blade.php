@@ -73,9 +73,12 @@
         <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Pemeriksaan Saya</h1>
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
+        <div class="card-body">
+            @if($mergedDetails->isEmpty())
+            <p>Belum ada pemeriksaan.</p>
+            @else
+            <div class="table-responsive">
+                    <div class="card shadow mb-4">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -103,6 +106,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     <!-- /.container-fluid -->
 

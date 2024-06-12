@@ -7,6 +7,7 @@ use App\Models\PendaftaranPemeriksaan;
 use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Pasien;
 use App\Models\MasterJenisPemeriksaan;
+use Illuminate\Support\Facades\Auth;
 
 class PendaftaranPemeriksaanController extends Controller
 {
@@ -18,21 +19,32 @@ class PendaftaranPemeriksaanController extends Controller
     // }
 
     public function detailWithPendaftaran(){
-        $detailWithPendaftaran = DetailPendaftaranPemeriksaan::join('pendaftaran_pemeriksaan', 'detail_pendaftaran.noPendaftaran', '=', 'pendaftaran_pemeriksaan.nomorPendaftaran')
-        ->get(['pendaftaran_pemeriksaan.*', 'detail_pendaftaran.*']);
+    $idUser = Auth::id();
 
-        $detailWithMasterPemeriksaan = MasterJenisPemeriksaan::join('detail_pendaftaran', 'detail_pendaftaran.kodeJenisPemeriksaan', '=', 'master_jenis_pemeriksaan.kodeJenisPemeriksaan')
-        ->get(['detail_pendaftaran.*', 'master_jenis_pemeriksaan.namaJenisPemeriksaan']);
+    $detailWithPendaftaran = DetailPendaftaranPemeriksaan::join('pendaftaran_pemeriksaan', 'detail_pendaftaran.noPendaftaran', '=', 'pendaftaran_pemeriksaan.nomorPendaftaran')
+        ->join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
+        ->where('pasien.idUser', $idUser)
+        ->get(['pendaftaran_pemeriksaan.*', 'detail_pendaftaran.*', 'pasien.idUser']);
 
-        $pasienWithPendaftaran = Pasien::join('pendaftaran_pemeriksaan', 'pasien.idPasien', '=', 'pendaftaran_pemeriksaan.idPasien')
+    // Step 2: Get details with master pemeriksaan including idUser
+    $detailWithMasterPemeriksaan = MasterJenisPemeriksaan::join('detail_pendaftaran', 'detail_pendaftaran.kodeJenisPemeriksaan', '=', 'master_jenis_pemeriksaan.kodeJenisPemeriksaan')
+        ->join('pendaftaran_pemeriksaan', 'detail_pendaftaran.noPendaftaran', '=', 'pendaftaran_pemeriksaan.nomorPendaftaran')
+        ->join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
+        ->where('pasien.idUser', $idUser)
+        ->get(['detail_pendaftaran.*', 'master_jenis_pemeriksaan.namaJenisPemeriksaan', 'pasien.idUser']);
+
+    // Step 3: Get pasien with pendaftaran including idUser
+    $pasienWithPendaftaran = Pasien::join('pendaftaran_pemeriksaan', 'pasien.idPasien', '=', 'pendaftaran_pemeriksaan.idPasien')
+        ->where('pasien.idUser', $idUser)
         ->get(['pendaftaran_pemeriksaan.*', 'pasien.*']);
 
-        $mergedDetails = $detailWithPendaftaran->map(function ($item) use ($detailWithMasterPemeriksaan, $pasienWithPendaftaran) {
+    // Step 4: Merge the details and include the additional information
+    $mergedDetails = $detailWithPendaftaran->map(function ($item) use ($detailWithMasterPemeriksaan, $pasienWithPendaftaran) {
         $master = $detailWithMasterPemeriksaan->firstWhere('kodeJenisPemeriksaan', $item->kodeJenisPemeriksaan);
         $pasien = $pasienWithPendaftaran->firstWhere('idPasien', $item->idPasien);
 
         $item->namaJenisPemeriksaan = $master ? $master->namaJenisPemeriksaan : null;
-        $item->namaPasien = $pasien ? $pasien->idPasien : null; 
+        $item->namaPasien = $pasien ? $pasien->namaPasien : null; // Assuming you want to show namaPasien instead of idPasien
         return $item;
     });
         
