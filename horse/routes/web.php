@@ -65,9 +65,10 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/store-pasien', [KaryawanController::class,'store_pasien'])->name('store_pasien');
         Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
 
-        Route::get('/list-modalitas', function () {
-            return view('karyawan.list-modalitas');
-        });
+
+        Route::get('/list-modalitas', [ModalitasController::class, 'showModalitas'])->name('show_modalitas');
+        Route::post('/store-modalitas', [ModalitasController::class, 'store'])->name('store_modalitas');
+        Route::delete('/delete-modalitas/{id}', [ModalitasController::class, 'destroy'])->name('delete_modalitas');
 
         Route::get('/list-pemeriksaan', function () {
             return view('karyawan.list-pemeriksaan-karyawan');

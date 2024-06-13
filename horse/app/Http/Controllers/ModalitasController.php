@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterDicom;
 use App\Models\Modalitas;
 use Illuminate\Http\Request;
 
 class ModalitasController extends Controller
 {
+    public function showModalitas()
+    {
+        // $modalitasDicom = MasterDicom::join('master_modalitas', 'master_dicom.alamatIp', '=', 'master_modalitas.alamatIp')
+        // ->where('master_dicom.alamatIp', 'master_modalitas')
+        // ->get(['master_dicom.*', 'master_modalitas.*']);
+        
+        $modalitasDicom = Modalitas::latest()->paginate(10);
+        return view('karyawan.list-modalitas', compact('modalitasDicom'));
+    }
     public function index()
     {
         return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-modalitas']);  
@@ -30,7 +40,7 @@ class ModalitasController extends Controller
             ]
             );
             Modalitas::create($request->all());
-            return redirect()->route('dashboard');
+            return redirect()->route('show_modalitas');
     }
 
     public function show (Request $request)
@@ -51,10 +61,11 @@ class ModalitasController extends Controller
         return redirect()->route('dashboard')->with('success', 'Modalitas berhasil diubah');
     }
 
-    public function destroy(Modalitas $modalitas)
+    public function destroy($kodeModalitas)
     {
-        $modalitas->delete();
+        // $modalitas = Modalitas::findOrFail($request->kodeModalitas);
+        Modalitas::destroy($kodeModalitas);
 
-        return redirect()->route('dashboard')->with('success', 'Modalitas berhasil dihapus');
+        return redirect()->route('show_modalitas')->with('success', 'Modalitas berhasil dihapus');
     }
 }
