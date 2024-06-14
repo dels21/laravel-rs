@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PendaftaranPemeriksaan;
-use App\Models\DetailPendaftaranPemeriksaan;
+use App\Models\DetailPemeriksaan;
 use App\Models\Pasien;
 use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Support\Facades\Auth;

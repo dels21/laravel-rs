@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
+use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ModalitasController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PemeriksaanSayaController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +28,7 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
-        Route::get('/list-pemeriksaan', [PendaftaranPemeriksaanController::class,'detailWithPendaftaran'])->name('show_pendaftaran_pemeriksaan');
+        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showPemeriksaanSaya'])->name('pemeriksaan_saya');
     });
 });
 
@@ -59,9 +62,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.list-modalitas');
         });
 
-        Route::get('/list-pemeriksaan', function () {
-            return view('karyawan.list-pemeriksaan-karyawan');
-        });
+        // Route::get('/list-pemeriksaan', function () {
+        //     return view('karyawan.list-pemeriksaan-karyawan');
+        // });
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
@@ -71,6 +74,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/verifikasi', function () {
             return view('karyawan.verifikasi');
         });
+
+        Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class,'index']);
+        Route::get('/list-pemeriksaan/{id}', [ListPemeriksaanKaryawanController::class,'show']);
     });
 });
 

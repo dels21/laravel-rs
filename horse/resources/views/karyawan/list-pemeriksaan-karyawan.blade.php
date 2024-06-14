@@ -34,26 +34,30 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>No. Pemeriksaan</th>
                                             <th>Tanggal Pemeriksaan</th>
-                                            <th>Jam Pemeriksaan</th>
-                                            <th>ID Pasien</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Jenis Pemeriksaan</th>
+                                            <th>Jam Mulai Pemeriksaan</th>
+                                            <th>Jam Selesai Pemeriksaan</th>
+                                            <th>Ruangan</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {{-- @foreach ($data as $item) --}}
                                         <tr>
-                                            <td>1</td>
-                                            <td>12-09-2025</td>
-                                            <td>10.00</td>
-                                            <td>ABC12345</td>
-                                            <td>Perempuan</td>
-                                            <td>MRI Scan</td>
-                                            <td>Selesai</td>
-                                            <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                            {{-- <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->noPemeriksaan}}</td>
+                                            <td>{{$item->tanggal}}</td>
+                                            <td>{{$item->jamMulai}}</td>
+                                            <td>{{$item->jamSelesai}}</td>
+                                            <td>{{$item->ruangan}}</td>
+                                            <td>{{$item->status}}</td> --}}
+                                            <p class="detail-noPemeriksaan"></p>
+                                            <p class="detail-jamMulai"></p>
+                                            {{-- <td><a class="detail-link" data-toggle="modal" data-target="#myModal">Detail</a></td>   --}}
                                         </tr>
+                                        {{-- @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -65,6 +69,7 @@
     </div>
 
     <!-- Begin Page Content -->
+
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -78,26 +83,28 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>No. Pendaftaran</th>
+                                <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Jam Pemeriksaan</th>
                                 <th>ID Pasien</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Jenis Pemeriksaan</th>
-                                <th>Status</th>
+                                <th>ID Karyawan Radiographer</th>
+                                <th>ID Karyawan Radiologi</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $item)
                             <tr>
-                                <td>1</td>
-                                <td>12-09-2025</td>
-                                <td>10.00</td>
-                                <td>ABC12345</td>
-                                <td>Perempuan</td>
-                                <td>MRI Scan</td>
-                                <td>Selesai</td>
-                                <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$item->noPendaftaran}}</td>
+                                <td>{{$item->noPemeriksaan}}</td>
+                                <td>{{$item->tanggal}}</td>
+                                <td>{{$item->idPasien}}</td>
+                                <td>{{$item->idRadio}}</td>
+                                <td>{{$item->idDokter}}</td>
+                                <td><a class="detail-link" data-toggle="modal" data-target="#myModal" onclick="showDetail({{ $item->NoPemeriksaan}})">Detail</a></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -105,12 +112,26 @@
         </div>
 
     </div>
+    
     <!-- /.container-fluid -->
 
 @endsection
 
 @section('customJS')
+    <script>
+        function showDetail(id){
+            $.ajax({
+                url: '/list-pemeriksaan/' + id,
+                type: 'GET',
+                success: function(data){
+                    $('#detail-noPemeriksaan').text('No Pemeriksaan: ' + data.noPemeriksaan);
+                    $('#detail-jamMulai').text('Jam Mulai: ' + data.jamMulai);
 
+                }
+            });
+        }
+        
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="/templating-assets/vendor/jquery/jquery.min.js"></script>
     <script src="/templating-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -126,6 +147,6 @@
     <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+  
 
 @endsection
