@@ -18,7 +18,7 @@ class RegisteredUserController extends Controller
 {
 
     protected $pasienController;
-    
+
     public function __construct(PasienController $pasienController){
         $this->pasienController = $pasienController;
     }
@@ -37,8 +37,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        dd($request);
-        
+        // dd($request->all());
+
         // $request->validate([
         //     'name' => ['required', 'string', 'max:255'],
         //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $this->pasienController->store($user->id, $request);
+        // $this->pasienController->store($user->id, $request);
 
         // dd($user->id);
 
@@ -60,16 +60,16 @@ class RegisteredUserController extends Controller
 
         // ]);
 
-        
+
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('/pasien/dashboard', absolute: false));
+        return redirect(route('pasien.dashboard-pasien', absolute:false));
     }
 
-    
 
-    
+
+
 }

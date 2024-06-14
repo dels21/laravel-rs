@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DashboardPasienController;
 use App\Http\Controllers\DicomController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
@@ -16,14 +17,15 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'pasien'])->group(function () {
     Route::prefix('/pasien')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('pasien.dashboard-pasien');
+        Route::get('/dashboard', [DashboardPasienController::class, 'showDashboard'])->name('pasien.dashboard-pasien');
+
+        Route::get('/pemeriksaan', function () {
+            return view('pasien.list-pemeriksaan-pasien');
         });
-        
-        // Route::get('/pemeriksaan', function () {
-        //     return view('pasien.list-pemeriksaan-pasien');
-        // });
-        
+
+        Route::get('/lengkapi-data-diri', [DashboardPasienController::class, 'lengkapiDataDiri'])->name('pasien.lengkapi-data-diri');
+
+
         Route::get('/daftar-pemeriksaan', function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
@@ -90,8 +92,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
-        Route::get('/list-karyawan', 
-        [KaryawanController::class, 'showListKaryawan']    
+        Route::get('/list-karyawan',
+        [KaryawanController::class, 'showListKaryawan']
     );
     });
 });
@@ -115,7 +117,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
-}); 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
