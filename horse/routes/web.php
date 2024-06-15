@@ -19,11 +19,11 @@ Route::middleware(['auth', 'pasien'])->group(function () {
         Route::get('/dashboard', function () {
             return view('pasien.dashboard-pasien');
         });
-        
+
         // Route::get('/pemeriksaan', function () {
         //     return view('pasien.list-pemeriksaan-pasien');
         // });
-        
+
         Route::get('/daftar-pemeriksaan', function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
@@ -90,9 +90,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
-        Route::get('/list-karyawan', 
-        [KaryawanController::class, 'showListKaryawan']    
-    );
+        Route::get('/list-karyawan',
+        [KaryawanController::class, 'showListKaryawan']
+         )->name('show-list-karyawan');
+
+        Route::post('/tambah-karyawan',
+        [KaryawanController::class, 'storeKaryawan']
+         )->name('tambah-karyawan');
+         Route::post('/delete-karyawan', [KaryawanController::class,'destroy_karyawan'])->name('destroy_karyawan');
     });
 });
 
@@ -115,7 +120,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
-}); 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

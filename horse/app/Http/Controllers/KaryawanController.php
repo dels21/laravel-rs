@@ -8,6 +8,7 @@ use Brick\Math\BigInteger;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class KaryawanController extends Controller
 {
@@ -20,7 +21,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-                
+
         $karyawan = Karyawan::all();
 
         return view('isi_nanti', compact('karyawan'));
@@ -37,11 +38,19 @@ class KaryawanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $userId, Request $request)
+    public function storeKaryawan(Request $request)
     {
+        // dd($request->all());
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role'=>'karyawan'
+        ]);
+
         Karyawan::create([
-            'idKaryawan'=>$request->idDokter,
-            'idUser'=>$userId,
+            'idUser'=>$user->id,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
             'tanggalLahir'=>$request->tanggalLahir,
@@ -50,6 +59,8 @@ class KaryawanController extends Controller
             'nomorHp'=>$request->nomorHp,
             'nomorTelpRumah'=>$request->nomorTelpRumah
         ]);
+
+        return redirect(route('show-list-karyawan', absolute:false));
     }
 
 
@@ -124,12 +135,23 @@ class KaryawanController extends Controller
         return redirect()->route('show_list_pasien')->with('success','Pasien berhasil dihapus');
     }
 
+    public function destroy_karyawan(Request $request)
+    {
+        $user = User::findOrFail($request->idUser);
+        $karyawan = Karyawan::where('idUser', $request->idUser);
+
+        $karyawan->delete();
+        $user->delete();
+        return redirect()->route('show-list-karyawan')->with('success', 'Karyawan berhasil dihapus');
+    }
+
+
     public function showListKaryawan()
     {
         $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
             ->where('users.role', 'karyawan')
             ->get(['users.*', 'karyawan.*']);
-            // dd($usersWithKaryawan->all());    
+            // dd($usersWithKaryawan->all());
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
     }
 
