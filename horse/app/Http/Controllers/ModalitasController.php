@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MasterDicom;
 use App\Models\Modalitas;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ModalitasController extends Controller
 {
@@ -31,12 +32,12 @@ class ModalitasController extends Controller
     {
         $data = $request->validate(
             [
-                'namaModalitas' => 'required|max:255',
-                'jenisModalitas' => '',
-                'merekModalitas' => '',
-                'nomorSeriModalitas' => '',
-                'alamatIp' => '',
-                'kodeRuang' => '',
+                'namaModalitas' => 'required|min:5',
+                'jenisModalitas' => 'required',
+                'merekModalitas' => 'required',
+                'nomorSeriModalitas' => 'required',
+                'alamatIp' => 'required',
+                'kodeRuang' => 'required',
             ]
             );
             Modalitas::create($request->all());
@@ -58,12 +59,15 @@ class ModalitasController extends Controller
             'alamatIp' => $request->alamatIp,
             'kodeRuang' => $request->kodeRuang,
         ]);
-        return redirect()->route('dashboard')->with('success', 'Modalitas berhasil diubah');
+        return redirect()->route('show_modalitas')->with('success', 'Modalitas berhasil diubah');
     }
+
+
 
     public function destroy($kodeModalitas)
     {
-        // $modalitas = Modalitas::findOrFail($request->kodeModalitas);
+
+
         Modalitas::destroy($kodeModalitas);
 
         return redirect()->route('show_modalitas')->with('success', 'Modalitas berhasil dihapus');

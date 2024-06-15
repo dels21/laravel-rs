@@ -23,8 +23,9 @@ class Modalitas extends Model
     protected $table = 'master_modalitas';
     protected $primaryKey = 'kodeModalitas';
 
-    public function master_dicom(): HasOne
+    public function ForeignModalitas(): HasOne
     {
         return $this->hasOne(MasterDicom::class);
-    }
+    }   
+    
 }

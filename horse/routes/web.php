@@ -70,6 +70,10 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/store-modalitas', [ModalitasController::class, 'store'])->name('store_modalitas');
         Route::delete('/delete-modalitas/{id}', [ModalitasController::class, 'destroy'])->name('delete_modalitas');
 
+        Route::get('/list-dicom', [DicomController::class, 'show'])->name('show_dicom');
+        Route::post('/store-dicom', [DicomController::class, 'store'])->name('store_dicom');
+        Route::delete('/delete-dicom/{id}', [DicomController::class, 'destroy'])->name('delete_dicom');
+
         Route::get('/list-pemeriksaan', function () {
             return view('karyawan.list-pemeriksaan-karyawan');
         });

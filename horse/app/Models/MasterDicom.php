@@ -10,6 +10,7 @@ class MasterDicom extends Model
     use HasFactory;
 
     protected $fillable = [
+        'alamatIp',
         'netMask',
         'layananDicom',
         'peran',

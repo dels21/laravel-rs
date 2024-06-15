@@ -144,6 +144,7 @@
                                 <th>Merek Modalitas</th>
                                 <th>Nomor Seri Modalitas</th>
                                 <th>Alamat IP</th>
+                                <th>Kode Ruang</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -156,7 +157,8 @@
                                 <td>{{ $item->merekModalitas }}</td>
                                 <td>{{ $item->nomorSeriModalitas }}</td>
                                 <td>{{ $item->alamatIp }}</td>
-                                <td>
+                                <td>{{ $item->kodeRuang }}</td>
+                                <td style="display:flex; flex-direction:row;gap:25px;">
                                     <i class="bi bi-pencil-square"></i>
                                     <form id="delete-form-{{$loop->index}}" action="delete-modalitas/{{ $item->kodeModalitas }}" method="POST">
                                         @csrf
