@@ -46,7 +46,7 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         //
-
+        // dd($request->all());
 
         Pasien::create([
             'idUser' =>Auth::user()->id,
@@ -71,6 +71,8 @@ class PasienController extends Controller
             'beratBadan' =>$request->beratBadan,
 
         ]);
+
+        return redirect(route('pasien.dashboard-pasien', absolute:false));
     }
 
     /**

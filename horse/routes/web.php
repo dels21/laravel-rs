@@ -24,6 +24,7 @@ Route::middleware(['auth', 'pasien'])->group(function () {
         });
 
         Route::get('/lengkapi-data-diri', [DashboardPasienController::class, 'lengkapiDataDiri'])->name('pasien.lengkapi-data-diri');
+        Route::post('/lengkapi-data-diri-submit', [PasienController::class, 'store'])->name('pasien.lengkapi-data-diri-submit');
 
 
         Route::get('/daftar-pemeriksaan', function () {

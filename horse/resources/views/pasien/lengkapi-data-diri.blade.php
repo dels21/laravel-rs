@@ -7,7 +7,8 @@
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('register') }}">
+<form method="POST" action="{{ route('pasien.lengkapi-data-diri-submit') }}">
+    @csrf
     <div class="container ps-5 pe-5">
                    {{--No dan Tipe Identitas --}}
                    <div class="row p-0">
