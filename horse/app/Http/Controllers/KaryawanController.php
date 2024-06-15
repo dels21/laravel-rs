@@ -83,12 +83,24 @@ class KaryawanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Karyawan $karyawan)
+    public function update_karyawan(Request $request)
     {
-        //
-                //
+        // dd($request->password);
+        $user = User::findOrFail($request->idUser);
+
+        $karyawan = Karyawan::where('idUser', $request->idUser);
+        $updateData = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        // Conditionally update password if provided
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        $user->update($updateData);
         $karyawan->update([
-            'idKaryawan'=>$request->idKaryawan,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
             'tanggalLahir'=>$request->tanggalLahir,
@@ -98,7 +110,7 @@ class KaryawanController extends Controller
             'nomorTelpRumah'=>$request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil diupdate');
+        return redirect()->route('show-list-karyawan')->with('success','Karyawan berhasil diupdate');
     }
 
     public function store_pasien(Request $request){

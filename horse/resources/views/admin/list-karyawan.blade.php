@@ -22,7 +22,7 @@
 
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
-                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal" id="addKaryawanBtn">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
             <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
@@ -40,11 +40,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Karyawan</h1>
+                    <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah Karyawan</h1>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('tambah-karyawan')}}">
+                    <form method="POST" action="{{route('tambah-karyawan')}}" id="karyawanForm">
                         @csrf
+                        <input type="hidden" name="idUser" id="inputIdUser">
                         <div class="form-row">
                             <div class="form-group col-md-6 d-flex align-items-center">
                                 <label for="inputNama" class="col-sm-4 col-form-label">Nama:</label>
@@ -127,9 +128,6 @@
                             </div>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
@@ -159,7 +157,10 @@
                                 <td>08999999999</td>
                                 <td>Menara BCA</td>
                                 <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
+                                <td>
+                                    <i class="bi bi-pencil-square edit-btn" data-toggle="modal" data-target="#myModal"></i>
+                                    <i class="bi bi-trash3-fill text-danger"></i>
+                                </td>
                             </tr>
                             @foreach ($usersWithKaryawan as $item)
                                 <tr>
@@ -169,9 +170,13 @@
                                     <td>{{$item->nomorTelpRumah}}</td>
                                     <td>{{$item->alamat}}</td>
                                     <td>{{$item->status}}</td>
-                                    {{-- <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td> --}}
                                     <td>
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="bi bi-pencil-square edit-btn" data-toggle="modal" data-target="#myModal"
+                                           data-id="{{$item->id}}" data-name="{{$item->name}}" data-email="{{$item->email}}"
+                                           data-idktp="{{$item->idKtp}}" data-jeniskelamin="{{$item->jenisKelamin}}"
+                                           data-tanggallahir="{{$item->tanggalLahir}}" data-alamat="{{$item->alamat}}"
+                                           data-kota="{{$item->kota}}" data-nomorhp="{{$item->nomorHp}}" data-nomortelprumah="{{$item->nomorTelpRumah}}"
+                                        ></i>
                                         <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                             <i class="bi bi-trash3-fill text-danger"></i>
                                         </a>
@@ -216,5 +221,42 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                var email = $(this).data('email');
+                var idKtp = $(this).data('idktp');
+                var jenisKelamin = $(this).data('jeniskelamin');
+                var tanggalLahir = $(this).data('tanggallahir');
+                var alamat = $(this).data('alamat');
+                var kota = $(this).data('kota');
+                var nomorHp = $(this).data('nomorhp');
+                var nomorTelpRumah = $(this).data('nomortelprumah');
+
+                $('#modalTitle').text('Edit Karyawan');
+                $('#karyawanForm').attr('action', '{{ route('update_karyawan') }}');
+                $('#inputIdUser').val(id);
+                $('#inputNama').val(name);
+                $('#inputEmail').val(email);
+                $('#inputIdKTP').val(idKtp);
+                $('#inputJenisKelamin').val(jenisKelamin);
+                $('#inputTanggalLahir').val(tanggalLahir);
+                $('#inputAlamat').val(alamat);
+                $('#inputKota').val(kota);
+                $('#inputNomorHP').val(nomorHp);
+                $('#inputNomorTelpRumah').val(nomorTelpRumah);
+            });
+
+            $('#addKaryawanBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Karyawan');
+                $('#karyawanForm').attr('action', '{{ route('tambah-karyawan') }}');
+                $('#karyawanForm').trigger('reset');
+                $('#inputIdUser').val('');
+            });
+        });
+    </script>
 
 @endsection
