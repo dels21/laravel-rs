@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6 d-flex align-items-center">
-                                <label for="inputPassword" class="col-sm-4 col-form-label">Password:</label>
+                                <label for="inputPassword" id="inputPasswordLabel" class="col-sm-4 col-form-label">Password:</label>
                                 <div class="col-sm-8">
                                     <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Masukkan Password">
                                 </div>
@@ -150,7 +150,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            {{-- <tr>
                                 <td>1</td>
                                 <td>UAC90</td>
                                 <td>Jahja Setiaatmadja</td>
@@ -161,7 +161,7 @@
                                     <i class="bi bi-pencil-square edit-btn" data-toggle="modal" data-target="#myModal"></i>
                                     <i class="bi bi-trash3-fill text-danger"></i>
                                 </td>
-                            </tr>
+                            </tr> --}}
                             @foreach ($usersWithKaryawan as $item)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
@@ -248,6 +248,10 @@
                 $('#inputKota').val(kota);
                 $('#inputNomorHP').val(nomorHp);
                 $('#inputNomorTelpRumah').val(nomorTelpRumah);
+
+                // Hide password field when editing
+                $('#inputPassword').prop('disabled', true).attr('placeholder', 'Tidak dapat diedit');
+                // $('#inputPasswordLabel').hide();
             });
 
             $('#addKaryawanBtn').on('click', function() {
@@ -255,8 +259,13 @@
                 $('#karyawanForm').attr('action', '{{ route('tambah-karyawan') }}');
                 $('#karyawanForm').trigger('reset');
                 $('#inputIdUser').val('');
+
+                // Show password field when adding
+                $('#inputPassword').prop('disabled', false).attr('placeholder', 'Masukkan Password');;
+                // $('#inputPasswordLabel').show();
             });
         });
     </script>
 
 @endsection
+
