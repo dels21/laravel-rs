@@ -25,7 +25,7 @@
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
-                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal" id="addPasienBtn">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
             <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                
+
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputKota" class="col-sm-4 col-form-label">Kota:</label>
                                     <div class="col-sm-8">
@@ -243,7 +243,7 @@
                                     </div>
                                 </div>
                             </form>
-                        
+
                     </div>
                 </div>
             </div>
@@ -275,11 +275,36 @@
                                     <td>{{$item->tanggalDaftar}}</td>
                                     <td>{{$item->status}}</td>
                                     <td>
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="bi bi-pencil-square edit-btn"
+                                            data-toggle="modal"
+                                            data-target="#myModal"
+                                            data-id="{{$item->id}}"
+                                            data-namapasien="{{$item->name}}"
+                                            data-email="{{$item->email}}"
+                                            data-tempatlahir="{{$item->tempatLahir}}"
+                                            data-tanggallahir="{{$item->tanggalLahir}}"
+                                            data-noIdentitas="{{$item->noIdentitas}}"
+                                            data-tipeIdentitas="{{$item->tipeIdentitas}}"
+                                            data-kota="{{$item->kota}}"
+                                            data-alamat="{{$item->alamat}}"
+                                            data-pekerjaan="{{$item->pekerjaan}}"
+                                            data-statusPerkawinan="{{$item->statusPerkawinan}}"
+                                            data-nomorRumah="{{$item->nomorRumah}}"
+                                            data-nomorHp="{{$item->nomorHp}}"
+                                            data-namaKontakDarurat="{{$item->namaKontakDarurat}}"
+                                            data-nomorDarurat="{{$item->nomorDarurat}}"
+                                            data-kewarganegaraan="{{$item->kewarganegaraan}}"
+                                            data-tanggalDaftar="{{$item->tanggalDaftar}}"
+                                            data-alergi="{{$item->alergi}}"
+                                            data-golonganDarah="{{$item->golonganDarah}}"
+                                            data-tinggiBadan="{{$item->tinggiBadan}}"
+                                            data-beratBadan="{{$item->beratBadan}}"
+                                            data-jeniskelamin="{{$item->jenisKelamin}}"
+                                        ></i>
                                         <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                             <i class="bi bi-trash3-fill text-danger"></i>
                                         </a>
-                                        
+
                                         <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_pasien') }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('POST')
@@ -317,5 +342,75 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var id = $(this).data('id');
+                var namapasien = $(this).data('namapasien');
+                var email = $(this).data('email');
+                var tempatlahir = $(this).data('tempatlahir');
+                var tanggallahir = $(this).data('tanggallahir');
+                var noIdentitas = $(this).data('noIdentitas');
+                var tipeIdentitas = $(this).data('tipeIdentitas');
+                var kota = $(this).data('kota');
+                var alamat = $(this).data('alamat');
+                var pekerjaan = $(this).data('pekerjaan');
+                var statusPerkawinan = $(this).data('statusPerkawinan');
+                var nomorRumah = $(this).data('nomorRumah');
+                var nomorHp = $(this).data('nomorHp');
+                var namaKontakDarurat = $(this).data('namaKontakDarurat');
+                var nomorDarurat = $(this).data('nomorDarurat');
+                var kewarganegaraan = $(this).data('kewarganegaraan');
+                var tanggalDaftar = $(this).data('tanggalDaftar');
+                var alergi = $(this).data('alergi');
+                var golonganDarah = $(this).data('golonganDarah');
+                var tinggiBadan = $(this).data('tinggiBadan');
+                var beratBadan = $(this).data('beratBadan');
+                var jenisKelamin = $(this).data('jeniskelamin');
 
+                $('#modalTitle').text('Edit Pasien');
+                $('#karyawanForm').attr('action', '{{ route('store_pasien') }}');
+                $('#inputIdUser').val(id);
+                $('#inputNamaPasien').val(namapasien);
+                $('#inputEmail').val(email);
+                $('#inputTempatLahir').val(tempatlahir);
+                $('#inputTglLahir').val(tanggallahir);
+                $('#inputNoIdentitas').val(noIdentitas);
+                $('#inputTipeIdentitas').val(tipeIdentitas);
+                $('#inputKota').val(kota);
+                $('#inputAlamat').val(alamat);
+                $('#inputPekerjaan').val(pekerjaan);
+                $('#inputStatusKawin').val(statusPerkawinan);
+                $('#inputNomorRumah').val(nomorRumah);
+                $('#inputTelpHP').val(nomorHp);
+                $('#inputNamaKontakDarurat').val(namaKontakDarurat);
+                $('#inputTelpDarurat').val(nomorDarurat);
+                $('#inputWargaNegara').val(kewarganegaraan);
+                $('#tanggalDaftar').val(tanggalDaftar);
+                $('#inputAlergi').val(alergi);
+                $('#inputGolonganDarah').val(golonganDarah);
+                $('#inputTinggiBadan').val(tinggiBadan);
+                $('#inputBeratBadan').val(beratBadan);
+
+                if (jenisKelamin === 'laki') {
+                    $('#genderMale').prop('checked', true);
+                } else if (jenisKelamin === 'perempuan') {
+                    $('#genderFemale').prop('checked', true);
+                }
+
+                // Hide password field when editing
+                $('#inputPassword').prop('disabled', true).attr('placeholder', 'Tidak dapat diedit');
+            });
+
+            $('#addPasienBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Pasien');
+                $('#karyawanForm').attr('action', '{{ route('store_pasien') }}');
+                $('#karyawanForm').trigger('reset');
+                $('#inputIdUser').val('');
+
+                // Show password field when adding
+                $('#inputPassword').prop('disabled', false).attr('placeholder', 'Masukkan Password');
+            });
+        });
+    </script>
 @endsection
