@@ -16,8 +16,9 @@ class MasterDicom extends Model
         'peran',
         'aet',
         'port',
+        'idLayananDicom'
     ];
 
     protected $table = 'master_dicom';
-    protected $primaryKey = 'alamatIp';
+    protected $primaryKey = 'idLayananDicom';
 }

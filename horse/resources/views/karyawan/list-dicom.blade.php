@@ -22,7 +22,7 @@
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
-                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal" id="addDicomBtn">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
             {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
@@ -40,11 +40,12 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah DICOM</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah DICOM</h1>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/karyawan/store-dicom">
+                        <form method="POST" action="{{ route('store_dicom') }}" id="dicomForm">
                             @csrf
+                            <input type="hidden" name="idLayananDicom" id="inputIdLayananDicom" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputAlamatIP" class="col-sm-4 col-form-label">Alamat IP:</label>
@@ -145,16 +146,16 @@
                                     <i class="bi bi-pencil-square edit-btn"
                                         data-toggle="modal"
                                         data-target="#myModal"
-                                        data-id="{{ $item->kodeDicom }}"
-                                        data-alamatip="{{ $item->alamatIp }}"
-                                        data-netmask="{{ $item->netMask }}"
-                                        data-layanandicom="{{ $item->layananDicom }}"
-                                        data-peran="{{ $item->peran }}"
-                                        data-aet="{{ $item->aet }}"
-                                        data-port="{{ $item->port }}"
+                                        data-id="{{ $sd->idLayananDicom }}"
+                                        data-alamatip="{{ $sd->alamatIp }}"
+                                        data-netmask="{{ $sd->netMask }}"
+                                        data-layanandicom="{{ $sd->layananDicom }}"
+                                        data-peran="{{ $sd->peran }}"
+                                        data-aet="{{ $sd->aet }}"
+                                        data-port="{{ $sd->port }}"
                                     ></i>
 
-                                    <form id="delete-form-{{$loop->index}}" action="delete-dicom/{{ $sd->alamatIp }}" method="POST">
+                                    <form id="delete-form-{{$loop->index}}" action="delete-dicom/{{ $sd->idLayananDicom }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
@@ -195,5 +196,38 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var id = $(this).data('id');
+                var alamatip = $(this).data('alamatip');
+                var netmask = $(this).data('netmask');
+                var layanandicom = $(this).data('layanandicom');
+                var peran = $(this).data('peran');
+                var aet = $(this).data('aet');
+                var port = $(this).data('port');
+                console.log("alamat ip ", alamatip);
+
+                $('#modalTitle').text('Edit DICOM');
+                $('#dicomForm').attr('action', '{{ route('update_dicom') }}');
+                $('#inputIdLayananDicom').val(id);
+                $('#inputAlamatIP').val(alamatip);
+                $('#inputNetmask').val(netmask);
+                $('#inputLayananDICOM').val(layanandicom);
+                $('#inputPeran').val(peran);
+                $('#inputAET').val(aet);
+                $('#inputPort').val(port);
+
+            });
+
+            $('#addDicomBtn').on('click', function() {
+                $('#modalTitle').text('Tambah DICOM');
+                $('#dicomForm').attr('action', '{{ route('store_dicom') }}');  // Endpoint untuk store
+                $('#dicomForm').trigger('reset');
+                $('#inputIdLayananDicom').val('');
+            });
+        });
+    </script>
 
 @endsection

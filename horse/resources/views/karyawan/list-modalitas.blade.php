@@ -22,7 +22,7 @@
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
-                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal" id="addModalitasBtn">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
             {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
@@ -40,7 +40,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Modalitas</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah Modalitas</h1>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="{{ route('store_modalitas') }}" id="modalitasForm">

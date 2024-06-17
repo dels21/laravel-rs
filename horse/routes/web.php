@@ -73,6 +73,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
 
         Route::get('/list-dicom', [DicomController::class, 'show'])->name('show_dicom');
         Route::post('/store-dicom', [DicomController::class, 'store'])->name('store_dicom');
+        Route::post('/edit-dicom', [DicomController::class, 'edit'])->name('update_dicom');
         Route::delete('/delete-dicom/{id}', [DicomController::class, 'destroy'])->name('delete_dicom');
 
         Route::get('/list-pemeriksaan', function () {

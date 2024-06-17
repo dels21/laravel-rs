@@ -9,12 +9,12 @@ class DicomController extends Controller
 {
     public function index()
     {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-DICOM']);  
+        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-DICOM']);
     }
 
     public function create(Request $request)
     {
-        
+
     }
 
     public function store(Request $request)
@@ -39,10 +39,12 @@ class DicomController extends Controller
         return view('karyawan.list-dicom', compact('showDicom'));
     }
 
-    public function edit(Request $request, MasterDicom $dicom)
+    public function edit(Request $request)
     {
+        // dd($request->all());
+        $dicom = MasterDicom::findOrFail($request->idLayananDicom);
         $dicom->update([
-            'alamatIp' => '',
+            'alamatIp' => $request->alamatIp,
             'netMask' => $request->netMask,
             'layananDicom' => $request->layananDicom,
             'peran' => $request->peran,
@@ -52,9 +54,11 @@ class DicomController extends Controller
         return redirect()->route('show_dicom')->with('success', 'Dicom berhasil diubah');
     }
 
-    public function destroy($alamatIp)
+    public function destroy($id)
     {
-        $dicom = MasterDicom::find($alamatIp);
+        // dd($id);
+        $dicom = MasterDicom::find($id);
+        // dd($dicom);
         $dicom->delete();
 
         return redirect()->route('show_dicom')->with('success', 'Dicom berhasil dihapus');
