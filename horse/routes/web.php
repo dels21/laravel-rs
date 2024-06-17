@@ -6,6 +6,7 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use Illuminate\Support\Facades\Route;
@@ -69,9 +70,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.list-modalitas');
         });
 
-        Route::get('/list-pemeriksaan', function () {
-            return view('karyawan.list-pemeriksaan-karyawan');
-        });
+        // Route::get('/list-pemeriksaan', function () {
+        //     return view('karyawan.list-pemeriksaan-karyawan');
+        // });
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
@@ -81,6 +82,8 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/verifikasi', function () {
             return view('karyawan.verifikasi');
         });
+        Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class,'index']);
+        Route::get('/list-pemeriksaan/{id}', [ListPemeriksaanKaryawanController::class,'show']);
     });
 });
 
