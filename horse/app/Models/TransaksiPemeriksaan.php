@@ -23,8 +23,13 @@ class TransaksiPemeriksaan extends Model
     protected $table = 'transaksi_pemeriksaan';
     protected $primaryKey = 'nomorPemeriksaan';
 
-    public function pendaftaran()
+    public function detailPendaftaran()
+{
+    return $this->hasMany(DetailPendaftaranPemeriksaan::class, 'noPendaftaran', 'nomorPendaftaran');
+}
+
+public function pendaftaranPemeriksaan()
     {
-        return $this->belongsTo(PendaftaranPemeriksaan::class, 'nomorPendaftaran');
+        return $this->belongsTo(PendaftaranPemeriksaan::class, 'nomorPendaftaran', 'nomorPendaftaran');
     }
 }

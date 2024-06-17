@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\TransaksiPemeriksaan;
+use App\Models\PendaftaranPemeriksaan;
+use App\Models\DetailPendaftaranPemeriksaan;
+use App\Models\Pasien;
+use App\Models\User;
 
 class PemeriksaanSayaController extends Controller
 {
-    public function showPemeriksaanSaya()
+    public function showData(Request $request)
     {
-        // Retrieve the currently authenticated user
-        $user = Auth::user();
+        // Assuming you have some way of getting the logged-in user ID, let's say $loggedInUserId
+        $loggedInUserId = $request->user()->id; // This assumes you're using Laravel's authentication
 
-        // Ensure the user is authenticated
-        if ($user) {
-            // Retrieve the user's transactions through the relationship defined in the model
-            $transactions = $user->transaksiPemeriksaans;
-        } else {
-            // If no user is authenticated, set transactions to an empty collection
-            $transactions = collect();
-        }
+        // Fetch the data using Eloquent relationships
+        $data = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*')
+    ->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
+    ->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')
+    ->join('users as u', 'u.id', '=', 'p.idUser')
+    // ->with('pendaftaranPemeriksaan.detailPendaftaran') // Eager load detailPendaftaran relationship
+    ->where('u.id', '=', $loggedInUserId)
+    ->get();
 
-        // Pass the transactions to the view
-        return view('pasien.list-pemeriksaan-pasien', compact('transactions', 'user'));
+
+        return view('pasien.list-pemeriksaan-pasien', ['data' => $data]);
     }
 }

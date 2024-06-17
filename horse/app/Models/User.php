@@ -47,20 +47,5 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    public function pendaftarans()
-    {
-        return $this->hasMany(PendaftaranPemeriksaan::class, 'idPasien');
-    }
-
-    public function transaksiPemeriksaans()
-    {
-        return $this->hasManyThrough(
-            TransaksiPemeriksaan::class, // The related model
-            PendaftaranPemeriksaan::class, // The intermediate model
-            'idPasien', // Foreign key on the Pendaftaran table
-            'nomorPendaftaran', // Foreign key on the TransaksiPemeriksaan table
-            'idPasien', // Local key on the User table
-            'nomorPendaftaran' // Local key on the Pendaftaran table
-        );
-    }
+    protected $primaryKey = 'id';
 }

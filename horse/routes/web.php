@@ -30,7 +30,7 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
-        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showPemeriksaanSaya'])->name('pemeriksaan_saya');
+        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
     });
 });
 

@@ -11,4 +11,8 @@ class DetailPendaftaranPemeriksaan extends Model
     protected $guarded = [];
     protected $table = 'detail_pendaftaran';
 
+    public function pendaftaranPemeriksaan()
+    {
+        return $this->belongsTo(PendaftaranPemeriksaan::class, 'noPendaftaran', 'nomorPendaftaran');
+    }
 }

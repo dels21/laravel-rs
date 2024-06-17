@@ -69,18 +69,14 @@
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Pemeriksaan Saya</h1>
-        <!-- DataTales Example -->
-        <div class="card-body">
-            @if($transactions->isEmpty())
+
+        @if ($data->isEmpty())
             <p>Belum ada pemeriksaan.</p>
-            
-            {{-- <p>User ID: {{ $user->id }}</p> --}}
-            @else
-            <div class="table-responsive">
-                    <div class="card shadow mb-4">
+            <p>User ID: {{ $user->id }}</p>
+        @else
+            <div class="card shadow mb-4">
+                <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -89,33 +85,28 @@
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>Diagnosis</th>
+                                <th>Keterangan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <td>{{ $transaction->id }}</td> <!-- Assuming TransaksiPemeriksaan has an 'id' attribute -->
-                    <td>{{ $transaction->pendaftaranPemeriksaan->user->name }}</td> <!-- Accessing user name -->
-                    <td>{{ $transaction->pendaftaranPemeriksaan->id }}</td> <!-- Assuming PendaftaranPemeriksaan has an 'id' attribute --> --}}
-                            @foreach ($transactions as $item)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$item->nomorPendaftaran}}</td>
-                                <td>{{$item->nomorPemeriksaan}}</td>
-                                <td>{{$item->tanggalPemeriksaan}}</td>
-                                <td>{{$item->diagnosis}}</td>
-                                <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
-                            </tr>
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nomorPendaftaran }}</td>
+                                    <td>{{ $item->nomorPemeriksaan }}</td>
+                                    <td>{{ $item->tanggalPemeriksaan }}</td>
+                                    <td>{{ $item->diagnosis }}</td>
+                                    <td>{{ $item->keterangan }}</td>
+                                    <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
         @endif
     </div>
-    <!-- /.container-fluid -->
-
-
 @endsection
 
 @section('customJS')

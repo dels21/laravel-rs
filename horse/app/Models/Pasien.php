@@ -13,4 +13,10 @@ class Pasien extends Model
 
     protected $guarded = [];
     protected $table = 'pasien';
+    protected $primaryKey = 'idPasien';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser', 'id');
+    }
 }
