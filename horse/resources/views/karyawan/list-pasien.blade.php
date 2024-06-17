@@ -406,7 +406,6 @@
 
                 // Hide password field when editing
                 $('#inputPassword').prop('disabled', true).attr('placeholder', 'Tidak dapat diedit');
-                $('#tanggalDaftar').prop('disabled', true).attr('placeholder', 'Tidak dapat diedit');
             });
 
             $('#addPasienBtn').on('click', function() {
@@ -417,7 +416,6 @@
 
                 // Show password field when adding
                 $('#inputPassword').prop('disabled', false).attr('placeholder', 'Masukkan Password');
-                $('#tanggalDaftar').prop('disabled', false).attr('placeholder', 'DD/MM/YYYY');
             });
         });
     </script>
