@@ -93,6 +93,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- <td>{{ $transaction->id }}</td> <!-- Assuming TransaksiPemeriksaan has an 'id' attribute -->
+                    <td>{{ $transaction->pendaftaranPemeriksaan->user->name }}</td> <!-- Accessing user name -->
+                    <td>{{ $transaction->pendaftaranPemeriksaan->id }}</td> <!-- Assuming PendaftaranPemeriksaan has an 'id' attribute --> --}}
                             @foreach ($transactions as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>

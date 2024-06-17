@@ -23,6 +23,6 @@ class PemeriksaanSayaController extends Controller
         }
 
         // Pass the transactions to the view
-        return view('pasien.list-pemeriksaan-pasien', compact('transactions'));
+        return view('pasien.list-pemeriksaan-pasien', compact('transactions', 'user'));
     }
 }
