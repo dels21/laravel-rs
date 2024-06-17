@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DokterController extends Controller
@@ -97,5 +98,21 @@ class DokterController extends Controller
     {
         $totalDokter = DB::table('dokter')->count();
         return $totalDokter;
+    }
+
+    public function buildDashboard()
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        
+        $pemeriksaanController = new TransaksiPemeriksaanController();
+
+        $pemeriksaanSelesai = $pemeriksaanController->countPemeriksaanSelesai($userId);
+        $pemeriksaanMenunggu = $pemeriksaanController->countPemeriksaanMenunggu($userId);
+        $pemeriksaanBerjalan = $pemeriksaanController->countPemeriksaanBerjalan($userId);
+        $pemeriksaanTerbaru = $pemeriksaanController->getRecentPemeriksaan($userId);
+
+
+        return view('dokter.dashboard-dokter', compact('pemeriksaanSelesai', 'pemeriksaanMenunggu', 'pemeriksaanBerjalan', 'pemeriksaanTerbaru'));
     }
 }

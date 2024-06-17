@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
+use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ModalitasController;
@@ -35,9 +36,7 @@ Route::middleware(['auth', 'pasien'])->group(function () {
 
 Route::middleware(['auth', 'dokter'])->group(function () {
     Route::prefix('/dokter')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dokter.dashboard-dokter');
-        });
+        Route::get('/dashboard', [DokterController::class, 'buildDashboard']);
 
         Route::get('/list-pasien', function () {
             return view('dokter.list-pemeriksaan-dokter');
