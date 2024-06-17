@@ -10,6 +10,40 @@ use Illuminate\Support\Facades\Auth;
 
 class PasienController extends Controller
 {
+    public function update_pasien(Request $request)
+    {
+        // dd($request->all());
+
+        $user = User::findOrFail($request->idUser);
+
+        $pasien = Pasien::where('idUser', $request->idUser);
+        $updateData = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        // Conditionally update password if provided
+
+
+        $user->update($updateData);
+        $pasien->update([
+            'tempatLahir' =>$request->tempatLahir,
+            'tanggalLahir' =>$request->tanggalLahir,
+            'noIdentitas' =>$request->noIdentitas,
+            'nomorRumah' =>$request->nomorRumah,
+            'nomorHp' =>$request->nomorHp,
+            'namaKontakDarurat' =>$request->namaKontakDarurat,
+            'nomorDarurat' =>$request->nomorDarurat,
+            'kewarganegaraan' =>$request->kewarganegaraan,
+            'alergi' =>$request->alergi,
+            'golonganDarah' =>$request->golonganDarah,
+            'tinggiBadan' =>$request->tinggiBadan,
+            'beratBadan' =>$request->beratBadan
+        ]);
+
+
+        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil diupdate');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -97,39 +131,7 @@ class PasienController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update_pasien(Request $request)
-    {
 
-        $user = User::findOrFail($request->idUser);
-
-        $pasien = Pasien::where('idUser', $request->idUser);
-        $updateData = [
-            'name' => $request->name,
-            'email' => $request->email,
-        ];
-
-        // Conditionally update password if provided
-
-
-        $user->update($updateData);
-        $pasien->update([
-            'tempatLahir' =>$request->tempatLahir,
-            'tanggalLahir' =>$request->tanggalLahir,
-            'noIdentitas' =>$request->noIdentitas,
-            'nomorRumah' =>$request->nomorRumah,
-            'nomorHp' =>$request->nomorHp,
-            'namaKontakDarurat' =>$request->namaKontakDarurat,
-            'nomorDarurat' =>$request->nomorDarurat,
-            'kewarganegaraan' =>$request->kewarganegaraan,
-            'alergi' =>$request->alergi,
-            'golonganDarah' =>$request->golonganDarah,
-            'tinggiBadan' =>$request->tinggiBadan,
-            'beratBadan' =>$request->beratBadan
-        ]);
-
-
-        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil diupdate');
-    }
     /**
      * Remove the specified resource from storage.
      */

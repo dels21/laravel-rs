@@ -48,6 +48,7 @@
                     <div class="modal-body">
                         <form method="POST" action="{{ route('store_pasien') }}" id="pasienForm">
                             @csrf
+                            <input type="hidden" name="idUser" id="inputIdUser" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaPasien" class="col-sm-4 col-form-label">Nama Pasien:</label>
