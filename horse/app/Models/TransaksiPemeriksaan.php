@@ -23,8 +23,8 @@ class TransaksiPemeriksaan extends Model
     protected $table = 'transaksi_pemeriksaan';
     protected $primaryKey = 'nomorPemeriksaan';
 
-    public function userProfile()
+    public function pendaftaran()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(PendaftaranPemeriksaan::class, 'nomorPendaftaran');
     }
 }

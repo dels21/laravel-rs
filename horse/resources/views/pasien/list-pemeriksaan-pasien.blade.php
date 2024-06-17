@@ -14,7 +14,7 @@
 
 @section('content')
 
-    <!-- Modal -->
+    {{-- <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -73,28 +73,33 @@
         <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Pemeriksaan Saya</h1>
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
+        <div class="card-body">
+            @if($transactions->isEmpty())
+            <p>Belum ada pemeriksaan.</p>
+            
+            {{-- <p>User ID: {{ $user->id }}</p> --}}
+            @else
+            <div class="table-responsive">
+                    <div class="card shadow mb-4">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
+                                <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Nama Dokter Pengirim</th>
-                                <th>Status</th>
+                                <th>Diagnosis</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($mergedDetails as $item)
+                            @foreach ($transactions as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$item->noPendaftaran}}</td>
-                                <td>{{$item->tanggalDaftar}}</td>
-                                <td>{{$item->namaDokterPengirim}}</td>
-                                <td>{{$item->statusKetersediaan}}</td>
+                                <td>{{$item->nomorPendaftaran}}</td>
+                                <td>{{$item->nomorPemeriksaan}}</td>
+                                <td>{{$item->tanggalPemeriksaan}}</td>
+                                <td>{{$item->diagnosis}}</td>
                                 <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
                             </tr>
                             @endforeach
@@ -103,6 +108,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     <!-- /.container-fluid -->
 
