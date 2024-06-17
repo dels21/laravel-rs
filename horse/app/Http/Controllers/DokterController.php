@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DokterController extends Controller
 {
@@ -12,7 +13,7 @@ class DokterController extends Controller
      */
     public function index()
     {
-        
+
         $dokter = Dokter::all();
 
         return view('isi_nanti', compact('dokter'));
@@ -32,15 +33,15 @@ class DokterController extends Controller
     public function store(int $userId, Request $request)
     {
         Dokter::create([
-            'idDokter'=>$request->idDokter,
-            'idUser'=>$userId,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idDokter' => $request->idDokter,
+            'idUser' => $userId,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
     }
 
@@ -57,7 +58,6 @@ class DokterController extends Controller
      */
     public function edit(Dokter $dokter)
     {
-
     }
 
     /**
@@ -66,19 +66,19 @@ class DokterController extends Controller
     public function update(Request $request, Dokter $dokter)
     {
         //
-                //
+        //
         $dokter->update([
-            'idDokter'=>$request->idDokter,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idDokter' => $request->idDokter,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Dokter berhasil diupdate');
+        return redirect()->route('isi_nanti')->with('success', 'Dokter berhasil diupdate');
     }
 
     /**
@@ -90,6 +90,12 @@ class DokterController extends Controller
 
         $dokter->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success', 'Dokter berhasil dihapus');
+    }
+
+    public function getTotalDokter()
+    {
+        $totalDokter = DB::table('dokter')->count();
+        return $totalDokter;
     }
 }

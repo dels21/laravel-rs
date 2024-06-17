@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KaryawanController extends Controller
 {
@@ -12,7 +13,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-                
+
         $karyawan = Karyawan::all();
 
         return view('isi_nanti', compact('karyawan'));
@@ -32,15 +33,15 @@ class KaryawanController extends Controller
     public function store(int $userId, Request $request)
     {
         Karyawan::create([
-            'idKaryawan'=>$request->idDokter,
-            'idUser'=>$userId,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idKaryawan' => $request->idDokter,
+            'idUser' => $userId,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
     }
 
@@ -67,19 +68,19 @@ class KaryawanController extends Controller
     public function update(Request $request, Karyawan $karyawan)
     {
         //
-                //
+        //
         $karyawan->update([
-            'idKaryawan'=>$request->idKaryawan,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idKaryawan' => $request->idKaryawan,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil diupdate');
+        return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil diupdate');
     }
 
     /**
@@ -89,6 +90,27 @@ class KaryawanController extends Controller
     {
         $karyawan->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil dihapus');
+    }
+
+    public function getTotalKaryawan()
+    {
+        $totalKaryawan = DB::table('karyawan')->count();
+        return $totalKaryawan;
+    }
+
+    public function buildDashboard()
+    {
+        $pasienController = new PasienController();
+        $dokterController = new DokterController();
+        $pemeriksaanController = new ListPemeriksaanKaryawanController();
+
+        $totalPasien = $pasienController->getTotalPasien();
+        $totalDokter = $dokterController->getTotalDokter();
+        $totalKaryawan = $this->getTotalKaryawan();
+        $pemeriksaanTerbaru = $pemeriksaanController->recentPemeriksaan();
+
+
+        return view('karyawan.dashboard-karyawan', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'pemeriksaanTerbaru'));
     }
 }
