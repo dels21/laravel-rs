@@ -22,7 +22,9 @@ class PasienController extends Controller
         $usersWithPasien = User::join('pasien', 'users.id', '=', 'pasien.idUser')
             ->where('users.role', 'pasien')
             ->get(['users.*', 'pasien.*']);
-        dd($usersWithPasien);
+
+        // dd($usersWithPasien);
+
         return view('karyawan.list-pasien', compact('usersWithPasien'));
      }
     public function index()
@@ -43,13 +45,13 @@ class PasienController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(int $userId, Request $request)
     {
         //
         // dd($request->all());
 
         Pasien::create([
-            'idUser' =>Auth::user()->id,
+            'idUser' =>$userId,
             'tempatLahir' =>$request->tempatLahir,
             'tanggalLahir' =>$request->tanggalLahir,
             'noIdentitas' =>$request->noIdentitas,
@@ -94,9 +96,22 @@ class PasienController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pasien $pasien)
+
+    public function update_pasien(Request $request)
     {
-        //
+
+        $user = User::findOrFail($request->idUser);
+
+        $pasien = Pasien::where('idUser', $request->idUser);
+        $updateData = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        // Conditionally update password if provided
+
+
+        $user->update($updateData);
         $pasien->update([
             'tempatLahir' =>$request->tempatLahir,
             'tanggalLahir' =>$request->tanggalLahir,
@@ -113,10 +128,8 @@ class PasienController extends Controller
         ]);
 
 
-        return redirect()->route('isi_nanti')->with('success','Pasien berhasil diupdate');
-
+        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil diupdate');
     }
-
     /**
      * Remove the specified resource from storage.
      */

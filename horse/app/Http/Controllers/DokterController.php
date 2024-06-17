@@ -91,22 +91,7 @@ class DokterController extends Controller
      */
     public function update(Request $request)
     {
-        //
-                //
-
-        // dd($request->all());
-        // $dokter->update([
-        //     'idDokter'=>$request->idDokter,
-        //     'idKtp'=>$request->idKtp,
-        //     'jenisKelamin'=>$request->jenisKelamin,
-        //     'tanggalLahir'=>$request->tanggalLahir,
-        //     'alamat'=>$request->alamat,
-        //     'kota'=>$request->kota,
-        //     'nomorHp'=>$request->nomorHp,
-        //     'nomorTelpRumah'=>$request->nomorTelpRumah
-        // ]);
-
-               // dd($request->password);
+        dd($request->all());
         $user = User::findOrFail($request->idUser);
 
         $dokter = Dokter::where('idUser', $request->idUser);

@@ -68,6 +68,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/list-pasien', [PasienController::class,'pasienFromUser'])->name('show_list_pasien');
         Route::post('/store-pasien', [KaryawanController::class,'store_pasien'])->name('store_pasien');
         Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
+        Route::post('/edit-pasien', [PasienController::class, 'update_pasien'])->name('edit_pasien');
 
         Route::get('/list-modalitas', function () {
             return view('karyawan.list-modalitas');
