@@ -43,9 +43,9 @@
                         <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Modalitas</h1>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/karyawan/store-modalitas" id="modalitasForm">
+                        <form method="POST" action="{{ route('store_modalitas') }}" id="modalitasForm">
                             @csrf
-                            <input type="hidden" name="idModalitas" id="inputIdModalitas" value="">
+                            <input type="hidden" name="kodeModalitas" id="inputkodeModalitas" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaModalitas" class="col-sm-4 col-form-label">Nama
@@ -163,7 +163,7 @@
                                     <i class="bi bi-pencil-square edit-btn"
                                         data-toggle="modal"
                                         data-target="#myModal"
-                                        data-idmodalitas="{{ $item->idModalitas }}"
+                                        data-kodemodalitas="{{ $item->kodeModalitas }}"
                                         data-namamodalitas="{{ $item->namaModalitas }}"
                                         data-jenismodalitas="{{ $item->jenisModalitas }}"
                                         data-merekmodalitas="{{ $item->merekModalitas }}"
@@ -215,7 +215,7 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').on('click', '.edit-btn', function() {
-                var idModalitas = $(this).data('idmodalitas');
+                var kodeModalitas = $(this).data('kodemodalitas');
                 var namaModalitas = $(this).data('namamodalitas');
                 var jenisModalitas = $(this).data('jenismodalitas');
                 var merekModalitas = $(this).data('merekmodalitas');
@@ -225,8 +225,8 @@
                 var alamatIp = $(this).data('alamatip');
 
                 $('#modalTitle').text('Edit Modalitas');
-                $('#modalitasForm').attr('action', route('update_modalitas'));  // Pastikan endpoint yang benar untuk update
-                $('#inputIdModalitas').val(idModalitas);
+                $('#modalitasForm').attr('action', '{{ route('update_modalitas') }}');  // Pastikan endpoint yang benar untuk update
+                $('#inputkodeModalitas').val(kodeModalitas);
                 $('#inputNamaModalitas').val(namaModalitas);
                 $('#inputJenisModalitas').val(jenisModalitas);
                 $('#inputMerkModalitas').val(merekModalitas);
@@ -238,9 +238,9 @@
 
             $('#addModalitasBtn').on('click', function() {
                 $('#modalTitle').text('Tambah Modalitas');
-                $('#modalitasForm').attr('action', '/karyawan/store-modalitas');  // Endpoint untuk store
+                $('#modalitasForm').attr('action', '{{ route('store_modalitas') }}');  // Endpoint untuk store
                 $('#modalitasForm').trigger('reset');
-                $('#inputIdModalitas').val('');
+                $('#inputkodeModalitas').val('');
             });
         });
     </script>
