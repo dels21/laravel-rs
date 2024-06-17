@@ -14,13 +14,13 @@ class ModalitasController extends Controller
         // $modalitasDicom = MasterDicom::join('master_modalitas', 'master_dicom.alamatIp', '=', 'master_modalitas.alamatIp')
         // ->where('master_dicom.alamatIp', 'master_modalitas')
         // ->get(['master_dicom.*', 'master_modalitas.*']);
-        
+
         $modalitasDicom = Modalitas::latest()->paginate(10);
         return view('karyawan.list-modalitas', compact('modalitasDicom'));
     }
     public function index()
     {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-modalitas']);  
+        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-modalitas']);
     }
 
     public function create(Request $request)
@@ -49,7 +49,7 @@ class ModalitasController extends Controller
 
     }
 
-    public function edit(Request $request, Modalitas $modalitas)
+    public function edit(Request $request)
     {
         $modalitas->update([
             'namaModalitas' => $request->namaModalitas,

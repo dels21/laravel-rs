@@ -25,10 +25,10 @@
                 style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
-            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+            {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
                 style="width: 7.5rem;">
                 <i class="bi bi-trash3-fill me-2"></i> Hapus
-            </button>
+            </button> --}}
         </div>
 
         <!-- Modal -->
@@ -43,8 +43,9 @@
                         <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Modalitas</h1>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/karyawan/store-modalitas">
+                        <form method="POST" action="/karyawan/store-modalitas" id="modalitasForm">
                             @csrf
+                            <input type="hidden" name="idModalitas" id="inputIdModalitas" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaModalitas" class="col-sm-4 col-form-label">Nama
@@ -159,7 +160,19 @@
                                 <td>{{ $item->alamatIp }}</td>
                                 <td>{{ $item->kodeRuang }}</td>
                                 <td style="display:flex; flex-direction:row;gap:25px;">
-                                    <i class="bi bi-pencil-square"></i>
+                                    <i class="bi bi-pencil-square edit-btn"
+                                        data-toggle="modal"
+                                        data-target="#myModal"
+                                        data-idmodalitas="{{ $item->idModalitas }}"
+                                        data-namamodalitas="{{ $item->namaModalitas }}"
+                                        data-jenismodalitas="{{ $item->jenisModalitas }}"
+                                        data-merekmodalitas="{{ $item->merekModalitas }}"
+                                        data-koderuang="{{ $item->kodeRuang }}"
+                                        data-tipemodalitas="{{ $item->tipeModalitas }}"
+                                        data-nomorserimodalitas="{{ $item->nomorSeriModalitas }}"
+                                        data-alamatip="{{ $item->alamatIp }}"
+                                    ></i>
+
                                     <form id="delete-form-{{$loop->index}}" action="delete-modalitas/{{ $item->kodeModalitas }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -199,5 +212,37 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var idModalitas = $(this).data('idmodalitas');
+                var namaModalitas = $(this).data('namamodalitas');
+                var jenisModalitas = $(this).data('jenismodalitas');
+                var merekModalitas = $(this).data('merekmodalitas');
+                var kodeRuang = $(this).data('koderuang');
+                var tipeModalitas = $(this).data('tipemodalitas');
+                var nomorSeriModalitas = $(this).data('nomorserimodalitas');
+                var alamatIp = $(this).data('alamatip');
+
+                $('#modalTitle').text('Edit Modalitas');
+                $('#modalitasForm').attr('action', route('update_modalitas'));  // Pastikan endpoint yang benar untuk update
+                $('#inputIdModalitas').val(idModalitas);
+                $('#inputNamaModalitas').val(namaModalitas);
+                $('#inputJenisModalitas').val(jenisModalitas);
+                $('#inputMerkModalitas').val(merekModalitas);
+                $('#inputKodeRuangan').val(kodeRuang);
+                $('#inputTipeModalitas').val(tipeModalitas);
+                $('#inputSerialNumber').val(nomorSeriModalitas);
+                $('#inputAlamatIp').val(alamatIp);
+            });
+
+            $('#addModalitasBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Modalitas');
+                $('#modalitasForm').attr('action', '/karyawan/store-modalitas');  // Endpoint untuk store
+                $('#modalitasForm').trigger('reset');
+                $('#inputIdModalitas').val('');
+            });
+        });
+    </script>
 
 @endsection

@@ -19,11 +19,11 @@ Route::middleware(['auth', 'pasien'])->group(function () {
         Route::get('/dashboard', function () {
             return view('pasien.dashboard-pasien');
         });
-        
+
         // Route::get('/pemeriksaan', function () {
         //     return view('pasien.list-pemeriksaan-pasien');
         // });
-        
+
         Route::get('/daftar-pemeriksaan', function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
@@ -68,6 +68,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
 
         Route::get('/list-modalitas', [ModalitasController::class, 'showModalitas'])->name('show_modalitas');
         Route::post('/store-modalitas', [ModalitasController::class, 'store'])->name('store_modalitas');
+        Route::post('/update-modalitas', [ModalitasController::class, 'edit'])->name('update_modalitas');
         Route::delete('/delete-modalitas/{id}', [ModalitasController::class, 'destroy'])->name('delete_modalitas');
 
         Route::get('/list-dicom', [DicomController::class, 'show'])->name('show_dicom');
@@ -95,8 +96,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
-        Route::get('/list-karyawan', 
-        [KaryawanController::class, 'showListKaryawan']    
+        Route::get('/list-karyawan',
+        [KaryawanController::class, 'showListKaryawan']
     );
     });
 });
@@ -120,7 +121,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
-}); 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
