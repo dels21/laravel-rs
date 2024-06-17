@@ -78,9 +78,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/list-pemeriksaan', function () {
             return view('karyawan.list-pemeriksaan-karyawan');
         });
-        Route::get('/list-DICOM', function () {
-            return view('karyawan.list-DICOM');
-        });
+        // Route::get('/list-DICOM', function () {
+        //     return view('karyawan.list-DICOM');
+        // });
         Route::get('/list-jenis-pemeriksaan', function () {
             return view('karyawan.list-jenis-pemeriksaan');
         });

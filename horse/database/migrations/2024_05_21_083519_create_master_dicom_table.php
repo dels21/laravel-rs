@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('master_dicom', function (Blueprint $table) {
-            $table->ipAddress('alamatIp')->primary()->onDelete('cascade');
+            $table->id("idLayananDicom");
+            $table->ipAddress('alamatIp');
             $table->string('netMask',length:30);
             $table->enum('layananDicom',array('MWL', 'MPPS', 'Query', 'Send', 'Print', 'Store', 'Retrieve'));
             $table->enum('peran',array('SCU','SCP'));

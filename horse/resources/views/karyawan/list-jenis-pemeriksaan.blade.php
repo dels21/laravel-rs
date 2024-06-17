@@ -98,7 +98,7 @@
                                         Pemeriksaan:</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="inputLamaPemeriksaan"
-                                            placeholder="Masukan Port">
+                                            placeholder="Masukan Durasi">
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                 <td>CT</td>
                                 <td>Ya</td>
                                 <td>100000</td>
-                                <td>90</td>
+                                <td>90 menit</td>
                                 <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
                         </tbody>
