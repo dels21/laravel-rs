@@ -44,20 +44,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($data as $item) --}}
+                                        @foreach ($data as $item)
                                         <tr>
-                                            {{-- <td>{{$loop->iteration}}</td>
+                                            <td>{{$loop->iteration}}</td>
                                             <td>{{$item->noPemeriksaan}}</td>
                                             <td>{{$item->tanggal}}</td>
                                             <td>{{$item->jamMulai}}</td>
                                             <td>{{$item->jamSelesai}}</td>
                                             <td>{{$item->ruangan}}</td>
                                             <td>{{$item->status}}</td> --}}
-                                            <p class="detail-noPemeriksaan"></p>
-                                            <p class="detail-jamMulai"></p>
                                             {{-- <td><a class="detail-link" data-toggle="modal" data-target="#myModal">Detail</a></td>   --}}
                                         </tr>
-                                        {{-- @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

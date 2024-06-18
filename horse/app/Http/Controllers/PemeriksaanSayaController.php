@@ -18,14 +18,16 @@ class PemeriksaanSayaController extends Controller
 
         // Fetch the data using Eloquent relationships
         $data = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*')
-    ->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
-    ->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')
-    ->join('users as u', 'u.id', '=', 'p.idUser')
-    // ->with('pendaftaranPemeriksaan.detailPendaftaran') // Eager load detailPendaftaran relationship
-    ->where('u.id', '=', $loggedInUserId)
-    ->get();
+                ->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
+                ->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')
+                ->join('users as u', 'u.id', '=', 'p.idUser')
+                // ->with('pendaftaranPemeriksaan.detailPendaftaran') // Eager load detailPendaftaran relationship
+                ->where('u.id', '=', $loggedInUserId)
+                ->paginate(10);
 
 
         return view('pasien.list-pemeriksaan-pasien', ['data' => $data]);
     }
+
+    
 }

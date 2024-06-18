@@ -14,7 +14,7 @@
 
 @section('content')
 
-    {{-- <!-- Modal -->
+       <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -26,35 +26,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>No. Pendaftaran</th>
-                                            <th>ID Pasien</th>
+                                            <th>No. Pemeriksaan</th>
                                             <th>Tanggal Pemeriksaan</th>
                                             <th>Jam Mulai Pemeriksaan</th>
                                             <th>Jam Selesai Pemeriksaan</th>
-                                            <th>Jenis Pemeriksaan</th>
-                                            <th>Keterangan</th>
+                                            <th>Ruangan</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($mergedDetails as $item)
+                                        @foreach ($data as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$item->noPendaftaran}}</td>
-                                            <td>{{$item->idPasien}}</td>
-                                            <td>{{$item->tanggalDaftar}}</td>
+                                            <td>{{$item->noPemeriksaan}}</td>
+                                            <td>{{$item->tanggal}}</td>
                                             <td>{{$item->jamMulai}}</td>
                                             <td>{{$item->jamSelesai}}</td>
-                                            <td>{{$item->namaJenisPemeriksaan}}</td>
-                                            <td>{{$item->keteranganKetersediaan}}</td>
-                                            <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
+                                            <td>{{$item->ruangan}}</td>
+                                            <td>{{$item->status}}</td> --}}
+                                            {{-- <td><a class="detail-link" data-toggle="modal" data-target="#myModal">Detail</a></td>   --}}
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -65,7 +64,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -73,8 +72,8 @@
 
         @if ($data->isEmpty())
             <p>Belum ada pemeriksaan.</p>
-            <p>User ID: {{ $user->id }}</p>
-        @else
+            @else
+            {{-- <p>User ID: {{ $user->id }}</p> --}}
             <div class="card shadow mb-4">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -98,7 +97,8 @@
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>
                                     <td>{{ $item->keterangan }}</td>
-                                    <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
+                                    <td class="detail-link" data-toggle="modal" data-target="#myModal" data-id="{{ $item->id }}">Detail</td>
+
                                 </tr>
                             @endforeach
                         </tbody>
