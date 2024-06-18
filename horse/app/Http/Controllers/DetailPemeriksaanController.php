@@ -7,6 +7,7 @@ use App\Models\DetailPemeriksaan;
 
 class DetailPemeriksaanController extends Controller
 {
+
     public function index()
     {
         return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-pemeriksaan']);  

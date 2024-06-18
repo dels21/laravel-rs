@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-
+{{-- 
        <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -54,7 +54,7 @@
                                             <td>{{$item->ruangan}}</td>
                                             <td>{{$item->status}}</td> --}}
                                             {{-- <td><a class="detail-link" data-toggle="modal" data-target="#myModal">Detail</a></td>   --}}
-                                        </tr>
+                                        {{-- </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -97,8 +97,7 @@
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>
                                     <td>{{ $item->keterangan }}</td>
-                                    <td class="detail-link" data-toggle="modal" data-target="#myModal" data-id="{{ $item->id }}">Detail</td>
-
+                                    <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

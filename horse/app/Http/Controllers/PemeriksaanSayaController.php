@@ -11,6 +11,19 @@ use App\Models\User;
 
 class PemeriksaanSayaController extends Controller
 {
+
+    public function showDetail($id) {
+        $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*')
+            ->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+            ->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
+            ->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')
+            ->join('users as u', 'u.id', '=', 'p.idUser')
+            ->where('dp.nomorPemeriksaan', '=', $id)
+            ->paginate(10);
+    
+        return view('pasien.detail-pemeriksaan-pasien', compact('detail'));
+    }
+    
     public function showData(Request $request)
     {
         // Assuming you have some way of getting the logged-in user ID, let's say $loggedInUserId

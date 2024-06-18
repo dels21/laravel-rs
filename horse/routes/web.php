@@ -10,6 +10,7 @@ use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemeriksaanSayaController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\DetailPemeriksaanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,6 +32,9 @@ Route::middleware(['auth', 'pasien'])->group(function () {
         });
 
         Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
+        // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
+        Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');
+
     });
 });
 
@@ -84,7 +88,8 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.verifikasi');
         });
         Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class,'index']);
-        Route::get('/list-pemeriksaan/{id}', [ListPemeriksaanKaryawanController::class,'show']);
+        Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [ListPemeriksaanKaryawanController::class, 'showDetail'])->name('detail_pemeriksaan_karyawan');
+
     });
 });
 
