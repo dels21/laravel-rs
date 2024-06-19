@@ -16,7 +16,7 @@ class ModalitasController extends Controller
         ->get();
 
         $showModalitas = Modalitas::latest()->paginate(10);
-        return view('karyawan.list-modalitas', compact('showModalitas','joinAlamat'));
+        return view('karyawan.list-modalitas', compact('showModalitas','joinAlamatIp'));
     }
 
     public function index()
