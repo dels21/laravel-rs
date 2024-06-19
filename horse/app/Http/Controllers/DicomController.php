@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class DicomController extends Controller
 {
-    public function index()
-    {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-DICOM']);
-    }
 
     public function create(Request $request)
     {

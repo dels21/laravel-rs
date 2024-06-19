@@ -108,7 +108,7 @@
                                     <label for="inputAlamatIp" class="col-sm-4 col-form-label">Alamat IP:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputAlamatIp" name="alamatIp">
-                                            @foreach ($joinAlamat as $list)
+                                            @foreach ($joinAlamatIp as $list)
                                             <option value={{ $list->alamatIp }}>{{ $list->alamatIp }}</option>
                                             @endforeach
                                         </select>
@@ -146,7 +146,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($modalitasDicom as $item)
+                            @foreach ($showModalitas as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->namaModalitas }}</td>

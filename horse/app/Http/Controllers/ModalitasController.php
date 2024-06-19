@@ -9,15 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class ModalitasController extends Controller
 {
-    public function showModalitas()
+    public function show()
     {
-        $joinAlamat = DB::table('master_dicom')
+        $joinAlamatIp = DB::table('master_dicom')
         ->select('*')
         ->get();
 
-        $modalitasDicom = Modalitas::latest()->paginate(10);
-
-        return view('karyawan.list-modalitas', compact('modalitasDicom','joinAlamat'));
+        $showModalitas = Modalitas::latest()->paginate(10);
+        return view('karyawan.list-modalitas', compact('showModalitas','joinAlamat'));
     }
 
     public function index()
@@ -44,11 +43,6 @@ class ModalitasController extends Controller
             );
             Modalitas::create($request->all());
             return redirect()->route('show_modalitas');
-    }
-
-    public function show (Request $request)
-    {
-
     }
 
     public function edit(Request $request)

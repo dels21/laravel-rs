@@ -49,11 +49,11 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputAlamatIp" class="col-sm-4 col-form-label">Kode Modalitas:</label>
                                     <div class="col-sm-8">
-                                        {{-- <select class="form-control" id="inputAlamatIp" name="kodeModalitas">
+                                        <select class="form-control" id="inputAlamatIp" name="kodeModalitas">
                                             @foreach ($joinKodeModalitas as $list)
                                             <option value={{ $list->kodeModalitas }}>{{ $list->namaModalitas }}</option>
                                             @endforeach
-                                        </select> --}}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">

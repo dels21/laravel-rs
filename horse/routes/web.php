@@ -67,7 +67,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
 
 
-        Route::get('/list-modalitas', [ModalitasController::class, 'showModalitas'])->name('show_modalitas');
+        Route::get('/list-modalitas', [ModalitasController::class, 'show'])->name('show_modalitas');
         Route::post('/store-modalitas', [ModalitasController::class, 'store'])->name('store_modalitas');
         Route::post('/update-modalitas', [ModalitasController::class, 'edit'])->name('update_modalitas');
         Route::delete('/delete-modalitas/{id}', [ModalitasController::class, 'destroy'])->name('delete_modalitas');

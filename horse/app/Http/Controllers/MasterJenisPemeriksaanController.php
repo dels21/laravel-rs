@@ -43,10 +43,6 @@ class MasterJenisPemeriksaanController extends Controller
             MasterJenisPemeriksaan::create($request->all());
             return redirect()->route('show_jenis_pemeriksaan');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show()
     {
         $joinKodeModalitas = DB::table('master_modalitas')
