@@ -22,7 +22,7 @@ class MasterJenisPemeriksaanController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -48,8 +48,19 @@ class MasterJenisPemeriksaanController extends Controller
         $joinKodeModalitas = DB::table('master_modalitas')
         ->select('*')
         ->get();
+        // dd($joinKodeModalitas);
 
         $showJenisPemeriksaan = MasterJenisPemeriksaan::latest()->paginate(10);
+        // dd($showJenisPemeriksaan->all());
+        // "kodeJenisPemeriksaan" => 1
+        // "kodeModalitas" => 1
+        // "namaJenisPemeriksaan" => "Pemeriksaan CT 1"
+    // "kelompokJenisPemerikaan" => "CT"
+        // "pemakaianKontras" => "Ya"
+        // "lamaPemeriksaan" => 30
+        // "created_at" => "2024-06-17 10:12:39"
+        // "updated_at" => "2024-06-17 10:12:39"
+        // "harga" => 100000.0
         return view('karyawan.list-jenis-pemeriksaan', compact('showJenisPemeriksaan', 'joinKodeModalitas'));
     }
 

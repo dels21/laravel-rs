@@ -25,10 +25,10 @@
                 style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
-            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+            {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
                 style="width: 7.5rem;">
                 <i class="bi bi-trash3-fill me-2"></i> Hapus
-            </button>
+            </button> --}}
         </div>
 
         <!-- Modal -->
@@ -47,11 +47,11 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Kode Modalitas:</label>
+                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Nama Modalitas:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputAlamatIp" name="kodeModalitas">
                                             @foreach ($joinKodeModalitas as $list)
-                                            <option value={{ $list->kodeModalitas }}>{{ $list->namaModalitas }}</option>
+                                            <option value={{ $list->kodeModalitas }}>{{ $list->kodeModalitas }} - {{ $list->namaModalitas }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -142,12 +142,14 @@
                             @foreach ($showJenisPemeriksaan as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->kodeJenisPemeriksaan }}</td>
                                 <td>{{ $item->kodeModalitas }}</td>
                                 <td>{{ $item->namaJenisPemeriksaan }}</td>
                                 <td>{{ $item->kelompokJenisPemeriksaan }}</td>
                                 <td>{{ $item->pemakaianKontras }}</td>
-                                <td>{{ $item->lamaPemeriksaan }}</td>
-                                <td>{{ $item->kodeRuang }}</td>
+                                <td>{{ $item->harga}}</td>
+                                <td>{{ $item->lamaPemeriksaan}}</td>
+                                {{-- <td>{{ $item->kodeRuang }}</td> --}}
                                 <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
                             @endforeach
