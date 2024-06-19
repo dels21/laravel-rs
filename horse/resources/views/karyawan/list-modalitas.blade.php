@@ -105,8 +105,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Jenis
-                                        Modalitas:</label>
+                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Alamat IP::</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputAlamatIp" name="alamatIp">
                                             <option>CT Scan</option>

@@ -54,12 +54,9 @@ class DicomController extends Controller
         return redirect()->route('show_dicom')->with('success', 'Dicom berhasil diubah');
     }
 
-    public function destroy($id)
+    public function destroy($alamatIp)
     {
-        // dd($id);
-        $dicom = MasterDicom::find($id);
-        // dd($dicom);
-        $dicom->delete();
+        MasterDicom::destroy($alamatIp);
 
         return redirect()->route('show_dicom')->with('success', 'Dicom berhasil dihapus');
     }
