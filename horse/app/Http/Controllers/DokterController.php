@@ -91,7 +91,7 @@ class DokterController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $user = User::findOrFail($request->idUser);
 
         $dokter = Dokter::where('idUser', $request->idUser);
