@@ -40,16 +40,17 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Jenis Pemeriksaan</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah Jenis Pemeriksaan</h1>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="{{ route('store_jenis_pemeriksaan') }}" id="jenisPemeriksaanForm">
                             @csrf
+                            <input type="hidden" name="kodeJenisPemeriksaan" id="inputKodeJenisPemeriksaan" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Nama Modalitas:</label>
+                                    <label for="inputNamaModalitas" class="col-sm-4 col-form-label">Nama Modalitas:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputAlamatIp" name="kodeModalitas">
+                                        <select class="form-control" id="inputNamaModalitas" name="namaModalitas">
                                             @foreach ($joinKodeModalitas as $list)
                                             <option value={{ $list->kodeModalitas }}>{{ $list->kodeModalitas }} - {{ $list->namaModalitas }}</option>
                                             @endforeach
@@ -150,7 +151,20 @@
                                 <td>{{ $item->harga}}</td>
                                 <td>{{ $item->lamaPemeriksaan}}</td>
                                 {{-- <td>{{ $item->kodeRuang }}</td> --}}
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
+                                <td>
+                                    <i class="bi bi-pencil-square edit-btn"
+                                        data-toggle="modal"
+                                        data-target="#myModal"
+                                        data-kodejenispemeriksaan="{{ $item->kodeJenisPemeriksaan }}"
+                                        data-kodemodalitas="{{ $item->kodeModalitas }}"
+                                        data-namajenispemeriksaan="{{ $item->namaJenisPemeriksaan }}"
+                                        data-kelompokjenispemeriksaan="{{ $item->kelompokJenisPemeriksaan }}"
+                                        data-pemakaiankontras="{{ $item->pemakaianKontras }}"
+                                        data-harga="{{ $item->harga }}"
+                                        data-lamapemeriksaan="{{ $item->lamaPemeriksaan }}">
+                                    </i>
+                                    <i class="bi bi-trash3-fill text-danger"></i>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -182,5 +196,36 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var kodeJenisPemeriksaan = $(this).data('kodejenispemeriksaan');
+                var kodeModalitas = $(this).data('kodemodalitas');
+                var namaJenisPemeriksaan = $(this).data('namajenispemeriksaan');
+                var kelompokJenisPemeriksaan = $(this).data('kelompokjenispemeriksaan');
+                var pemakaianKontras = $(this).data('pemakaiankontras');
+                var harga = $(this).data('harga');
+                var lamaPemeriksaan = $(this).data('lamapemeriksaan');
+
+                $('#modalTitle').text('Edit Jenis Pemeriksaan');
+                $('#jenisPemeriksaanForm').attr('action', '{{ route('store_jenis_pemeriksaan') }}');
+                $('#inputKodeJenisPemeriksaan').val(kodeJenisPemeriksaan);
+                $('#inputNamaModalitas').val(kodeModalitas);
+                $('#inputNamaJenisPemeriksaan').val(namaJenisPemeriksaan);
+                $('#inputKelompokJenisPemeriksaan').val(kelompokJenisPemeriksaan);
+                $('#inputPemakaianKontras').val(pemakaianKontras);
+                $('#inputHarga').val(harga);
+                $('#inputLamaPemeriksaan').val(lamaPemeriksaan);
+            });
+
+            $('#addJenisPemeriksaanBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Jenis Pemeriksaan');
+                $('#jenisPemeriksaanForm').attr('action', '{{ route('store_jenis_pemeriksaan') }}');
+                $('#jenisPemeriksaanForm').trigger('reset');
+                $('#inputIdUser').val('');
+            });
+        });
+    </script>
 
 @endsection

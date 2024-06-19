@@ -60,7 +60,7 @@ class MasterJenisPemeriksaanController extends Controller
         // "lamaPemeriksaan" => 30
         // "created_at" => "2024-06-17 10:12:39"
         // "updated_at" => "2024-06-17 10:12:39"
-        // "harga" => 100000.0
+        // "harga" => 100000.0edi
         return view('karyawan.list-jenis-pemeriksaan', compact('showJenisPemeriksaan', 'joinKodeModalitas'));
     }
 
@@ -70,6 +70,7 @@ class MasterJenisPemeriksaanController extends Controller
     public function edit(string $id)
     {
         //
+        
     }
 
     /**
