@@ -8,6 +8,7 @@ use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\MasterJenisPemeriksaanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -75,6 +76,11 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/store-dicom', [DicomController::class, 'store'])->name('store_dicom');
         Route::post('/edit-dicom', [DicomController::class, 'edit'])->name('update_dicom');
         Route::delete('/delete-dicom/{id}', [DicomController::class, 'destroy'])->name('delete_dicom');
+
+        Route::get('/list-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'show'])->name('show_jenis_pemeriksaan');
+        Route::post('/store-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'store'])->name('store_jenis_pemeriksaan');
+        Route::post('/edit_jenis_pemeriksaan', [MasterJenisPemeriksaanController::class, 'edit'])->name('update_dicom');
+        Route::delete('/delete-dicom/{id}', [MasterJenisPemeriksaanController::class, 'destroy'])->name('delete_jenis_pemeriksaan');
 
         Route::get('/list-pemeriksaan', function () {
             return view('karyawan.list-pemeriksaan-karyawan');

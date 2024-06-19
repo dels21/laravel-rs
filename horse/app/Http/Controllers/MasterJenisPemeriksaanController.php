@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class MasterJenisPemeriksaanController extends Controller
 {
@@ -19,7 +22,7 @@ class MasterJenisPemeriksaanController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -27,15 +30,31 @@ class MasterJenisPemeriksaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(
+            [
+                'kodeModalitas' => 'required|min:5',
+                'namaJenisPemeriksaan' => 'required',
+                'kelompokJenisPemeriksaan' => 'required',
+                'pemakaianKontras' => 'required',
+                'lamaPemeriksaan' => 'required',
+                'kodeRuang' => 'required',
+            ]
+            );
+            MasterJenisPemeriksaan::create($request->all());
+            return redirect()->route('show_jenis_pemeriksaan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $joinKodeModalitas = DB::table('master_modalitas')
+        ->select('*')
+        ->get();
+
+        $showJenisPemeriksaan = MasterJenisPemeriksaan::latest()->paginate(10);
+        return view('karyawan.list-jenis-pemeriksaan', compact('showJenisPemeriksaan', 'joinKodeModalitas'));
     }
 
     /**
@@ -57,8 +76,10 @@ class MasterJenisPemeriksaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($kodeJenisPemeriksaan)
     {
-        //
+        MasterJenisPemeriksaan::destroy($kodeJenisPemeriksaan);
+
+        return redirect()->route('show_jenis_pemeriksaan')->with('success', 'Jenis Pemeriksaan berhasil dihapus');
     }
 }

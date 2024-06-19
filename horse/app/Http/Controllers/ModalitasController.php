@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MasterDicom;
 use App\Models\Modalitas;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
+
 
 class ModalitasController extends Controller
 {
     public function showModalitas()
     {
-        // $modalitasDicom = MasterDicom::join('master_modalitas', 'master_dicom.alamatIp', '=', 'master_modalitas.alamatIp')
-        // ->where('master_dicom.alamatIp', 'master_modalitas')
-        // ->get(['master_dicom.*', 'master_modalitas.*']);
+        $joinAlamat = DB::table('master_dicom')
+        ->select('*')
+        ->get();
 
         $modalitasDicom = Modalitas::latest()->paginate(10);
-        return view('karyawan.list-modalitas', compact('modalitasDicom'));
+
+        return view('karyawan.list-modalitas', compact('modalitasDicom','joinAlamat'));
     }
+
     public function index()
     {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-modalitas']);
+
     }
 
     public function create(Request $request)
@@ -63,41 +65,6 @@ class ModalitasController extends Controller
         ]);
         return redirect()->route('show_modalitas')->with('success', 'Modalitas berhasil diubah');
     }
-    // public function update_pasien(Request $request)
-    // {
-    //     // dd($request->all());
-
-    //     $user = User::findOrFail($request->idUser);
-
-    //     $pasien = Pasien::where('idUser', $request->idUser);
-    //     $updateData = [
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //     ];
-
-    //     // Conditionally update password if provided
-
-
-    //     $user->update($updateData);
-    //     $pasien->update([
-    //         'tempatLahir' =>$request->tempatLahir,
-    //         'tanggalLahir' =>$request->tanggalLahir,
-    //         'noIdentitas' =>$request->noIdentitas,
-    //         'nomorRumah' =>$request->nomorRumah,
-    //         'nomorHp' =>$request->nomorHp,
-    //         'namaKontakDarurat' =>$request->namaKontakDarurat,
-    //         'nomorDarurat' =>$request->nomorDarurat,
-    //         'kewarganegaraan' =>$request->kewarganegaraan,
-    //         'alergi' =>$request->alergi,
-    //         'golonganDarah' =>$request->golonganDarah,
-    //         'tinggiBadan' =>$request->tinggiBadan,
-    //         'beratBadan' =>$request->beratBadan
-    //     ]);
-
-
-    //     return redirect()->route('show_list_pasien')->with('success','Pasien berhasil diupdate');
-    // }
-
 
     public function destroy($kodeModalitas)
     {

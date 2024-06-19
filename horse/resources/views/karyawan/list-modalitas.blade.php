@@ -60,12 +60,12 @@
                                         Modalitas:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputJenisModalitas" name="jenisModalitas">
-                                            <option>CT Scan</option>
-                                            <option>MRI</option>
-                                            <option>Fluoroskopi</option>
-                                            <option>Angiografi</option>
-                                            <option>Mamografi</option>
-                                            <option>USG</option>
+                                            <option value="CT Scan">CT Scan</option>
+                                            <option value="MRI">MRI</option>
+                                            <option value="Fluoroskopi">Fluoroskopi</option>
+                                            <option value="Angiografi">Angiografi</option>
+                                            <option value="Mamografi">Mamografi</option>
+                                            <option value="USG">USG</option>
                                         </select>
                                     </div>
                                 </div>
@@ -105,15 +105,12 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Alamat IP::</label>
+                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Alamat IP:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputAlamatIp" name="alamatIp">
-                                            <option>CT Scan</option>
-                                            <option>MRI</option>
-                                            <option>Fluoroskopi</option>
-                                            <option>Angiografi</option>
-                                            <option>Mamografi</option>
-                                            <option>USG</option>
+                                            @foreach ($joinAlamat as $list)
+                                            <option value={{ $list->alamatIp }}>{{ $list->alamatIp }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

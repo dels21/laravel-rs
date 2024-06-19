@@ -43,13 +43,17 @@
                         <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Jenis Pemeriksaan</h1>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST" action="{{ route('store_jenis_pemeriksaan') }}" id="jenisPemeriksaanForm">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputKodeModalitas" class="col-sm-4 col-form-label">Kode Modalitas:</label>
+                                    <label for="inputAlamatIp" class="col-sm-4 col-form-label">Kode Modalitas:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputKodeModalitas"
-                                            placeholder="Masukan Kode Modalitas">
+                                        {{-- <select class="form-control" id="inputAlamatIp" name="kodeModalitas">
+                                            @foreach ($joinKodeModalitas as $list)
+                                            <option value={{ $list->kodeModalitas }}>{{ $list->namaModalitas }}</option>
+                                            @endforeach
+                                        </select> --}}
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
@@ -67,10 +71,11 @@
                                         Jenis Pemeriksaan:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputKelompokJenisPemeriksaan">
-                                            <option>Kelompok 1</option>
-                                            <option>Kelompok 2</option>
-                                            <option>Kelompok3</option>
-                                            <option>Kelompok 4</option>
+                                            <option value="CT">CT</option>
+                                            <option value="MR">MR</option>
+                                            <option value="XP-R">XP-R</option>
+                                            <option value="XP-WH">XP-WH</option>
+                                            <option value="USG">USG</option>
                                         </select>
                                     </div>
                                 </div>
@@ -134,17 +139,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($showJenisPemeriksaan as $item)
                             <tr>
-                                <td>1</td>
-                                <td>MJP99</td>
-                                <td>UTP99</td>
-                                <td>CT-X</td>
-                                <td>CT</td>
-                                <td>Ya</td>
-                                <td>100000</td>
-                                <td>90 menit</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->kodeModalitas }}</td>
+                                <td>{{ $item->namaJenisPemeriksaan }}</td>
+                                <td>{{ $item->kelompokJenisPemeriksaan }}</td>
+                                <td>{{ $item->pemakaianKontras }}</td>
+                                <td>{{ $item->lamaPemeriksaan }}</td>
+                                <td>{{ $item->kodeRuang }}</td>
                                 <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
