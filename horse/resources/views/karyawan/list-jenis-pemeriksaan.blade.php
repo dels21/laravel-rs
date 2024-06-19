@@ -163,7 +163,13 @@
                                         data-harga="{{ $item->harga }}"
                                         data-lamapemeriksaan="{{ $item->lamaPemeriksaan }}">
                                     </i>
-                                    <i class="bi bi-trash3-fill text-danger"></i>
+                                    <form id="delete-form-{{$loop->index}}" action="{{ route('delete_jenis_pemeriksaan', ['id' => $item->kodeJenisPemeriksaan]) }}"  method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
+                                            <i class="bi bi-trash3-fill text-danger"></i>
+                                        </a>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

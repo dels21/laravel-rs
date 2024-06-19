@@ -108,8 +108,11 @@ class MasterJenisPemeriksaanController extends Controller
      */
     public function destroy($kodeJenisPemeriksaan)
     {
+        // dd($request->all());
         MasterJenisPemeriksaan::destroy($kodeJenisPemeriksaan);
 
         return redirect()->route('show_jenis_pemeriksaan')->with('success', 'Jenis Pemeriksaan berhasil dihapus');
     }
 }
+
+
