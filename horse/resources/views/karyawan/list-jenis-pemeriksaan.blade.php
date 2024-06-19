@@ -50,7 +50,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaModalitas" class="col-sm-4 col-form-label">Nama Modalitas:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputNamaModalitas" name="namaModalitas">
+                                        <select class="form-control" id="inputNamaModalitas" name="kodeModalitas">
                                             @foreach ($joinKodeModalitas as $list)
                                             <option value={{ $list->kodeModalitas }}>{{ $list->kodeModalitas }} - {{ $list->namaModalitas }}</option>
                                             @endforeach
@@ -58,10 +58,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputNamaJenisPemeriksaan" class="col-sm-4 col-form-label">Nama Jenis
+                                    <label for="inputNamaJenisPemeriksaan" class="col-sm-4 col-form-label" >Nama Jenis
                                         Pemeriksaan:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNamaJenisPemeriksaan"
+                                        <input type="text" class="form-control" id="inputNamaJenisPemeriksaan" name="namaJenisPemeriksaan"
                                             placeholder="Masukan Nama Jenis Pemeriksaan">
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     <label for="inputKelompokJenisPemeriksaan" class="col-sm-4 col-form-label">Kelompok
                                         Jenis Pemeriksaan:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputKelompokJenisPemeriksaan">
+                                        <select class="form-control" id="inputKelompokJenisPemeriksaan" name="kelompokJenisPemeriksaan">
                                             <option value="CT">CT</option>
                                             <option value="MR">MR</option>
                                             <option value="XP-R">XP-R</option>
@@ -84,7 +84,7 @@
                                     <label for="inputPemakaianKontras" class="col-sm-4 col-form-label">Pemakaian
                                         Kontras:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputPemakaianKontras">
+                                        <select class="form-control" id="inputPemakaianKontras" name="pemakaianKontras">
                                             <option>Ya</option>
                                             <option>Tidak</option>
                                         </select>
@@ -95,7 +95,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputHarga" class="col-sm-4 col-form-label">Harga</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputHarga"
+                                        <input type="number" class="form-control" id="inputHarga" name="harga"
                                             placeholder="Masukan Harga">
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                     <label for="inputLamaPemeriksaan" class="col-sm-4 col-form-label">Lama
                                         Pemeriksaan:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputLamaPemeriksaan"
+                                        <input type="text" class="form-control" id="inputLamaPemeriksaan" name="lamaPemeriksaan"
                                             placeholder="Masukan Durasi">
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                 var lamaPemeriksaan = $(this).data('lamapemeriksaan');
 
                 $('#modalTitle').text('Edit Jenis Pemeriksaan');
-                $('#jenisPemeriksaanForm').attr('action', '{{ route('store_jenis_pemeriksaan') }}');
+                $('#jenisPemeriksaanForm').attr('action', '{{ route('update_jenis_pemeriksaan') }}');
                 $('#inputKodeJenisPemeriksaan').val(kodeJenisPemeriksaan);
                 $('#inputNamaModalitas').val(kodeModalitas);
                 $('#inputNamaJenisPemeriksaan').val(namaJenisPemeriksaan);

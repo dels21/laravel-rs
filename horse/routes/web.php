@@ -79,7 +79,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
 
         Route::get('/list-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'show'])->name('show_jenis_pemeriksaan');
         Route::post('/store-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'store'])->name('store_jenis_pemeriksaan');
-        Route::post('/edit_jenis_pemeriksaan', [MasterJenisPemeriksaanController::class, 'edit'])->name('update_dicom');
+        Route::post('/edit_jenis_pemeriksaan', [MasterJenisPemeriksaanController::class, 'edit'])->name('update_jenis_pemeriksaan');
         Route::delete('/delete-dicom/{id}', [MasterJenisPemeriksaanController::class, 'destroy'])->name('delete_jenis_pemeriksaan');
 
         Route::get('/list-pemeriksaan', function () {

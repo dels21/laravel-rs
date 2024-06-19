@@ -30,16 +30,16 @@ class MasterJenisPemeriksaanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate(
-            [
-                'kodeModalitas' => 'required|min:5',
-                'namaJenisPemeriksaan' => 'required',
-                'kelompokJenisPemeriksaan' => 'required',
-                'pemakaianKontras' => 'required',
-                'lamaPemeriksaan' => 'required',
-                'kodeRuang' => 'required',
-            ]
-            );
+        // dd($request->all());
+        // $data = $request->validate(
+        //     [
+        //         'kodeModalitas' => 'required|min:5',
+        //         'namaJenisPemeriksaan' => 'required',
+        //         'kelompokJenisPemeriksaan' => 'required',
+        //         'pemakaianKontras' => 'required',
+        //         'lamaPemeriksaan' => 'required',
+        //     ]
+        //     );
             MasterJenisPemeriksaan::create($request->all());
             return redirect()->route('show_jenis_pemeriksaan');
     }
@@ -67,18 +67,40 @@ class MasterJenisPemeriksaanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-        
-    }
+    // public function edit(string $id)
+    // {
+    //     //
+
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    // public function update(Request $request, string $id)
+    // {
+    //     //
+    // }
+
+
+    public function edit(Request $request)
     {
-        //
+        // dd($request->all());
+        // array:8 [▼ // app\Http\Controllers\MasterJenisPemeriksaanController.php:87
+        // "_token" => "liXwPakvxiHE7nFHK08XNEoKl5pT13OGywqqzLPn"
+        // "kodeJenisPemeriksaan" => "1"
+        // "kodeModalitas" => "1"
+        // "namaJenisPemeriksaan" => "Pemeriksaan CT 1"
+        // "kelompokJenisPemeriksaan" => "CT"
+        // "pemakaianKontras" => "Ya"
+        // "harga" => "100000"
+        // "lamaPemeriksaan" => "30"
+        // ]
+
+        $pemeriksaan = MasterJenisPemeriksaan::findOrFail($request->kodeJenisPemeriksaan);
+        $pemeriksaan->update($request->all());
+
+
+        return redirect()->route('show_jenis_pemeriksaan')->with('success','Jenis pemeriksaan berhasil diupdate');
     }
 
     /**

@@ -35,7 +35,7 @@
         <!-- Modal -->
         <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-xl">     
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -128,9 +128,9 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@
                                     <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                         <i class="bi bi-trash3-fill text-danger"></i>
                                     </a>
-                                    
+
                                     <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_dokter') }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('POST')
