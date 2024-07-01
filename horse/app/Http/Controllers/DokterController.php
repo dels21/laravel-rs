@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DokterController extends Controller
 {
@@ -20,6 +22,17 @@ class DokterController extends Controller
         return view('isi_nanti', compact('dokter'));
     }
 
+
+    public function dokterFromUser()
+    {
+        
+        $dokterFromUser = User::join('dokter', 'users.id', '=', 'dokter.idUser')
+            ->where('users.role', 'dokter')
+            ->get(['users.*', 'dokter.*']);
+        // dd($dokterFromUser->all());
+
+        return view('karyawan.list-dokter', compact('dokterFromUser'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -31,19 +44,33 @@ class DokterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $userId, Request $request)
+    public function store(Request $request)
     {
-        Dokter::create([
-            'idDokter' => $request->idDokter,
-            'idUser' => $userId,
-            'idKtp' => $request->idKtp,
-            'jenisKelamin' => $request->jenisKelamin,
-            'tanggalLahir' => $request->tanggalLahir,
-            'alamat' => $request->alamat,
-            'kota' => $request->kota,
-            'nomorHp' => $request->nomorHp,
-            'nomorTelpRumah' => $request->nomorTelpRumah
+        // dd($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'dokter'
         ]);
+        // dd($user->role);
+        
+        $userId = $user->id;
+        // dd($userId);
+        
+        Dokter::create([
+            'idDokter'=>$request->idDokter,
+            'idUser'=>$userId,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
+        ]);
+
+        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil ditambahkan');
     }
 
     /**
@@ -85,34 +112,15 @@ class DokterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dokter $dokter)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::findOrFail($request->idUser);
+        $dokter = Dokter::where('idUser', $request->idUser);
 
         $dokter->delete();
+        $user->delete();
 
-        return redirect()->route('isi_nanti')->with('success', 'Dokter berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
     }
 
-    public function getTotalDokter()
-    {
-        $totalDokter = DB::table('dokter')->count();
-        return $totalDokter;
-    }
-
-    public function buildDashboard()
-    {
-        $user = Auth::user();
-        $userId = $user->id;
-        
-        $pemeriksaanController = new TransaksiPemeriksaanController();
-
-        $pemeriksaanSelesai = $pemeriksaanController->countPemeriksaanSelesai($userId);
-        $pemeriksaanMenunggu = $pemeriksaanController->countPemeriksaanMenunggu($userId);
-        $pemeriksaanBerjalan = $pemeriksaanController->countPemeriksaanBerjalan($userId);
-        $pemeriksaanTerbaru = $pemeriksaanController->getRecentPemeriksaan($userId);
-
-
-        return view('dokter.dashboard-dokter', compact('pemeriksaanSelesai', 'pemeriksaanMenunggu', 'pemeriksaanBerjalan', 'pemeriksaanTerbaru'));
-    }
 }

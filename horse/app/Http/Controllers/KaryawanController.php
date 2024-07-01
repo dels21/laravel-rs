@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Models\Pasien;
+use Brick\Math\BigInteger;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class KaryawanController extends Controller
 {
+    protected $pasienController;
+    public function __construct(PasienController $pasienController){
+        $this->pasienController = $pasienController;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -83,6 +91,20 @@ class KaryawanController extends Controller
         return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil diupdate');
     }
 
+    public function store_pasien(Request $request){
+        // dd($request->all());
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $this->pasienController->store($user->id, $request);
+
+        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil ditambahkan');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -113,4 +135,26 @@ class KaryawanController extends Controller
 
         return view('karyawan.dashboard-karyawan', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'pemeriksaanTerbaru'));
     }
+
+    public function destroy_pasien(Request $request)
+    {
+        $user = User::findOrFail($request->idUser);
+        $pasien = Pasien::where('idUser', $request->idUser);
+
+        $pasien->delete();
+        $user->delete();
+        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil dihapus');
+    }
+
+    public function showListKaryawan()
+    {
+        $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
+            ->where('users.role', 'karyawan')
+            ->get(['users.*', 'karyawan.*']);
+            // dd($usersWithKaryawan->all());    
+        return view('admin.list-karyawan', compact('usersWithKaryawan'));
+    }
+
+
+
 }
