@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DokterController extends Controller
@@ -17,7 +19,7 @@ class DokterController extends Controller
 
         $dokter = Dokter::all();
 
-        return view('isi_nanti', compact('dokter'));
+        return view('karyawan.list-dokter', compact('dokter'));
     }
 
 
@@ -57,6 +59,7 @@ class DokterController extends Controller
         // dd($userId);
 
         Dokter::create([
+            'idDokter'=>$request->idDokter,
             'idUser'=>$userId,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
@@ -83,7 +86,6 @@ class DokterController extends Controller
      */
     public function edit(Dokter $dokter)
     {
-
     }
 
     /**
@@ -91,20 +93,10 @@ class DokterController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request->all());
-        $user = User::findOrFail($request->idUser);
-
-        $dokter = Dokter::where('idUser', $request->idUser);
-        $updateData = [
-            'name' => $request->name,
-            'email' => $request->email,
-        ];
-
-        // Conditionally update password if provided
-
-
-        $user->update($updateData);
+        //
+        //
         $dokter->update([
+            'idDokter'=>$request->idDokter,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
             'tanggalLahir'=>$request->tanggalLahir,
@@ -128,7 +120,7 @@ class DokterController extends Controller
         $dokter->delete();
         $user->delete();
 
-        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('karyawan.list-dokter')->with('success','Dokter berhasil dihapus');
     }
 
 }

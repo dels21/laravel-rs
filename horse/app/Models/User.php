@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $table = 'users';
+
+    public function transactions()
+    {
+        return $this->hasMany(TransaksiPemeriksaan::class, 'id'); // Adjust the foreign key if necessary
+    }
 }

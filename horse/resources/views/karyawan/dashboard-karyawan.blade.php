@@ -33,7 +33,8 @@
                             <div class="col mr-2">
                                 <div class="text-primary text-uppercase mb-1">
                                     Jumlah Pasien</div>
-                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">9.412 Pasien</div>
+                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalPasien }} Pasien
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -44,7 +45,8 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Jumlah Dokter</div>
-                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">1.250 Dokter</div>
+                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalDokter }} Dokter
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,7 +57,8 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Jumlah Karyawan</div>
-                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">1.500 Karyawan</div>
+                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalKaryawan }} Karyawan
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +89,7 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -100,116 +103,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td>Selesai</td>
-                                    <td><i class="bi bi-cloud-arrow-down-fill"></i></td>
-                                </tr>
+                                @foreach ($pemeriksaanTerbaru as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->noPendaftaran }}</td>
+                                        <td>{{ $item->noPemeriksaan }}</td>
+                                        <td>{{ $item->tanggal }}</td>
+                                        <td>{{ $item->idPasien }}</td>
+                                        <td>{{ $item->idRadio }}</td>
+                                        <td>{{ $item->idDokter }}</td>
+                                        <td><a class="detail-link" data-toggle="modal" data-target="#myModal"
+                                                onclick="showDetail({{ $item->NoPemeriksaan }})">Detail</a></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

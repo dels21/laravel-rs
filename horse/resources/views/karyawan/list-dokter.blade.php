@@ -188,7 +188,7 @@
 
                                     <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_dokter') }}" method="POST" style="display: none;">
                                         @csrf
-                                        @method('POST')
+                                        @method('DELETE')
                                         <input type="hidden" name="idUser" value="{{$item->id}}">
                                     </form>
                                 </td>

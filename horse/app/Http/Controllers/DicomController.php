@@ -7,21 +7,18 @@ use Illuminate\Http\Request;
 
 class DicomController extends Controller
 {
-    public function index()
-    {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-DICOM']);  
-    }
 
     public function create(Request $request)
     {
-        
+
     }
 
     public function store(Request $request)
     {
         $data = $request->validate(
             [
-                'netMask' => 'required|max:255',
+                'alamatIp' =>'',
+                'netMask' => '',
                 'layananDicom' => '',
                 'peran' => '',
                 'aet' => '',
@@ -29,30 +26,34 @@ class DicomController extends Controller
             ]
             );
             MasterDicom::create($request->all());
-            return redirect()->route('dashboard');
+            return redirect()->route('show_dicom')->with('success', 'Dicom berhasil dimasukkan');
     }
 
     public function show (Request $request)
     {
-
+        $showDicom = MasterDicom::latest()->paginate(10);
+        return view('karyawan.list-dicom', compact('showDicom'));
     }
 
-    public function edit(Request $request, MasterDicom $dicom)
+    public function edit(Request $request)
     {
+        // dd($request->all());
+        $dicom = MasterDicom::findOrFail($request->idLayananDicom);
         $dicom->update([
+            'alamatIp' => $request->alamatIp,
             'netMask' => $request->netMask,
             'layananDicom' => $request->layananDicom,
             'peran' => $request->peran,
             'aet' => $request->aet,
             'port' => $request->port,
         ]);
-        return redirect()->route('dashboard')->with('success', 'Dicom berhasil diubah');
+        return redirect()->route('show_dicom')->with('success', 'Dicom berhasil diubah');
     }
 
-    public function destroy(MasterDicom $dicom)
+    public function destroy($alamatIp)
     {
-        $dicom->delete();
+        MasterDicom::destroy($alamatIp);
 
-        return redirect()->route('dashboard')->with('success', 'Dicom berhasil dihapus');
+        return redirect()->route('show_dicom')->with('success', 'Dicom berhasil dihapus');
     }
 }

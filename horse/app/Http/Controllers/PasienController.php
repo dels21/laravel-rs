@@ -73,7 +73,6 @@ class PasienController extends Controller
      */
     public function create(Request $request)
     {
-
     }
 
     /**
@@ -140,6 +139,12 @@ class PasienController extends Controller
         //
         $pasien->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Pasien berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success', 'Pasien berhasil dihapus');
+    }
+
+    public function getTotalPasien()
+    {
+        $totalPasien = DB::table('pasien')->count();
+        return $totalPasien;
     }
 }

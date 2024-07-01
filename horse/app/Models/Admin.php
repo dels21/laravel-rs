@@ -5,13 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pasien extends Model
+class Admin extends Model
 {
-
     use HasFactory;
-
-
-    protected $guarded = [];
-    protected $table = 'pasien';
-
+    protected $table = "";
 }

@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/karyawan/list-DICOM">
+                        <a href="/karyawan/list-dicom">
                             <span>DICOM</span>
                         </a>
                     </li>
