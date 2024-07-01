@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Dokter;
 use App\Models\Karyawan;
 use App\Models\Pasien;
 use Brick\Math\BigInteger;
