@@ -7,6 +7,7 @@ use App\Models\Pasien;
 use App\Models\User;
 use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PasienController extends Controller
 {
@@ -37,7 +38,6 @@ class PasienController extends Controller
      */
     public function create(Request $request)
     {
-
     }
 
     /**
@@ -95,23 +95,22 @@ class PasienController extends Controller
     {
         //
         $pasien->update([
-            'tempatLahir' =>$request->tempatLahir,
-            'tanggalLahir' =>$request->tanggalLahir,
-            'noIdentitas' =>$request->noIdentitas,
-            'nomorRumah' =>$request->nomorRumah,
-            'nomorHp' =>$request->nomorHp,
-            'namaKontakDarurat' =>$request->namaKontakDarurat,
-            'nomorDarurat' =>$request->nomorDarurat,
-            'kewarganegaraan' =>$request->kewarganegaraan,
-            'alergi' =>$request->alergi,
-            'golonganDarah' =>$request->golonganDarah,
-            'tinggiBadan' =>$request->tinggiBadan,
-            'beratBadan' =>$request->beratBadan
+            'tempatLahir' => $request->tempatLahir,
+            'tanggalLahir' => $request->tanggalLahir,
+            'noIdentitas' => $request->noIdentitas,
+            'nomorRumah' => $request->nomorRumah,
+            'nomorHp' => $request->nomorHp,
+            'namaKontakDarurat' => $request->namaKontakDarurat,
+            'nomorDarurat' => $request->nomorDarurat,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'alergi' => $request->alergi,
+            'golonganDarah' => $request->golonganDarah,
+            'tinggiBadan' => $request->tinggiBadan,
+            'beratBadan' => $request->beratBadan
         ]);
 
 
-        return redirect()->route('isi_nanti')->with('success','Pasien berhasil diupdate');
-
+        return redirect()->route('isi_nanti')->with('success', 'Pasien berhasil diupdate');
     }
 
     /**
@@ -122,6 +121,12 @@ class PasienController extends Controller
         //
         $pasien->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Pasien berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success', 'Pasien berhasil dihapus');
+    }
+
+    public function getTotalPasien()
+    {
+        $totalPasien = DB::table('pasien')->count();
+        return $totalPasien;
     }
 }
