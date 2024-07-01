@@ -22,4 +22,9 @@ class TransaksiPemeriksaan extends Model
 
     protected $table = 'transaksi_pemeriksaan';
     protected $primaryKey = 'nomorPemeriksaan';
+
+    public function userProfile()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

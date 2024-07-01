@@ -4,11 +4,15 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DicomController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\ListPemeriksaanKaryawanController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
-use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,15 +32,13 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
-        Route::get('/list-pemeriksaan', [PendaftaranPemeriksaanController::class,'detailWithPendaftaran'])->name('show_pendaftaran_pemeriksaan');
+        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showPemeriksaanSaya'])->name('pemeriksaan_saya');
     });
 });
 
 Route::middleware(['auth', 'dokter'])->group(function () {
     Route::prefix('/dokter')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dokter.dashboard-dokter');
-        });
+        Route::get('/dashboard', [DokterController::class, 'buildDashboard']);
 
         Route::get('/list-pasien', function () {
             return view('dokter.list-pemeriksaan-dokter');
@@ -50,9 +52,7 @@ Route::middleware(['auth', 'dokter'])->group(function () {
 
 Route::middleware(['auth', 'karyawan'])->group(function () {
     Route::prefix('/karyawan')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('karyawan.dashboard-karyawan');
-        });
+        Route::get('/dashboard', [KaryawanController::class, 'buildDashboard']);
 
         Route::get('/list-dokter', [DokterController::class, 'dokterFromUser'])->name('show_list_dokter');
         Route::post('/store-dokter', [DokterController::class, 'store'])->name('store_dokter');
@@ -69,9 +69,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.list-modalitas');
         });
 
-        Route::get('/list-pemeriksaan', function () {
-            return view('karyawan.list-pemeriksaan-karyawan');
-        });
+        // Route::get('/list-pemeriksaan', function () {
+        //     return view('karyawan.list-pemeriksaan-karyawan');
+        // });
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
@@ -81,6 +81,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/verifikasi', function () {
             return view('karyawan.verifikasi');
         });
+
+        Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class,'index']);
+        Route::get('/list-pemeriksaan/{id}', [ListPemeriksaanKaryawanController::class,'show']);
     });
 });
 

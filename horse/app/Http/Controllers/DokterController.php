@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DokterController extends Controller
@@ -14,7 +16,7 @@ class DokterController extends Controller
      */
     public function index()
     {
-        
+
         $dokter = Dokter::all();
 
         return view('isi_nanti', compact('dokter'));
@@ -57,6 +59,7 @@ class DokterController extends Controller
         // dd($userId);
         
         Dokter::create([
+            'idDokter'=>$request->idDokter,
             'idUser'=>$userId,
             'idKtp'=>$request->idKtp,
             'jenisKelamin'=>$request->jenisKelamin,
@@ -83,7 +86,6 @@ class DokterController extends Controller
      */
     public function edit(Dokter $dokter)
     {
-
     }
 
     /**
@@ -92,19 +94,19 @@ class DokterController extends Controller
     public function update(Request $request, Dokter $dokter)
     {
         //
-                //
+        //
         $dokter->update([
-            'idDokter'=>$request->idDokter,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idDokter' => $request->idDokter,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Dokter berhasil diupdate');
+        return redirect()->route('isi_nanti')->with('success', 'Dokter berhasil diupdate');
     }
 
     /**
@@ -118,7 +120,7 @@ class DokterController extends Controller
         $dokter->delete();
         $user->delete();
 
-        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
     }
 
 }
