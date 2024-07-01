@@ -25,13 +25,13 @@
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
-                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal" id="addPasienBtn">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
-            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+            {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
                 style="width: 7.5rem;">
                 <i class="bi bi-trash3-fill me-2"></i> Hapus
-            </button>
+            </button> --}}
         </div>
 
         <!-- Modal -->
@@ -43,11 +43,12 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Pasien</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah Pasien</h1>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('store_pasien') }}">
+                        <form method="POST" action="{{ route('store_pasien') }}" id="pasienForm">
                             @csrf
+                            <input type="hidden" name="idUser" id="inputIdUser" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNamaPasien" class="col-sm-4 col-form-label">Nama Pasien:</label>
@@ -163,8 +164,9 @@
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputTanggalDaftar" class="col-sm-4 col-form-label">Tanggal Daftar:</label>
-                                    <input id="tanggalDaftar" class="block mt-1 w-full form-control" type="date" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}" required autofocus autocomplete="tanggalDaftar" placeholder="DD/MM/YYYY" disabled>
+                                    <input id="tanggalDaftar" class="block mt-1 w-full form-control" type="date" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}" required autofocus autocomplete="tanggalDaftar" placeholder="Not editable" disabled>
                                     <input type="hidden" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}">
+
                                 </div>
                             </div>
                             <div class="form-row">
@@ -178,7 +180,6 @@
                                     <label for="inputGolonganDarah" class="col-sm-4 col-form-label">Golongan Darah:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="inputGolonganDarah" name="golonganDarah">
-                                            <option value="A+">
                                                 <option value="A+">A+</option>
                                                 <option value="B+">B+</option>
                                                 <option value="AB+">AB+</option>
@@ -275,7 +276,34 @@
                                     <td>{{$item->tanggalDaftar}}</td>
                                     <td>{{$item->status}}</td>
                                     <td>
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="bi bi-pencil-square edit-btn"
+                                            data-toggle="modal"
+                                            data-target="#myModal"
+                                            data-id="{{ $item->id }}"
+                                            data-namapasien="{{ $item->name }}"
+                                            data-email="{{ $item->email }}"
+                                            data-tempatlahir="{{ $item->tempatLahir }}"
+                                            data-tanggallahir="{{ $item->tanggalLahir }}"
+                                            data-noIdentitas="{{ $item->noIdentitas }}"
+                                            data-tipeIdentitas="{{ $item->tipeIdentitas }}"
+                                            data-kota="{{ $item->kota }}"
+                                            data-alamat="{{ $item->alamat }}"
+                                            data-pekerjaan="{{ $item->pekerjaan }}"
+                                            data-nomorrumah="{{ $item->nomorRumah }}"
+                                            data-nomorhp="{{ $item->nomorHp }}"
+                                            data-namakontakdarurat="{{ $item->namaKontakDarurat }}"
+                                            data-nomordarurat="{{ $item->nomorDarurat }}"
+                                            data-kewarganegaraan="{{ $item->kewarganegaraan }}"
+                                            data-tanggeldaftar="{{ $item->tanggalDaftar }}"
+                                            data-alergi="{{ $item->alergi }}"
+                                            data-golongandarah="{{ $item->golonganDarah }}"
+                                            data-tinggibadan="{{ $item->tinggiBadan }}"
+                                            data-beratbadan="{{ $item->beratBadan }}"
+                                            data-jeniskelamin="{{ $item->jenisKelamin }}"
+                                            data-statusperkawinan="{{ $item->statusPerkawinan }}"
+                                            data-telprumah="{{ $item->nomorRumah }}"
+                                    ></i>
+
                                         <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                             <i class="bi bi-trash3-fill text-danger"></i>
                                         </a>
@@ -317,5 +345,78 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function() {
 
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var id = $(this).data('id');
+                var namapasien = $(this).data('namapasien');
+                var email = $(this).data('email');
+                var tempatlahir = $(this).data('tempatlahir');
+                var tanggallahir = $(this).data('tanggallahir');
+                var noIdentitas = $(this).data('noidentitas');
+                var tipeIdentitas = $(this).data('tipeidentitas');
+                var kota = $(this).data('kota');
+                var alamat = $(this).data('alamat');
+                var pekerjaan = $(this).data('pekerjaan');
+                var statusPerkawinan = $(this).data('statusperkawinan');
+                var nomorRumah = $(this).data('nomorrumah');
+                var nomorHp = $(this).data('nomorhp');
+                var namaKontakDarurat = $(this).data('namakontakdarurat');
+                var nomorDarurat = $(this).data('nomordarurat');
+                var kewarganegaraan = $(this).data('kewarganegaraan');
+                var tanggalDaftar = $(this).data('tanggaldftar');
+                var alergi = $(this).data('alergi');
+                var golonganDarah = $(this).data('golongandarah');
+                var tinggiBadan = $(this).data('tinggibadan');
+                var beratBadan = $(this).data('beratbadan');
+                var jenisKelamin = $(this).data('jeniskelamin');
+                var telpRumah = $(this).data('telprumah');
+
+                $('#modalTitle').text('Edit Pasien');
+                $('#pasienForm').attr('action', '{{ route('edit_pasien') }}');
+                $('#inputIdUser').val(id);
+                $('#inputNamaPasien').val(namapasien);
+                $('#inputEmail').val(email);
+                $('#inputTempatLahir').val(tempatlahir);
+                $('#inputTglLahir').val(tanggallahir);
+                $('#inputNoIdentitas').val(noIdentitas);
+                $('#inputTipeIdentitas').val(tipeIdentitas);
+                $('#inputKota').val(kota);
+                $('#inputAlamat').val(alamat);
+                $('#inputPekerjaan').val(pekerjaan);
+                $('#inputStatusKawin').val(statusPerkawinan);
+                $('#inputNomorRumah').val(nomorRumah);
+                $('#inputTelpHP').val(nomorHp);
+                $('#inputNamaKontakDarurat').val(namaKontakDarurat);
+                $('#inputTelpDarurat').val(nomorDarurat);
+                $('#inputWargaNegara').val(kewarganegaraan);
+                $('#tanggalDaftar').val(tanggalDaftar);
+                $('#inputAlergi').val(alergi);
+                $('#inputGolonganDarah').val(golonganDarah);
+                $('#inputTinggiBadan').val(tinggiBadan);
+                $('#inputBeratBadan').val(beratBadan);
+                $('#inputTelpRumah').val(telpRumah);
+
+                if (jenisKelamin === 'laki') {
+                    $('#genderMale').prop('checked', true);
+                } else if (jenisKelamin === 'perempuan') {
+                    $('#genderFemale').prop('checked', true);
+                }
+
+                // Hide password field when editing
+                $('#inputPassword').prop('disabled', true).attr('placeholder', 'Tidak dapat diedit');
+            });
+
+            $('#addPasienBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Pasien');
+                $('#pasienForm').attr('action', '{{ route('store_pasien') }}');
+                $('#pasienForm').trigger('reset');
+                $('#inputIdUser').val('');
+
+                // Show password field when adding
+                $('#inputPassword').prop('disabled', false).attr('placeholder', 'Masukkan Password');
+            });
+        });
+    </script>
 @endsection

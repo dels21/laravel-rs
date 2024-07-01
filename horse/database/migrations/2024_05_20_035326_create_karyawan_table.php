@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create("karyawan", function (Blueprint $table) {
             $table-> id("idKaryawan");
-            $table-> foreignId("idUser") -> constrained('users','id');
-            $table-> bigInteger('idKtp');   
+            $table-> foreignId("idUser") -> constrained('users','id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table-> bigInteger('idKtp');
             $table-> enum('jenisKelamin',array('laki','perempuan'));
             $table-> date('tanggalLahir');
             $table-> text('alamat');

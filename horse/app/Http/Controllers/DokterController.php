@@ -19,13 +19,13 @@ class DokterController extends Controller
 
         $dokter = Dokter::all();
 
-        return view('isi_nanti', compact('dokter'));
+        return view('karyawan.list-dokter', compact('dokter'));
     }
 
 
     public function dokterFromUser()
     {
-        
+
         $dokterFromUser = User::join('dokter', 'users.id', '=', 'dokter.idUser')
             ->where('users.role', 'dokter')
             ->get(['users.*', 'dokter.*']);
@@ -54,10 +54,10 @@ class DokterController extends Controller
             'role' => 'dokter'
         ]);
         // dd($user->role);
-        
+
         $userId = $user->id;
         // dd($userId);
-        
+
         Dokter::create([
             'idDokter'=>$request->idDokter,
             'idUser'=>$userId,
@@ -91,22 +91,22 @@ class DokterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dokter $dokter)
+    public function update(Request $request)
     {
         //
         //
         $dokter->update([
-            'idDokter' => $request->idDokter,
-            'idKtp' => $request->idKtp,
-            'jenisKelamin' => $request->jenisKelamin,
-            'tanggalLahir' => $request->tanggalLahir,
-            'alamat' => $request->alamat,
-            'kota' => $request->kota,
-            'nomorHp' => $request->nomorHp,
-            'nomorTelpRumah' => $request->nomorTelpRumah
+            'idDokter'=>$request->idDokter,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success', 'Dokter berhasil diupdate');
+        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil diupdate');
     }
 
     /**
@@ -120,7 +120,7 @@ class DokterController extends Controller
         $dokter->delete();
         $user->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('karyawan.list-dokter')->with('success','Dokter berhasil dihapus');
     }
 
 }
