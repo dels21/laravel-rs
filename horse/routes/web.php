@@ -10,6 +10,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\MasterJenisPemeriksaanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +24,11 @@ Route::middleware(['auth', 'pasien'])->group(function () {
         Route::get('/dashboard', function () {
             return view('pasien.dashboard-pasien');
         });
-        
+
         // Route::get('/pemeriksaan', function () {
         //     return view('pasien.list-pemeriksaan-pasien');
         // });
-        
+
         Route::get('/daftar-pemeriksaan', function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
@@ -65,13 +66,25 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/store-pasien', [KaryawanController::class,'store_pasien'])->name('store_pasien');
         Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
 
-        Route::get('/list-modalitas', function () {
-            return view('karyawan.list-modalitas');
-        });
 
-        // Route::get('/list-pemeriksaan', function () {
-        //     return view('karyawan.list-pemeriksaan-karyawan');
-        // });
+        Route::get('/list-modalitas', [ModalitasController::class, 'show'])->name('show_modalitas');
+        Route::post('/store-modalitas', [ModalitasController::class, 'store'])->name('store_modalitas');
+        Route::post('/update-modalitas', [ModalitasController::class, 'edit'])->name('update_modalitas');
+        Route::delete('/delete-modalitas/{id}', [ModalitasController::class, 'destroy'])->name('delete_modalitas');
+
+        Route::get('/list-dicom', [DicomController::class, 'show'])->name('show_dicom');
+        Route::post('/store-dicom', [DicomController::class, 'store'])->name('store_dicom');
+        Route::post('/edit-dicom', [DicomController::class, 'edit'])->name('update_dicom');
+        Route::delete('/delete-dicom/{id}', [DicomController::class, 'destroy'])->name('delete_dicom');
+
+        Route::get('/list-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'show'])->name('show_jenis_pemeriksaan');
+        Route::post('/store-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'store'])->name('store_jenis_pemeriksaan');
+        Route::post('/edit_jenis_pemeriksaan', [MasterJenisPemeriksaanController::class, 'edit'])->name('update_jenis_pemeriksaan');
+        Route::delete('/delete_jenis_pemeriksaan/{id}', [MasterJenisPemeriksaanController::class, 'destroy'])->name('delete_jenis_pemeriksaan');
+
+        Route::get('/list-pemeriksaan', function () {
+            return view('karyawan.list-pemeriksaan-karyawan');
+        });
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
@@ -93,8 +106,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
-        Route::get('/list-karyawan', 
-        [KaryawanController::class, 'showListKaryawan']    
+        Route::get('/list-karyawan',
+        [KaryawanController::class, 'showListKaryawan']
     );
     });
 });
@@ -118,7 +131,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
-}); 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -25,10 +25,10 @@
                 style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
-            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+            {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
                 style="width: 7.5rem;">
                 <i class="bi bi-trash3-fill me-2"></i> Hapus
-            </button>
+            </button> --}}
         </div>
 
         <!-- Modal -->
@@ -40,23 +40,28 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Jenis Pemeriksaan</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah Jenis Pemeriksaan</h1>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="POST" action="{{ route('store_jenis_pemeriksaan') }}" id="jenisPemeriksaanForm">
+                            @csrf
+                            <input type="hidden" name="kodeJenisPemeriksaan" id="inputKodeJenisPemeriksaan" value="">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputKodeModalitas" class="col-sm-4 col-form-label">Kode Modalitas:</label>
+                                    <label for="inputNamaModalitas" class="col-sm-4 col-form-label">Nama Modalitas:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputKodeModalitas"
-                                            placeholder="Masukan Kode Modalitas">
+                                        <select class="form-control" id="inputNamaModalitas" name="kodeModalitas">
+                                            @foreach ($joinKodeModalitas as $list)
+                                            <option value={{ $list->kodeModalitas }}>{{ $list->kodeModalitas }} - {{ $list->namaModalitas }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 d-flex align-items-center">
-                                    <label for="inputNamaJenisPemeriksaan" class="col-sm-4 col-form-label">Nama Jenis
+                                    <label for="inputNamaJenisPemeriksaan" class="col-sm-4 col-form-label" >Nama Jenis
                                         Pemeriksaan:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputNamaJenisPemeriksaan"
+                                        <input type="text" class="form-control" id="inputNamaJenisPemeriksaan" name="namaJenisPemeriksaan"
                                             placeholder="Masukan Nama Jenis Pemeriksaan">
                                     </div>
                                 </div>
@@ -66,11 +71,12 @@
                                     <label for="inputKelompokJenisPemeriksaan" class="col-sm-4 col-form-label">Kelompok
                                         Jenis Pemeriksaan:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputKelompokJenisPemeriksaan">
-                                            <option>Kelompok 1</option>
-                                            <option>Kelompok 2</option>
-                                            <option>Kelompok3</option>
-                                            <option>Kelompok 4</option>
+                                        <select class="form-control" id="inputKelompokJenisPemeriksaan" name="kelompokJenisPemeriksaan">
+                                            <option value="CT">CT</option>
+                                            <option value="MR">MR</option>
+                                            <option value="XP-R">XP-R</option>
+                                            <option value="XP-WH">XP-WH</option>
+                                            <option value="USG">USG</option>
                                         </select>
                                     </div>
                                 </div>
@@ -78,7 +84,7 @@
                                     <label for="inputPemakaianKontras" class="col-sm-4 col-form-label">Pemakaian
                                         Kontras:</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="inputPemakaianKontras">
+                                        <select class="form-control" id="inputPemakaianKontras" name="pemakaianKontras">
                                             <option>Ya</option>
                                             <option>Tidak</option>
                                         </select>
@@ -89,7 +95,7 @@
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputHarga" class="col-sm-4 col-form-label">Harga</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputHarga"
+                                        <input type="number" class="form-control" id="inputHarga" name="harga"
                                             placeholder="Masukan Harga">
                                     </div>
                                 </div>
@@ -97,8 +103,8 @@
                                     <label for="inputLamaPemeriksaan" class="col-sm-4 col-form-label">Lama
                                         Pemeriksaan:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="inputLamaPemeriksaan"
-                                            placeholder="Masukan Port">
+                                        <input type="text" class="form-control" id="inputLamaPemeriksaan" name="lamaPemeriksaan"
+                                            placeholder="Masukan Durasi">
                                     </div>
                                 </div>
                             </div>
@@ -134,17 +140,39 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($showJenisPemeriksaan as $item)
                             <tr>
-                                <td>1</td>
-                                <td>MJP99</td>
-                                <td>UTP99</td>
-                                <td>CT-X</td>
-                                <td>CT</td>
-                                <td>Ya</td>
-                                <td>100000</td>
-                                <td>90</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill text-danger"></i></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->kodeJenisPemeriksaan }}</td>
+                                <td>{{ $item->kodeModalitas }}</td>
+                                <td>{{ $item->namaJenisPemeriksaan }}</td>
+                                <td>{{ $item->kelompokJenisPemeriksaan }}</td>
+                                <td>{{ $item->pemakaianKontras }}</td>
+                                <td>{{ $item->harga}}</td>
+                                <td>{{ $item->lamaPemeriksaan}}</td>
+                                {{-- <td>{{ $item->kodeRuang }}</td> --}}
+                                <td>
+                                    <i class="bi bi-pencil-square edit-btn"
+                                        data-toggle="modal"
+                                        data-target="#myModal"
+                                        data-kodejenispemeriksaan="{{ $item->kodeJenisPemeriksaan }}"
+                                        data-kodemodalitas="{{ $item->kodeModalitas }}"
+                                        data-namajenispemeriksaan="{{ $item->namaJenisPemeriksaan }}"
+                                        data-kelompokjenispemeriksaan="{{ $item->kelompokJenisPemeriksaan }}"
+                                        data-pemakaiankontras="{{ $item->pemakaianKontras }}"
+                                        data-harga="{{ $item->harga }}"
+                                        data-lamapemeriksaan="{{ $item->lamaPemeriksaan }}">
+                                    </i>
+                                    <form id="delete-form-{{$loop->index}}" action="{{ route('delete_jenis_pemeriksaan', ['id' => $item->kodeJenisPemeriksaan]) }}"  method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
+                                            <i class="bi bi-trash3-fill text-danger"></i>
+                                        </a>
+                                    </form>
+                                </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -174,5 +202,36 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var kodeJenisPemeriksaan = $(this).data('kodejenispemeriksaan');
+                var kodeModalitas = $(this).data('kodemodalitas');
+                var namaJenisPemeriksaan = $(this).data('namajenispemeriksaan');
+                var kelompokJenisPemeriksaan = $(this).data('kelompokjenispemeriksaan');
+                var pemakaianKontras = $(this).data('pemakaiankontras');
+                var harga = $(this).data('harga');
+                var lamaPemeriksaan = $(this).data('lamapemeriksaan');
+
+                $('#modalTitle').text('Edit Jenis Pemeriksaan');
+                $('#jenisPemeriksaanForm').attr('action', '{{ route('update_jenis_pemeriksaan') }}');
+                $('#inputKodeJenisPemeriksaan').val(kodeJenisPemeriksaan);
+                $('#inputNamaModalitas').val(kodeModalitas);
+                $('#inputNamaJenisPemeriksaan').val(namaJenisPemeriksaan);
+                $('#inputKelompokJenisPemeriksaan').val(kelompokJenisPemeriksaan);
+                $('#inputPemakaianKontras').val(pemakaianKontras);
+                $('#inputHarga').val(harga);
+                $('#inputLamaPemeriksaan').val(lamaPemeriksaan);
+            });
+
+            $('#addJenisPemeriksaanBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Jenis Pemeriksaan');
+                $('#jenisPemeriksaanForm').attr('action', '{{ route('store_jenis_pemeriksaan') }}');
+                $('#jenisPemeriksaanForm').trigger('reset');
+                $('#inputIdUser').val('');
+            });
+        });
+    </script>
 
 @endsection

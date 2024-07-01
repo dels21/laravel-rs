@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('master_jenis_pemeriksaan', function (Blueprint $table) {
             $table->id('kodeJenisPemeriksaan');
-            $table->foreignId('kodeModalitas')->constrained('master_modalitas','kodeModalitas');
+            $table->foreignId('kodeModalitas')->constrained('master_modalitas','kodeModalitas')->onDelete('cascade');
             $table->string('namaJenisPemeriksaan',length:100);
-            $table->enum('kelompokJenisPemerikaan',array('CT', 'MR', 'XP-R', 'XP-F', 'XP-WH', 'USG'));
+            $table->enum('kelompokJenisPemeriksaan',array('CT', 'MR', 'XP-R', 'XP-F', 'XP-WH', 'USG'));
             $table->string('pemakaianKontras',length:15);
+            $table->double('harga');
             $table->bigInteger('lamaPemeriksaan');
             $table->timestamps();
         });

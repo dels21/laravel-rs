@@ -128,9 +128,9 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>
@@ -174,10 +174,10 @@
                                     <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                         <i class="bi bi-trash3-fill text-danger"></i>
                                     </a>
-                                    
+
                                     <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_dokter') }}" method="POST" style="display: none;">
                                         @csrf
-                                        @method('POST')
+                                        @method('DELETE')
                                         <input type="hidden" name="idUser" value="{{$item->id}}">
                                     </form>
                                 </td>

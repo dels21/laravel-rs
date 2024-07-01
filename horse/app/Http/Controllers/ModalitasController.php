@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Modalitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ModalitasController extends Controller
 {
+    public function show()
+    {
+        $joinAlamatIp = DB::table('master_dicom')
+        ->select('*')
+        ->get();
+
+        $showModalitas = Modalitas::latest()->paginate(10);
+        return view('karyawan.list-modalitas', compact('showModalitas','joinAlamatIp'));
+    }
+
     public function index()
     {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-modalitas']);  
+
     }
 
     public function create(Request $request)
@@ -21,25 +33,22 @@ class ModalitasController extends Controller
     {
         $data = $request->validate(
             [
-                'namaModalitas' => 'required|max:255',
-                'jenisModalitas' => '',
-                'merekModalitas' => '',
-                'nomorSeriModalitas' => '',
-                'alamatIp' => '',
-                'kodeRuang' => '',
+                'namaModalitas' => 'required|min:5',
+                'jenisModalitas' => 'required',
+                'merekModalitas' => 'required',
+                'nomorSeriModalitas' => 'required',
+                'alamatIp' => 'required',
+                'kodeRuang' => 'required',
             ]
             );
             Modalitas::create($request->all());
-            return redirect()->route('dashboard');
+            return redirect()->route('show_modalitas');
     }
 
-    public function show (Request $request)
+    public function edit(Request $request)
     {
-
-    }
-
-    public function edit(Request $request, Modalitas $modalitas)
-    {
+        // dd($request->all());
+        $modalitas = Modalitas::findOrFail($request->kodeModalitas);
         $modalitas->update([
             'namaModalitas' => $request->namaModalitas,
             'jenisModalitas' => $request->jenisModalitas,
@@ -48,13 +57,15 @@ class ModalitasController extends Controller
             'alamatIp' => $request->alamatIp,
             'kodeRuang' => $request->kodeRuang,
         ]);
-        return redirect()->route('dashboard')->with('success', 'Modalitas berhasil diubah');
+        return redirect()->route('show_modalitas')->with('success', 'Modalitas berhasil diubah');
     }
 
-    public function destroy(Modalitas $modalitas)
+    public function destroy($kodeModalitas)
     {
-        $modalitas->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Modalitas berhasil dihapus');
+
+        Modalitas::destroy($kodeModalitas);
+
+        return redirect()->route('show_modalitas')->with('success', 'Modalitas berhasil dihapus');
     }
 }
