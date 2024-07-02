@@ -9,12 +9,11 @@ class TransaksiPemeriksaanController extends Controller
 {
     public function index()
     {
-        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-pemeriksaan']);  
+        return view('dashboard',  ['user' => 'karyawan', 'page' => 'list-pemeriksaan']);
     }
 
     public function create(Request $request)
     {
-        
     }
 
     public function store(Request $request)
@@ -29,14 +28,13 @@ class TransaksiPemeriksaanController extends Controller
                 'diagnosis' => '',
                 'keterangan' => '',
             ]
-            );
-            TransaksiPemeriksaan::create($request->all());
-            return redirect()->route('dashboard');
+        );
+        TransaksiPemeriksaan::create($request->all());
+        return redirect()->route('dashboard');
     }
 
-    public function show (Request $request)
+    public function show(Request $request)
     {
-
     }
 
     public function edit(Request $request, TransaksiPemeriksaan $transaksipemeriksaan)
@@ -58,5 +56,47 @@ class TransaksiPemeriksaanController extends Controller
         $transaksiPemeriksaan->delete();
 
         return redirect()->route('dashboard')->with('success', 'Transaksi Pemeriksaan berhasil dihapus');
+    }
+
+    public function countPemeriksaanSelesai($idDokter)
+    {
+        $count = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+            ->where('detail_pemeriksaan.status', 'Hasil sudah siap')
+            ->where('transaksi_pemeriksaan.idKaryawanDokterRadiologi', $idDokter)
+            ->count();
+
+        return $count;
+    }
+
+    public function countPemeriksaanMenunggu($idDokter)
+    {
+        $count = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+            ->where('detail_pemeriksaan.status', 'Menunggu Hasil')
+            ->where('transaksi_pemeriksaan.idKaryawanDokterRadiologi', $idDokter)
+            ->count();
+
+        return $count;
+    }
+
+    public function countPemeriksaanBerjalan($idDokter)
+    {
+        $count = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+            ->where('detail_pemeriksaan.status', 'Pemeriksaan')
+            ->where('transaksi_pemeriksaan.idKaryawanDokterRadiologi', $idDokter)
+            ->count();
+
+        return $count;
+    }
+
+    public function getRecentPemeriksaan($idDokter)
+    {
+        $data = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+            ->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')
+            ->where('transaksi_pemeriksaan.idKaryawanDokterRadiologi', $idDokter)
+            ->orderBy('transaksi_pemeriksaan.tanggalPemeriksaan', 'desc')
+            ->take(10)
+            ->get(['transaksi_pemeriksaan.nomorPendaftaran as noPendaftaran', 'transaksi_pemeriksaan.nomorPemeriksaan as noPemeriksaan', 'transaksi_pemeriksaan.tanggalPemeriksaan as tanggal', 'pendaftaran_pemeriksaan.idPasien as idPasien', 'transaksi_pemeriksaan.idKaryawanRadiografer as idRadio', 'transaksi_pemeriksaan.idKaryawanDokterRadiologi as idDokter', 'detail_pemeriksaan.jamMulaiPemeriksaanAlat as jamMulai', 'detail_pemeriksaan.jamSelesaiPemeriksaanAlat as jamSelesai', 'detail_pemeriksaan.ruangan as ruangan', 'detail_pemeriksaan.status as status']);
+
+        return $data;
     }
 }

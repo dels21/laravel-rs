@@ -29,14 +29,19 @@
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
+                                <th>No. Pendaftaran</th>
+                                <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>ID Pasien</th>
+                                <th>ID Karyawan Radiographer</th>
+                                <th>ID Karyawan Radiologi</th>
                                 <th>ID Karyawan Radiographer</th>
                                 <th>ID Karyawan Radiologi</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $item)
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
@@ -49,6 +54,7 @@
                                 <td><a href="{{ route('detail_pemeriksaan_karyawan', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                             </tr>
                             @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -57,11 +63,26 @@
 
     </div>
     
+    
     <!-- /.container-fluid -->
 
 @endsection
 
 @section('customJS')
+    <script>
+        function showDetail(id){
+            $.ajax({
+                url: '/list-pemeriksaan/' + id,
+                type: 'GET',
+                success: function(data){
+                    $('#detail-noPemeriksaan').text('No Pemeriksaan: ' + data.noPemeriksaan);
+                    $('#detail-jamMulai').text('Jam Mulai: ' + data.jamMulai);
+
+                }
+            });
+        }
+        
+    </script>
     <script>
         function showDetail(id){
             $.ajax({
@@ -91,6 +112,7 @@
     <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
+  
   
 
 @endsection

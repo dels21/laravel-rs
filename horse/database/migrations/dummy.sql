@@ -78,14 +78,17 @@ VALUES
 (2, 2, 2, '2024-05-31', '15:00:00', '16:00:00', 'approve', 'Pemeriksaan berhasil dijadwalkan.', NOW(), NOW());
 
 -- Insert 1
-INSERT INTO transaksi_pemeriksaan (nomorPendaftaran, idKaryawanRadiografer, idKaryawanDokterRadiologi, namaDokterPengirim, tanggalPemeriksaan, diagnosis, keterangan, created_at, updated_at)
+INSERT INTO transaksi_pemeriksaan (id, nomorPemeriksaan, nomorPendaftaran, idKaryawanRadiografer, idKaryawanDokterRadiologi, namaDokterPengirim, tanggalPemeriksaan, diagnosis, keterangan, created_at, updated_at)
 VALUES 
-(1, 1, 1, 'Dr. John Doe', '2024-05-28', 'Fracture in the left arm', 'Patient advised to rest and take medication as prescribed.', NOW(), NOW());
+(1, 1, 1, 1, 1, 'Dr. John Doe', '2024-05-28', 'Fracture in the left arm', 'Patient advised to rest and take medication as prescribed.', NOW(), NOW());
 
 -- Insert 2
-INSERT INTO transaksi_pemeriksaan (nomorPendaftaran, idKaryawanRadiografer, idKaryawanDokterRadiologi, namaDokterPengirim, tanggalPemeriksaan, diagnosis, keterangan, created_at, updated_at)
+INSERT INTO transaksi_pemeriksaan (id, nomorPemeriksaan, nomorPendaftaran, idKaryawanRadiografer, idKaryawanDokterRadiologi, namaDokterPengirim, tanggalPemeriksaan, diagnosis, keterangan, created_at, updated_at)
 VALUES 
-(2, 2, 2, 'Dr. Jane Smith', '2024-05-29', 'Appendicitis', 'Patient scheduled for surgery on 2024-06-05.', NOW(), NOW());
+(1, 2, 2, 2, 2, 'Dr. Jane Smith', '2024-05-29', 'Appendicitis', 'Patient scheduled for surgery on 2024-06-05.', NOW(), NOW());
+INSERT INTO transaksi_pemeriksaan (id, nomorPemeriksaan, nomorPendaftaran, idKaryawanRadiografer, idKaryawanDokterRadiologi, namaDokterPengirim, tanggalPemeriksaan, diagnosis, keterangan, created_at, updated_at)
+VALUES 
+(1, 3, 2, 2, 2, 'Dr. Jane Smith', '2024-05-29', 'Appendicitis', 'Patient scheduled for surgery on 2024-06-05.', NOW(), NOW());
 
 
 -- Insert 1

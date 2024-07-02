@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('draft_laporan_pemeriksaan_radiologi', function (Blueprint $table) {
             $table->id("idDraftlaporan");
-            $table->foreignId("idKaryawan")->constrained("karyawan",'idKaryawan');
-            $table->foreignId("kodeJenisPemeriksaan")->constrained("master_jenis_pemeriksaan",'kodeJenisPemeriksaan');
+            $table->foreignId("idKaryawan")->constrained("karyawan",'idKaryawan')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("kodeJenisPemeriksaan")->constrained("master_jenis_pemeriksaan",'kodeJenisPemeriksaan')->cascadeOnDelete()->cascadeOnUpdate();
             $table->text("laporanNormal");
             $table->timestamps();
         });

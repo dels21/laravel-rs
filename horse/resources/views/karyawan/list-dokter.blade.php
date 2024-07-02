@@ -23,7 +23,7 @@
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
             <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
-                style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
+                style="width: 7.5rem;" id="addDokterBtn" data-toggle="modal" data-target="#myModal">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
             <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
@@ -41,11 +41,12 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h1 class="h1-title-600 w-100 text-center" id="myExtraLargeModalLabel">Tambah Dokter</h1>
+                        <h1 class="h1-title-600 w-100 text-center" id="modalTitle">Tambah Dokter</h1>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{route('store_dokter')}}">
+                        <form method="POST" id="dokterForm">
                             @csrf
+                            <input type="hidden" id="inputIdUser" name="idUser">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNama" class="col-sm-4 col-form-label">Nama:</label>
@@ -128,9 +129,9 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>
@@ -170,14 +171,24 @@
                                 <td>{{$item->alamat}}</td>
                                 <td>{{$item->status}}</td>
                                 <td>
-                                    <i class="bi bi-pencil-square"></i>
+                                    <i class="bi bi-pencil-square edit-btn" data-toggle="modal" data-target="#myModal"
+                                    data-id="{{$item->id}}"
+                                    data-name="{{$item->name}}"
+                                    data-email="{{$item->email}}"
+                                    data-idktp="{{$item->idKtp}}"
+                                    data-jeniskelamin="{{$item->jenisKelamin}}"
+                                    data-tanggallahir="{{$item->tanggalLahir}}"
+                                    data-alamat="{{$item->alamat}}"
+                                    data-kota="{{$item->kota}}"
+                                    data-nomorhp="{{$item->nomorHp}}"
+                                    data-nomortelprumah="{{$item->nomorTelpRumah}}"></i>
                                     <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
                                         <i class="bi bi-trash3-fill text-danger"></i>
                                     </a>
-                                    
+
                                     <form id="delete-form-{{$loop->index}}" action="{{ route('destroy_dokter') }}" method="POST" style="display: none;">
                                         @csrf
-                                        @method('POST')
+                                        @method('DELETE')
                                         <input type="hidden" name="idUser" value="{{$item->id}}">
                                     </form>
                                 </td>
@@ -212,5 +223,48 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').on('click', '.edit-btn', function() {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                var email = $(this).data('email');
+                var idKtp = $(this).data('idktp');
+                var jenisKelamin = $(this).data('jeniskelamin');
+                var tanggalLahir = $(this).data('tanggallahir');
+                var alamat = $(this).data('alamat');
+                var kota = $(this).data('kota');
+                var nomorHp = $(this).data('nomorhp');
+                var nomorTelpRumah = $(this).data('nomortelprumah');
+
+                $('#modalTitle').text('Edit Dokter');
+                $('#dokterForm').attr('action', '{{ route('update_dokter') }}');
+                $('#inputIdUser').val(id);
+                $('#inputNama').val(name);
+                $('#inputEmail').val(email);
+                $('#inputIdKTP').val(idKtp);
+                $('#inputJenisKelamin').val(jenisKelamin);
+                $('#inputTanggalLahir').val(tanggalLahir);
+                $('#inputAlamat').val(alamat);
+                $('#inputKota').val(kota);
+                $('#inputNomorHP').val(nomorHp);
+                $('#inputNomorTelpRumah').val(nomorTelpRumah);
+
+                // Disable password field and change placeholder when editing
+                $('#inputPassword').prop('disabled', true).attr('placeholder', 'Tidak dapat diedit');
+            });
+
+            $('#addDokterBtn').on('click', function() {
+                $('#modalTitle').text('Tambah Dokter');
+                $('#dokterForm').attr('action', '{{ route('store_dokter') }}');
+                $('#dokterForm').trigger('reset');
+                $('#inputIdUser').val('');
+
+                // Enable password field and reset placeholder when adding
+                $('#inputPassword').prop('disabled', false).attr('placeholder', 'Masukkan Password');
+            });
+        });
+    </script>
 
 @endsection

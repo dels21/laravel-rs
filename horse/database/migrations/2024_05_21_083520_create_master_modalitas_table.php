@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("merekModalitas",length:50);
             $table->string("tipeModalitas",length:50);
             $table->string("nomorSeriModalitas",length:50);
-            $table->ipAddress('alamatIp')->references('alamatIp')->on('master_dicom');
+            $table->ipAddress('alamatIp')->references('alamatIp')->on('master_dicom')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("kodeRuang",length:20);
             // $table->enum('status',array());
             $table->timestamps();

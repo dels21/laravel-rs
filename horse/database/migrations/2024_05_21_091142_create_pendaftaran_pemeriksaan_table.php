@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pendaftaran_pemeriksaan', function (Blueprint $table) {
             $table->id('nomorPendaftaran');
-            $table->foreignId('idPasien')->constrained('pasien','idPasien');
+            $table->foreignId('idPasien')->constrained('pasien','idPasien')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('namaDokterPengirim',length:50);
             // $table->
             $table->date('tanggalDaftar');

@@ -5,7 +5,7 @@
         <li class="nav-item">
             <a class="profile" href="#">
                 <i class="bi bi-person-circle"></i>
-                <span>Nama User</span>
+                <span>{{ Auth::user()->name }}</span>
             </a>
         </li><!-- End Profile -->
 
@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/karyawan/list-DICOM">
+                        <a href="/karyawan/list-dicom">
                             <span>DICOM</span>
                         </a>
                     </li>
@@ -128,6 +128,14 @@
                     <i class="bi bi-bookmark-plus-fill"></i><span>Daftar Pemeriksaan</span>
                 </a>
             </li><!-- End Daftar Pemeriksaan -->
+
+            @unless ($dataExists)
+            <li class="nav-item">
+                <a class="nav-link @yield('setAktifLengkapiDataDiri')" href="/pasien/lengkapi-data-diri">
+                    <i class="bi bi-card-text"></i><span>Lengkapi Data Diri</span>
+                </a>
+            </li><!-- End Daftar Pemeriksaan -->
+            @endunless
         @endif
         {{-- End Navigation Pasien --}}
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Dokter;
 use App\Models\Karyawan;
 use App\Models\Pasien;
 use Brick\Math\BigInteger;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class KaryawanController extends Controller
@@ -20,7 +22,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-                
+
         $karyawan = Karyawan::all();
 
         return view('isi_nanti', compact('karyawan'));
@@ -40,15 +42,15 @@ class KaryawanController extends Controller
     public function store(int $userId, Request $request)
     {
         Karyawan::create([
-            'idKaryawan'=>$request->idDokter,
-            'idUser'=>$userId,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idKaryawan' => $request->idDokter,
+            'idUser' => $userId,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
     }
 
@@ -75,19 +77,19 @@ class KaryawanController extends Controller
     public function update(Request $request, Karyawan $karyawan)
     {
         //
-                //
+        //
         $karyawan->update([
-            'idKaryawan'=>$request->idKaryawan,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idKaryawan' => $request->idKaryawan,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil diupdate');
+        return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil diupdate');
     }
 
     public function store_pasien(Request $request){
@@ -111,7 +113,28 @@ class KaryawanController extends Controller
     {
         $karyawan->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Karyawan berhasil dihapus');
+        return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil dihapus');
+    }
+
+    public function getTotalKaryawan()
+    {
+        $totalKaryawan = DB::table('karyawan')->count();
+        return $totalKaryawan;
+    }
+
+    public function buildDashboard()
+    {
+        $pasienController = new PasienController();
+        $dokterController = new DokterController();
+        $pemeriksaanController = new ListPemeriksaanKaryawanController();
+
+        $totalPasien = $pasienController->getTotalPasien();
+        $totalDokter = $dokterController->getTotalDokter();
+        $totalKaryawan = $this->getTotalKaryawan();
+        $pemeriksaanTerbaru = $pemeriksaanController->recentPemeriksaan();
+
+
+        return view('karyawan.dashboard-karyawan', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'pemeriksaanTerbaru'));
     }
 
     public function destroy_pasien(Request $request)
@@ -129,7 +152,7 @@ class KaryawanController extends Controller
         $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
             ->where('users.role', 'karyawan')
             ->get(['users.*', 'karyawan.*']);
-            // dd($usersWithKaryawan->all());    
+            // dd($usersWithKaryawan->all());
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
     }
 

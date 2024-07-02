@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create("dokter", function (Blueprint $table) {
             $table-> id("idDokter");
-            $table-> foreignId("idUser") -> constrained('users','id');
-            $table-> bigInteger('idKtp');   
+            $table-> foreignId("idUser") -> constrained('users','id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table-> bigInteger('idKtp');
             $table-> enum('jenisKelamin',array('laki','perempuan'));
             $table-> date('tanggalLahir');
             $table-> text('alamat');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-// INSERT INTO users () 
+// INSERT INTO users ()
 // VALUES ();
 
     }
