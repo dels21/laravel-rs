@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\TransaksiPemeriksaan;
 use App\Models\DetailPemeriksaan;
 use App\Models\PendaftaranPemeriksaan;
+use Illuminate\Support\Facades\DB;
 
 class ListPemeriksaanKaryawanController extends Controller
 {
@@ -15,16 +16,29 @@ class ListPemeriksaanKaryawanController extends Controller
 
     public function index()
     {
-        $data = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
-            ->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')
-            ->select(['transaksi_pemeriksaan.nomorPendaftaran as noPendaftaran', 'transaksi_pemeriksaan.nomorPemeriksaan as noPemeriksaan', 'transaksi_pemeriksaan.tanggalPemeriksaan as tanggal', 'pendaftaran_pemeriksaan.idPasien as idPasien', 'transaksi_pemeriksaan.idKaryawanRadiografer as idRadio', 'transaksi_pemeriksaan.idKaryawanDokterRadiologi as idDokter', 'detail_pemeriksaan.jamMulaiPemeriksaanAlat as jamMulai', 'detail_pemeriksaan.jamSelesaiPemeriksaanAlat as jamSelesai', 'detail_pemeriksaan.ruangan as ruangan', 'detail_pemeriksaan.status as status'])
-            ->paginate(10);
+        DB::statement("SET sql_mode = ''");
+        $data = DB::table('transaksi_pemeriksaan as tp')
+        ->select('tp.*', 'pp.*', 'tp.tanggalPemeriksaan', 'dp.jamMulaiPemeriksaanAlat', 'dp.jamSelesaiPemeriksaanAlat', 'dp.ruangan')
+        ->join('pendaftaran_pemeriksaan as pp', 'tp.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
+        ->leftJoin('detail_pemeriksaan as dp', 'tp.nomorPemeriksaan', '=', 'dp.nomorPemeriksaan')
+        ->groupBy('tp.nomorPemeriksaan')
+        ->get();
 
         return view('karyawan.list-pemeriksaan-karyawan', compact('data'));
     }
 
-    public function show($id)
+    public function showDetail($id)
     {
+        $detail = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+                                    ->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')
+                                    ->where('detail_pemeriksaan.nomorPemeriksaan', '=', $id)
+                                    ->select('transaksi_pemeriksaan.*', 'pendaftaran_pemeriksaan.*','detail_pemeriksaan.*')
+                                    ->paginate(10);
+
+        return view('karyawan.detail-pemeriksaan-karyawan', compact('detail'));
+    }
+
+    public function show($id){
         $detail = TransaksiPemeriksaan::findOrFail($id);
         return response()->json($detail);
     }
@@ -75,16 +89,5 @@ class ListPemeriksaanKaryawanController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function recentPemeriksaan()
-    {
-        $data = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
-            ->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')
-            ->orderBy('transaksi_pemeriksaan.tanggalPemeriksaan', 'desc')
-            ->take(10)
-            ->get(['transaksi_pemeriksaan.nomorPendaftaran as noPendaftaran', 'transaksi_pemeriksaan.nomorPemeriksaan as noPemeriksaan', 'transaksi_pemeriksaan.tanggalPemeriksaan as tanggal', 'pendaftaran_pemeriksaan.idPasien as idPasien', 'transaksi_pemeriksaan.idKaryawanRadiografer as idRadio', 'transaksi_pemeriksaan.idKaryawanDokterRadiologi as idDokter', 'detail_pemeriksaan.jamMulaiPemeriksaanAlat as jamMulai', 'detail_pemeriksaan.jamSelesaiPemeriksaanAlat as jamSelesai', 'detail_pemeriksaan.ruangan as ruangan', 'detail_pemeriksaan.status as status']);
-
-        return $data;
     }
 }

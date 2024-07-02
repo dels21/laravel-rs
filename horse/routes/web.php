@@ -7,8 +7,11 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ModalitasController;
+use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PemeriksaanSayaController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
+use App\Http\Controllers\DetailPemeriksaanController;
 use App\Http\Controllers\MasterJenisPemeriksaanController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +36,10 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
-        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showPemeriksaanSaya'])->name('pemeriksaan_saya');
+        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
+        // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
+        Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');
+
     });
 });
 
@@ -72,9 +78,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
             return view('karyawan.list-modalitas');
         });
 
-        Route::get('/list-pemeriksaan', function () {
-            return view('karyawan.list-pemeriksaan-karyawan');
-        });
+        // Route::get('/list-pemeriksaan', function () {
+        //     return view('karyawan.list-pemeriksaan-karyawan');
+        // });
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
@@ -84,9 +90,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/verifikasi', function () {
             return view('karyawan.verifikasi');
         });
-
         Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class,'index']);
-        Route::get('/list-pemeriksaan/{id}', [ListPemeriksaanKaryawanController::class,'show']);
+        Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [ListPemeriksaanKaryawanController::class, 'showDetail'])->name('detail_pemeriksaan_karyawan');
+
     });
 });
 

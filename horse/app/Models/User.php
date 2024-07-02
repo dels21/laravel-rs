@@ -20,7 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
     ];
 
     /**
@@ -48,8 +47,5 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    public function transactions()
-    {
-        return $this->hasMany(TransaksiPemeriksaan::class, 'id'); // Adjust the foreign key if necessary
-    }
+    protected $primaryKey = 'id';
 }
