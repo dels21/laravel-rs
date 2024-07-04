@@ -95,6 +95,8 @@ class DokterController extends Controller
     {
         //
         //
+        $dokter = Dokter::findOrFail($request->idDokter);
+
         $dokter->update([
             'idDokter'=>$request->idDokter,
             'idKtp'=>$request->idKtp,

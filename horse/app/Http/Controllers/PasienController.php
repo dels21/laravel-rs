@@ -7,6 +7,7 @@ use App\Models\User;
 use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PasienController extends Controller
 {

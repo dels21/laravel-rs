@@ -7,7 +7,6 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ModalitasController;
-use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemeriksaanSayaController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
