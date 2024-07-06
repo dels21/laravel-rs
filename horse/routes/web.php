@@ -112,9 +112,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::get('/list-karyawan',
         [KaryawanController::class, 'showListKaryawan']
-    );
-    });
+         )->name('show-list-karyawan');
+
+        Route::post('/tambah-karyawan',
+        [KaryawanController::class, 'storeKaryawan']
+         )->name('tambah-karyawan');
+
+         Route::post('/delete-karyawan', [KaryawanController::class,'destroy_karyawan'])->name('destroy_karyawan');
+
+         Route::post('/update-karyawan', [KaryawanController::class,'update_karyawan'])->name('update_karyawan');
+        });
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
