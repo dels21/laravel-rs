@@ -84,15 +84,16 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/edit-dicom', [DicomController::class, 'edit'])->name('update_dicom');
         Route::delete('/delete-dicom/{id}', [DicomController::class, 'destroy'])->name('delete_dicom');
 
+        Route::get('/list-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'show'])->name('show_jenis_pemeriksaan');
+        Route::post('/store-jenis-pemeriksaan', [MasterJenisPemeriksaanController::class, 'store'])->name('store_jenis_pemeriksaan');
+        Route::post('/edit_jenis_pemeriksaan', [MasterJenisPemeriksaanController::class, 'edit'])->name('update_jenis_pemeriksaan');
+        Route::delete('/delete_jenis_pemeriksaan/{id}', [MasterJenisPemeriksaanController::class, 'destroy'])->name('delete_jenis_pemeriksaan');
 
         // Route::get('/list-pemeriksaan', function () {
         //     return view('karyawan.list-pemeriksaan-karyawan');
         // });
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
-        });
-        Route::get('/list-jenis-pemeriksaan', function () {
-            return view('karyawan.list-jenis-pemeriksaan');
         });
         Route::get('/verifikasi', function () {
             return view('karyawan.verifikasi');
