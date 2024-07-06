@@ -46,7 +46,7 @@
                     <div class="modal-body">
                         <form method="POST" id="dokterForm">
                             @csrf
-                            <input type="hidden" id="inputIdUser" name="idUser">
+                            <input type="hidden" id="inputIdDokter" name="idDokter">
                             <div class="form-row">
                                 <div class="form-group col-md-6 d-flex align-items-center">
                                     <label for="inputNama" class="col-sm-4 col-form-label">Nama:</label>
@@ -172,7 +172,7 @@
                                 <td>{{$item->status}}</td>
                                 <td>
                                     <i class="bi bi-pencil-square edit-btn" data-toggle="modal" data-target="#myModal"
-                                    data-id="{{$item->id}}"
+                                    data-id="{{$item->idDokter}}"
                                     data-name="{{$item->name}}"
                                     data-email="{{$item->email}}"
                                     data-idktp="{{$item->idKtp}}"
@@ -240,7 +240,7 @@
 
                 $('#modalTitle').text('Edit Dokter');
                 $('#dokterForm').attr('action', '{{ route('update_dokter') }}');
-                $('#inputIdUser').val(id);
+                $('#inputIdDokter').val(id);
                 $('#inputNama').val(name);
                 $('#inputEmail').val(email);
                 $('#inputIdKTP').val(idKtp);
@@ -259,7 +259,7 @@
                 $('#modalTitle').text('Tambah Dokter');
                 $('#dokterForm').attr('action', '{{ route('store_dokter') }}');
                 $('#dokterForm').trigger('reset');
-                $('#inputIdUser').val('');
+                $('#inputIdDokter').val('');
 
                 // Enable password field and reset placeholder when adding
                 $('#inputPassword').prop('disabled', false).attr('placeholder', 'Masukkan Password');
