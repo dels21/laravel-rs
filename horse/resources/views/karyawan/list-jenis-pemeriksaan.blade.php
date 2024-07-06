@@ -21,7 +21,7 @@
         <h1 class="biggest-font mt-5 mb-5">Jenis Pemeriksaan</h1>
         <!-- DataTales Example -->
         <div class="col d-flex" style="margin-top: 1.5rem; margin-bottom: 2.5rem">
-            <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
+            <button type="button" id='addJenisPemeriksaanBtn' class="btn btn-primary d-flex align-items-center justify-content-center"
                 style="width: 7.5rem;" data-toggle="modal" data-target="#myModal">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
@@ -152,7 +152,8 @@
                                 <td>{{ $item->lamaPemeriksaan}}</td>
                                 {{-- <td>{{ $item->kodeRuang }}</td> --}}
                                 <td>
-                                    <i class="bi bi-pencil-square edit-btn"
+                                    <div class="d-flex flex-row">
+                                        <i class="bi bi-pencil-square edit-btn p-0"
                                         data-toggle="modal"
                                         data-target="#myModal"
                                         data-kodejenispemeriksaan="{{ $item->kodeJenisPemeriksaan }}"
@@ -163,13 +164,14 @@
                                         data-harga="{{ $item->harga }}"
                                         data-lamapemeriksaan="{{ $item->lamaPemeriksaan }}">
                                     </i>
-                                    <form id="delete-form-{{$loop->index}}" action="{{ route('delete_jenis_pemeriksaan', ['id' => $item->kodeJenisPemeriksaan]) }}"  method="POST">
+                                    <form id="delete-form-{{$loop->index}}" action="{{ route('delete_jenis_pemeriksaan', ['id' => $item->kodeJenisPemeriksaan]) }}"  method="POST" >
                                         @csrf
                                         @method('DELETE')
                                         <a href="#" onclick="event.preventDefault(); if (confirm('Are you sure you want to delete?')) { document.getElementById('delete-form-{{$loop->index}}').submit(); }">
-                                            <i class="bi bi-trash3-fill text-danger"></i>
+                                            <i class="bi bi-trash3-fill text-danger p-0"></i>
                                         </a>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
