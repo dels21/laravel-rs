@@ -13,6 +13,8 @@ class PemeriksaanSayaController extends Controller
 {
 
     public function showDetail($id) {
+        $dataExists = Pasien::where('idUser', $dataId)->exists();
+
         $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*')
             ->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
             ->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
@@ -21,7 +23,7 @@ class PemeriksaanSayaController extends Controller
             ->where('dp.nomorPemeriksaan', '=', $id)
             ->paginate(10);
     
-        return view('pasien.detail-pemeriksaan-pasien', compact('detail'));
+        return view('pasien.detail-pemeriksaan-pasien', compact('detail', 'dataExists'));
     }
     
     public function showData(Request $request)
