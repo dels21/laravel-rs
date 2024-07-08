@@ -12,7 +12,6 @@ use App\Http\Controllers\PemeriksaanSayaController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use App\Http\Controllers\DetailPemeriksaanController;
 use App\Http\Controllers\MasterJenisPemeriksaanController;
-use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
 
