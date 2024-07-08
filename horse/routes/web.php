@@ -109,6 +109,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             return view('admin.dashboard-admin');
         });
 
+
         Route::get('/list-karyawan',
         [KaryawanController::class, 'showListKaryawan']
          )->name('show-list-karyawan');
