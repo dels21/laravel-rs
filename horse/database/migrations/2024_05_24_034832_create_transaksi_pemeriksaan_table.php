@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId("nomorPendaftaran")->constrained("pendaftaran_pemeriksaan",'nomorPendaftaran')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("idKaryawanRadiografer")->constrained("karyawan",'idKaryawan')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("idKaryawanDokterRadiologi")->constrained("dokter",'idDokter')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("namaDokterPengirim",length: 50);
             $table->date("tanggalPemeriksaan");
             $table->text("diagnosis");
             $table->text("keterangan");
