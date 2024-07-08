@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardPasienController;
 use App\Http\Controllers\DicomController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ListPemeriksaanKaryawanController;
