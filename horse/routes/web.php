@@ -6,13 +6,10 @@ use App\Http\Controllers\DicomController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ListPemeriksaanKaryawanController;
-use App\Http\Controllers\DokterController;
-use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use App\Http\Controllers\MasterJenisPemeriksaanController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
