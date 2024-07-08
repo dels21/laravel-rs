@@ -123,7 +123,7 @@ class DokterController extends Controller
         $dokter->delete();
         $user->delete();
 
-        return redirect()->route('karyawan.list-dokter')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil dihapus');
     }
 
 }
