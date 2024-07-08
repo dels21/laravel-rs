@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Hash;
 class KaryawanController extends Controller
 {
     protected $pasienController;
-    public function __construct(PasienController $pasienController){
+    public function __construct(PasienController $pasienController)
+    {
         $this->pasienController = $pasienController;
     }
     /**
@@ -92,7 +93,8 @@ class KaryawanController extends Controller
         return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil diupdate');
     }
 
-    public function store_pasien(Request $request){
+    public function store_pasien(Request $request)
+    {
         // dd($request->all());
 
         $user = User::create([
@@ -103,7 +105,7 @@ class KaryawanController extends Controller
 
         $this->pasienController->store($user->id, $request);
 
-        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil ditambahkan');
+        return redirect()->route('show_list_pasien')->with('success', 'Pasien berhasil ditambahkan');
     }
 
     /**
@@ -126,7 +128,7 @@ class KaryawanController extends Controller
     {
         $pasienController = new PasienController();
         $dokterController = new DokterController();
-        $pemeriksaanController = new ListPemeriksaanKaryawanController();
+        $pemeriksaanController = new TransaksiPemeriksaanController();
 
         $totalPasien = $pasienController->getTotalPasien();
         $totalDokter = $dokterController->getTotalDokter();
@@ -144,7 +146,7 @@ class KaryawanController extends Controller
 
         $pasien->delete();
         $user->delete();
-        return redirect()->route('show_list_pasien')->with('success','Pasien berhasil dihapus');
+        return redirect()->route('show_list_pasien')->with('success', 'Pasien berhasil dihapus');
     }
 
     public function showListKaryawan()
@@ -152,10 +154,7 @@ class KaryawanController extends Controller
         $usersWithKaryawan = User::join('karyawan', 'users.id', '=', 'karyawan.idUser')
             ->where('users.role', 'karyawan')
             ->get(['users.*', 'karyawan.*']);
-            // dd($usersWithKaryawan->all());
+        // dd($usersWithKaryawan->all());
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
     }
-
-
-
 }

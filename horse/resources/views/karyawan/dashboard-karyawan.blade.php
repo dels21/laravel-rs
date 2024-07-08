@@ -23,41 +23,47 @@
         </div>
 
         <!-- Content Row -->
-        <div class="row">
+        <div class="row d-flex justify-content-around">
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-md-5 mb-4">
+            <div class="col-md-4">
                 <div class="card border-left-primary shadow mb-5 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-primary text-uppercase mb-1">
                                     Jumlah Pasien</div>
-                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalPasien }} Pasien
+                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalPasien }} Pasien
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-4">
                 <div class="card border-left-success shadow mb-5 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Jumlah Dokter</div>
-                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalDokter }} Dokter
+                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalDokter }} Dokter
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-4">
                 <div class="card border-left-danger shadow mb-5 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Jumlah Karyawan</div>
-                                <div class=".h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalKaryawan }} Karyawan
+                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalKaryawan }} Karyawan
                                 </div>
                             </div>
                         </div>
@@ -65,67 +71,44 @@
                 </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-md-7 mb-4">
-                <!-- Area Chart -->
-                <div>
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Jumlah Pasien</h6>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="chart-area">
-                                <canvas id="myAreaChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
 
-
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal Pemeriksaan</th>
+                                <th>ID Pasien</th>
+                                <th>ID Dokter</th>
+                                <th>ID Radiografer</th>
+                                <th>No Pendaftaran</th>
+                                <th>No Pemeriksaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pemeriksaanTerbaru as $item)
                                 <tr>
-                                    <th>No</th>
-                                    <th>Tanggal Pemeriksaan</th>
-                                    <th>Jam Pemeriksaan</th>
-                                    <th>ID Pasien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Jenis Pemeriksaan</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->idPasien }}</td>
+                                    <td>{{ $item->idDokter }}</td>
+                                    <td>{{ $item->idRadio }}</td>
+                                    <td>{{ $item->noPendaftaran }}</td>
+                                    <td>{{ $item->noPemeriksaan }}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($pemeriksaanTerbaru as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->noPendaftaran }}</td>
-                                        <td>{{ $item->noPemeriksaan }}</td>
-                                        <td>{{ $item->tanggal }}</td>
-                                        <td>{{ $item->idPasien }}</td>
-                                        <td>{{ $item->idRadio }}</td>
-                                        <td>{{ $item->idDokter }}</td>
-                                        <td><a class="detail-link" data-toggle="modal" data-target="#myModal"
-                                                onclick="showDetail({{ $item->NoPemeriksaan }})">Detail</a></td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
 
     </div>
-    <!-- End of Main Content -->
+    <!-- /.container-fluid -->
 
 @endsection
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\TransaksiPemeriksaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,18 +60,18 @@ class DokterController extends Controller
         // dd($userId);
 
         Dokter::create([
-            'idDokter'=>$request->idDokter,
-            'idUser'=>$userId,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idDokter' => $request->idDokter,
+            'idUser' => $userId,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
 
-        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil ditambahkan');
+        return redirect()->route('show_list_dokter')->with('success', 'Dokter berhasil ditambahkan');
     }
 
     /**
@@ -100,16 +101,16 @@ class DokterController extends Controller
         $dokter = Dokter::findOrFail($request->idDokter,);
 
         $dokter->update([
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
 
-        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil diupdate');
+        return redirect()->route('show_list_dokter')->with('success', 'Dokter berhasil diupdate');
     }
 
     /**
@@ -123,7 +124,25 @@ class DokterController extends Controller
         $dokter->delete();
         $user->delete();
 
-        return redirect()->route('show_list_dokter')->with('success','Dokter berhasil dihapus');
+        return redirect()->route('show_list_dokter')->with('success', 'Dokter berhasil dihapus');
     }
 
+    public function getTotalDokter()
+    {
+        return Dokter::count();
+    }
+
+    public function buildDashboard()
+    {
+        $user = Auth::user();
+        $pemeriksaanController = new TransaksiPemeriksaanController();
+
+        $pemeriksaanSelesai = $pemeriksaanController->countPemeriksaanSelesai($user->id);
+        $pemeriksaanMenunggu = $pemeriksaanController->countPemeriksaanMenunggu($user->id);
+        $pemeriksaanBerjalan = $pemeriksaanController->countPemeriksaanBerjalan($user->id);
+        $pemeriksaanTerbaru = $pemeriksaanController->recentPemeriksaan($user->id);
+
+
+        return view('dokter.dashboard-dokter', compact('pemeriksaanSelesai', 'pemeriksaanMenunggu', 'pemeriksaanBerjalan', 'pemeriksaanTerbaru'));
+    }
 }

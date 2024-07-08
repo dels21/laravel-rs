@@ -99,4 +99,26 @@ class TransaksiPemeriksaanController extends Controller
 
         return $data;
     }
+
+    public function recentPemeriksaan()
+    {
+        $data = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
+            ->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')
+            ->orderBy('transaksi_pemeriksaan.tanggalPemeriksaan', 'desc') // Use orderBy instead of order
+            ->take(10)
+            ->get([
+                'transaksi_pemeriksaan.nomorPendaftaran as noPendaftaran',
+                'transaksi_pemeriksaan.nomorPemeriksaan as noPemeriksaan',
+                'transaksi_pemeriksaan.tanggalPemeriksaan as tanggal',
+                'pendaftaran_pemeriksaan.idPasien as idPasien',
+                'transaksi_pemeriksaan.idKaryawanRadiografer as idRadio',
+                'transaksi_pemeriksaan.idKaryawanDokterRadiologi as idDokter',
+                'detail_pemeriksaan.jamMulaiPemeriksaanAlat as jamMulai',
+                'detail_pemeriksaan.jamSelesaiPemeriksaanAlat as jamSelesai',
+                'detail_pemeriksaan.ruangan as ruangan',
+                'detail_pemeriksaan.status as status'
+            ]);
+
+        return $data;
+    }
 }
