@@ -98,8 +98,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::get('/list-karyawan',
         [KaryawanController::class, 'showListKaryawan']
-        Route::get('/list-karyawan',
-        [KaryawanController::class, 'showListKaryawan']
     );
     });
 });
@@ -123,7 +121,6 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
-});
 });
 
 Route::get('/dashboard', function () {
