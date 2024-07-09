@@ -58,7 +58,7 @@ Route::middleware(['auth', 'dokter'])->group(function () {
 
         Route::get('list-pasien', [PemeriksaanDokterController::class, 'showData'])->name('pemeriksaan_dokter');
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanDokterController::class, 'showDetail'])->name('detail_pemeriksaan_dokter');
-
+        Route::get('/edit-detail/{nomorDetailPemeriksaan}', [PemeriksaanDokterController::class, 'editDetail'])->name('edit_detail_pemeriksaan');
 
         Route::get('/form-detail', function () {
             return view('dokter.form_detail');
