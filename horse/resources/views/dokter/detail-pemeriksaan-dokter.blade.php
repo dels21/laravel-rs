@@ -50,7 +50,7 @@
                                 <td>{{ $item->diagnosis }}</td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td>{{ $item->status }}</td>
-                                <td><a href="" class="btn btn-info">Edit</a></td>
+                                <td><a href="{{ route('edit_detail_pemeriksaan', $item->idDetailPemeriksaan) }}" class="btn btn-info">Edit</a></td>
                             </tr>
                         @endforeach
                         </tbody>
