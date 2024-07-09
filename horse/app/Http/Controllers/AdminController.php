@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Admin;
+use App\Models\TransaksiPemeriksaan;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,7 +14,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admin = Admin::all();
+
+        return view('admin', compact('admin'));
     }
 
     /**
@@ -61,5 +65,22 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function buildDashboard()
+    {
+
+        $pasienController = new PasienController();
+        $karyawanController = new KaryawanController();
+        $dokterController = new DokterController();
+        $pemeriksaanController = new TransaksiPemeriksaanController();
+
+        $totalPasien = $pasienController->getTotalPasien();
+        $totalDokter = $dokterController->getTotalDokter();
+        $totalKaryawan = $karyawanController->getTotalKaryawan();
+        $transaksiPemeriksaan = TransaksiPemeriksaan::all();
+
+        // dd($transaksiPemeriksaan);
+        return view('admin.dashboard-admin', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'transaksiPemeriksaan'));
     }
 }

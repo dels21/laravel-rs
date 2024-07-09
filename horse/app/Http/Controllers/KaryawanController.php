@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Hash;
 class KaryawanController extends Controller
 {
     protected $pasienController;
-    public function __construct(PasienController $pasienController)
-    {
-        $this->pasienController = $pasienController;
-    }
+    // public function __construct(PasienController $pasienController)
+    // {
+    //     $this->pasienController = $pasienController;
+    // }
     /**
      * Display a listing of the resource.
      */

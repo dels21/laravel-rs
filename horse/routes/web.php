@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardPasienController;
 use App\Http\Controllers\DicomController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ModalitasController;
@@ -106,9 +107,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard-admin');
-        });
+        Route::get('/dashboard', [AdminController::class, 'buildDashboard']);
 
 
         Route::get('/list-karyawan',
