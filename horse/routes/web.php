@@ -36,6 +36,10 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
+        Route::get('/daftar-pemeriksaan', function () {
+            return view('pasien.form-pendaftaran-pemeriksaan');
+        });
+
         Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
         // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');

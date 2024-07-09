@@ -65,7 +65,6 @@
             </div>
         </div>
     </div> --}}
-    </div> --}}
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -82,7 +81,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
-                                <th>No. Pemeriksaan</th>
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>Diagnosis</th>
