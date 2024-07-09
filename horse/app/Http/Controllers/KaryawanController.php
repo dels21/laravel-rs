@@ -157,4 +157,13 @@ class KaryawanController extends Controller
         // dd($usersWithKaryawan->all());
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
     }
+
+    public function acceptVerif(Request $request){
+        dd($request->all());
+        return redirect()->route('verifikasi');
+    }
+
+    public function rejectVerif(){
+        return redirect()->route('verifikasi');
+    }
 }
