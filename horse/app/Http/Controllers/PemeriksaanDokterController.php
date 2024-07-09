@@ -72,9 +72,8 @@ class PemeriksaanDokterController extends Controller
     ]);
 
     $hasilPemeriksaan = $request->input('hasilPemeriksaan');
-    $id = $request->input('id'); // Replace this with your actual logic to get the ID
+    $id = $request->input('id');
 
-    // Update the diagnosis column for the specified record
     $detailPemeriksaan = DetailPemeriksaan::find($id);
     if ($detailPemeriksaan) {
         $detailPemeriksaan->keterangan = $hasilPemeriksaan;
