@@ -68,14 +68,16 @@
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        <h1 class="biggest-font mt-5 mb-5">Pemeriksaan Saya</h1>
 
+        <!-- Page Heading -->
+        <h1 class="biggest-font mt-5 mb-5">List Pasien</h1>
         @if ($data->isEmpty())
             <p>Belum ada pemeriksaan.</p>
             <p>{{ $loggedInUserId }}</p>
             @else
-            {{-- <p>User ID: {{ $user->id }}</p> --}}
-            <div class="card shadow mb-4">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -98,7 +100,7 @@
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
+                                    <td><a href="{{ route('detail_pemeriksaan_dokter', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
