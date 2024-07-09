@@ -72,6 +72,7 @@
 
         @if ($data->isEmpty())
             <p>Belum ada pemeriksaan.</p>
+            <p>{{ $loggedInUserId }}</p>
             @else
             {{-- <p>User ID: {{ $user->id }}</p> --}}
             <div class="card shadow mb-4">
@@ -84,7 +85,7 @@
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>Diagnosis</th>
-                                <th>Keterangan</th>
+                                <th>Nama Pasien</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -96,7 +97,7 @@
                                     <td>{{ $item->nomorPemeriksaan }}</td>
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>
-                                    <td>{{ $item->keterangan }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                                 </tr>
                             @endforeach
