@@ -95,14 +95,10 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
-        Route::get('/verifikasi', function () {
-            return view('karyawan.verifikasi');
-        }) ->name('verifikasi');
+        Route::get('/verifikasi', [KaryawanController::class, 'verifikasi']) ->name('verifikasi');
 
         Route::prefix('/detailverifikasi')->group(function(){
-            Route::get('/', function () {
-                return view('karyawan.detailverifikasi');
-            })->name('detail_verifikasi');
+            Route::get('/{id}', [KaryawanController::class, 'detailverifikasi'])->name('detail_verifikasi');
 
             Route::post(
                 '/accept',

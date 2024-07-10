@@ -85,26 +85,24 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal Pemeriksaan</th>
-                                <th>Jam Pemeriksaan</th>
+                                <th>ID Pemeriksaan</th>
+                                <th>Tanggal Pendaftaran</th>
                                 <th>ID Pasien</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Jenis Pemeriksaan</th>
-                                <th>Status</th>
-                                <th></th>
+                                <th>Nama Pasien</th>
+                                <th>Detail</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>12-09-2025</td>
-                                <td>10.00</td>
-                                <td>ABC12345</td>
-                                <td>Perempuan</td>
-                                <td>MRI Scan</td>
-                                <td>Selesai</td>
-                                <td class="detail-link" data-toggle="modal" data-target="#myModal">Detail</td>
-                            </tr>
+                            @foreach ($pendaftaran as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nomorPendaftaran }}</td>
+                                    <td>{{ $item->tanggalDaftar }}</td>
+                                    <td>{{ $item->idPasien }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td class="detail-link"><a href="{{ route('detail_verifikasi', $item->nomorPendaftaran) }}">Detail</a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

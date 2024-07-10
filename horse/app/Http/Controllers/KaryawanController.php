@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Dokter;
+use App\Models\DetailPemeriksaan;
+use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Karyawan;
+use App\Models\Dokter;
 use App\Models\Pasien;
+use App\Models\PendaftaranPemeriksaan;
 use Brick\Math\BigInteger;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -158,6 +161,49 @@ class KaryawanController extends Controller
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
     }
 
+    public function verifikasi(){
+
+        // <th>ID Pemeriksaan</th>
+        // <th>Tanggal Pendaftaran</th>
+        // <th>ID Pasien</th>
+        // <th>Nama Pasien</th>
+        // <th>Detail</th>
+
+        $pendaftaran = PendaftaranPemeriksaan::join('pasien','pendaftaran_pemeriksaan.idPasien','=','pasien.idPasien')
+        ->join('users','pasien.idUser','=','users.id')
+        ->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name','pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')
+        ->get();
+
+        // dd($pendaftaran);
+
+        return view('karyawan.verifikasi', compact('pendaftaran'));
+    }
+
+    public function detailverifikasi($nomorPendaftaran){
+        // dd($nomorPendaftaran);
+        $pendaftaran = PendaftaranPemeriksaan::where('pendaftaran_pemeriksaan.nomorPendaftaran', $nomorPendaftaran)
+        ->join('pasien','pendaftaran_pemeriksaan.idPasien','=','pasien.idPasien')
+        ->join('users','pasien.idUser','=','users.id')
+        ->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name','pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')
+        ->first();
+
+        // dd($pendaftaran);
+
+        $detailpemeriksaan = DetailPendaftaranPemeriksaan::where('detail_pendaftaran.noPendaftaran', $nomorPendaftaran)
+        ->join('master_jenis_pemeriksaan as mjp', 'mjp.kodeJenisPemeriksaan', '=', 'detail_pendaftaran.kodeJenisPemeriksaan')
+        ->select('mjp.namaJenisPemeriksaan')
+        ->get();
+
+        $dokter = Dokter::join('users','dokter.idUser','=','users.id')
+        ->select('*')
+        ->get();
+
+        // dd($dokter);
+
+        // dd($detailpemeriksaan);
+
+        return view('karyawan.detailverifikasi', compact('pendaftaran', 'detailpemeriksaan','dokter'));
+    }
     public function acceptVerif(Request $request){
         dd($request->all());
         return redirect()->route('verifikasi');

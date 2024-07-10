@@ -20,7 +20,9 @@
 
         <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Detail Verifikasi Pendaftaran</h1>
-
+        <p>Tanggal Pemeriksaan : {{ $pendaftaran->tanggalDaftar }}</p>
+        <p>ID Pasien : {{ $pendaftaran->idPasien }}</p>
+        <p>Nama Pasien : {{ $pendaftaran->name }}</p>
         <!-- DataTales Example -->
         <form action="{{ route('accept_verif') }}" method="POST" id="form">
             @csrf
@@ -31,57 +33,33 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal Pemeriksaan</th>
-                                    <th>Jam Pemeriksaan</th>
-                                    <th>ID Pasien</th>
-                                    <th>Jenis Kelamin</th>
                                     <th>Jenis Pemeriksaan</th>
                                     <th>Ruangan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12-09-2025</td>
-                                    <td>10.00</td>
-                                    <td>ABC12345</td>
-                                    <td>Perempuan</td>
-                                    <td>MRI Scan</td>
-                                    <td><input type="text" name="inputRuangan[0]" placeholder="Masukkan ruangan" style="width: 10vw"></td>
-                                    <td class="d-flex">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="decision[0]" id="accept0" value="accept">
-                                            <label class="form-check-label" for="accept0">Terima</label>
-                                        </div>
-                                        <div style="width: 10px;"></div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="decision[0]" id="reject0" value="reject">
-                                            <label class="form-check-label" for="reject0">Tolak</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- Example Row 2 -->
-                                <tr>
-                                    <td>2</td>
-                                    <td>13-09-2025</td>
-                                    <td>11.00</td>
-                                    <td>DEF67890</td>
-                                    <td>Laki-laki</td>
-                                    <td>CT Scan</td>
-                                    <td><input type="text" name="inputRuangan[1]" placeholder="Masukkan ruangan" style="width: 10vw"></td>
-                                    <td class="d-flex">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="decision[1]" id="accept1" value="accept">
-                                            <label class="form-check-label" for="accept1">Terima</label>
-                                        </div>
-                                        <div style="width: 10px;"></div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="decision[1]" id="reject1" value="reject">
-                                            <label class="form-check-label" for="reject1">Tolak</label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($detailpemeriksaan as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->namaJenisPemeriksaan }}</td>
+                                        <td><input type="text" name="inputRuangan[{{ $loop->iteration }}]" placeholder="Masukkan ruangan">
+                                        </td>
+                                        <td class="d-flex">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="decision[{{ $loop->iteration }}]"
+                                                    id="accept0" value="accept">
+                                                <label class="form-check-label" for="accept0">Terima</label>
+                                            </div>
+                                            <div style="width: 10px;"></div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="decision[{{ $loop->iteration }}]"
+                                                    id="reject0" value="reject">
+                                                <label class="form-check-label" for="reject0">Tolak</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -94,10 +72,10 @@
                     <x-input-label for="dokter" :value="__('Dokter')" />
                     <select id="dokter" class="block mt-1 w-full form-control shadow-sm" name="dokter"
                         :value="old('dokter')">
-                        <option style="color: rgba(0, 0, 0, 0.421)">Pilih dokter</option>
-                        <option>KTP</option>
-                        <option>Paspor</option>
-                        <option>SIM</option>
+                        <option value="" style="color: rgba(0, 0, 0, 0.421)">id - dokter</option>
+                       @foreach ($dokter as $item)
+                            <option value="{{ $item->name }}">{{ $item->idDokter}} - {{ $item->name }}</option>
+                       @endforeach
                     </select>
                 </div>
             </div>

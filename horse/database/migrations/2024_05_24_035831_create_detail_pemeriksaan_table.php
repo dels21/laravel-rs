@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text("keterangan");
             $table->integer("diskon")->default(0);
             $table->double("hargaTotal");
+            $table->enum("statusKetersediaan", ["approve","reject"]);
             $table->enum("status", array("Dalam antrian", "Ruang Tunggu", "Pemeriksaan", "Menunggu Hasil", "Hasil sudah siap"))->default("Dalam antrian");
             $table->timestamps();
         });
