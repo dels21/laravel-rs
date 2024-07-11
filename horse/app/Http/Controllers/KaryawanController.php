@@ -209,6 +209,8 @@ class KaryawanController extends Controller
     public function acceptVerif(Request $request)
     {
         // dd($request->all());
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->update(['verifikasi', 1]);
+
 
         $pemeriksaan = TransaksiPemeriksaan::create([
             'nomorPendaftaran' => $request->nomorPendaftaran,
@@ -231,8 +233,9 @@ class KaryawanController extends Controller
         return redirect()->route('verifikasi');
     }
 
-    public function rejectVerif()
+    public function rejectVerif(Request $request)
     {
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->delete();
         return redirect()->route('verifikasi');
     }
 }
