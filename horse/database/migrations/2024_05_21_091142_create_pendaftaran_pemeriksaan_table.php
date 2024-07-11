@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('namaDokterPengirim',length:50);
             // $table->
             $table->date('tanggalDaftar');
+            $table->bool('verifikasi')->default(0);
+
             $table->timestamps();
         });
     }

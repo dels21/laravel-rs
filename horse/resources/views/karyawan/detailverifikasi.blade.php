@@ -26,6 +26,14 @@
         <!-- DataTales Example -->
         <form action="{{ route('accept_verif') }}" method="POST" id="form">
             @csrf
+
+            @php
+                use App\Models\Karyawan;
+                $karyawan = Karyawan::where('idUser', Auth::user()->id )->first();
+            @endphp
+
+            <input type="hidden" value="{{ $karyawan->idKaryawan }}" name="idKaryawan">
+            <input type="hidden" value="{{ $pendaftaran->nomorPendaftaran }}" name="nomorPendaftaran">
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -43,17 +51,17 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->namaJenisPemeriksaan }}</td>
-                                        <td><input type="text" name="inputRuangan[{{ $loop->iteration }}]" placeholder="Masukkan ruangan">
+                                        <td><input type="text" name="ruangan[{{ $loop->iteration }}]" placeholder="Masukkan ruangan">
                                         </td>
                                         <td class="d-flex">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="decision[{{ $loop->iteration }}]"
-                                                    id="accept0" value="accept">
+                                                <input class="form-check-input" type="radio" name="statusKetersediaan[{{ $loop->iteration }}]"
+                                                    id="accept0" value="approve">
                                                 <label class="form-check-label" for="accept0">Terima</label>
                                             </div>
                                             <div style="width: 10px;"></div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="decision[{{ $loop->iteration }}]"
+                                                <input class="form-check-input" type="radio" name="statusKetersediaan[{{ $loop->iteration }}]"
                                                     id="reject0" value="reject">
                                                 <label class="form-check-label" for="reject0">Tolak</label>
                                             </div>
@@ -70,19 +78,19 @@
             <div class="row">
                 <div class="col-md-6 mt-4">
                     <x-input-label for="dokter" :value="__('Dokter')" />
-                    <select id="dokter" class="block mt-1 w-full form-control shadow-sm" name="dokter"
+                    <select id="dokter" class="block mt-1 w-full form-control shadow-sm" name="idDokter"
                         :value="old('dokter')">
                         <option value="" style="color: rgba(0, 0, 0, 0.421)">id - dokter</option>
                        @foreach ($dokter as $item)
-                            <option value="{{ $item->name }}">{{ $item->idDokter}} - {{ $item->name }}</option>
+                            <option value="{{ $item->idDokter }}">{{ $item->idDokter}} - {{ $item->name }}</option>
                        @endforeach
                     </select>
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success" onclick="submitForm('accept')">Terima Pendaftaran</button>
                 <button type="submit" class="btn btn-danger" onclick="submitForm('reject')">Tolak Pendaftaran</button>
+                <button type="submit" class="btn btn-success" onclick="submitForm('accept')">Terima Pendaftaran</button>
             </div>
         </form>
     </div>
