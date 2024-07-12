@@ -3,20 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DetailPemeriksaan;
+use App\Models\PendaftaranPemeriksaan;
+use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Pasien;
 use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Support\Facades\Auth;
 
 class PendaftaranPemeriksaanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function __construct(PendaftaranPemeriksaanController $pendaftaranController){
-    //     $this->pendaftaranController = $pendaftaranController;
-    // }
-
     public function detailWithPendaftaran(){
     $idUser = Auth::id();
 
@@ -25,19 +19,16 @@ class PendaftaranPemeriksaanController extends Controller
         ->where('pasien.idUser', $idUser)
         ->get(['pendaftaran_pemeriksaan.*', 'detail_pendaftaran.*', 'pasien.idUser']);
 
-    // Step 2: Get details with master pemeriksaan including idUser
     $detailWithMasterPemeriksaan = MasterJenisPemeriksaan::join('detail_pendaftaran', 'detail_pendaftaran.kodeJenisPemeriksaan', '=', 'master_jenis_pemeriksaan.kodeJenisPemeriksaan')
         ->join('pendaftaran_pemeriksaan', 'detail_pendaftaran.noPendaftaran', '=', 'pendaftaran_pemeriksaan.nomorPendaftaran')
         ->join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
         ->where('pasien.idUser', $idUser)
         ->get(['detail_pendaftaran.*', 'master_jenis_pemeriksaan.namaJenisPemeriksaan', 'pasien.idUser']);
 
-    // Step 3: Get pasien with pendaftaran including idUser
     $pasienWithPendaftaran = Pasien::join('pendaftaran_pemeriksaan', 'pasien.idPasien', '=', 'pendaftaran_pemeriksaan.idPasien')
         ->where('pasien.idUser', $idUser)
         ->get(['pendaftaran_pemeriksaan.*', 'pasien.*']);
 
-    // Step 4: Merge the details and include the additional information
     $mergedDetails = $detailWithPendaftaran->map(function ($item) use ($detailWithMasterPemeriksaan, $pasienWithPendaftaran) {
         $master = $detailWithMasterPemeriksaan->firstWhere('kodeJenisPemeriksaan', $item->kodeJenisPemeriksaan);
         $pasien = $pasienWithPendaftaran->firstWhere('idPasien', $item->idPasien);
@@ -50,14 +41,6 @@ class PendaftaranPemeriksaanController extends Controller
         return view('pasien.list-pemeriksaan-pasien', compact('mergedDetails'));
      }
 
-    //  public function pasienWithPendaftaran(){
-    //     $pasienWithPendaftaran = Pasien::join('pendaftaran_pemeriksaan', 'pasien.idPasien', '=', 'pendaftaran_pemeriksaan.idPasien')
-    //         // ->where('users.role', 'pasien')
-    //         ->get(['pendaftaran_pemeriksaan.*', 'pasien.*']);
-       
-       
-    //     return view('pasien.list-pemeriksaan-pasien', compact('pasienWithPendaftaran',''));
-    //  }
 
      public function index()
     {
@@ -67,17 +50,11 @@ class PendaftaranPemeriksaanController extends Controller
         return view('pasien.list-pemeriksaan-pasien', compact('pendaftaran'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         PendaftaranPemeriksaan::create([
@@ -101,25 +78,16 @@ class PendaftaranPemeriksaanController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         PendaftaranPemeriksaan::update([
