@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-{{-- 
+
        <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -44,7 +44,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)
+                                        @foreach ($pendaftaran as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->noPemeriksaan}}</td>
@@ -52,9 +52,9 @@
                                             <td>{{$item->jamMulai}}</td>
                                             <td>{{$item->jamSelesai}}</td>
                                             <td>{{$item->ruangan}}</td>
-                                            <td>{{$item->status}}</td> --}}
+                                            <td>{{$item->status}}</td> 
                                             {{-- <td><a class="detail-link" data-toggle="modal" data-target="#myModal">Detail</a></td>   --}}
-                                        {{-- </tr>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -64,17 +64,17 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-    </div> --}}
+    </div>
+    </div>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <h1 class="biggest-font mt-5 mb-5">Pemeriksaan Saya</h1>
 
-        @if ($data->isEmpty())
+        @if ($pendaftaran->isEmpty())
             <p>Belum ada pemeriksaan.</p>
             @else
-            {{-- <p>User ID: {{ $user->id }}</p> --}}
+            <p>User ID: {{ $dataId }}</p>
             <div class="card shadow mb-4">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -91,7 +91,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @foreach ($pendaftaran as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nomorPendaftaran }}</td>
@@ -99,7 +99,7 @@
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>
                                     <td>{{ $item->keterangan }}</td>
-                                    <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
+                                    {{-- <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

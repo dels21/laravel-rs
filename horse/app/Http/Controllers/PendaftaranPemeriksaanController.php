@@ -8,6 +8,7 @@ use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Pasien;
 use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PendaftaranPemeriksaanController extends Controller
 {
@@ -44,10 +45,14 @@ class PendaftaranPemeriksaanController extends Controller
 
      public function index()
     {
-        //
+        $dataId = Auth::user()->id;
+        $dataExists = Pasien::where('idUser', $dataId)->exists();
         $pendaftaran = PendaftaranPemeriksaan::all();
+        $joinModalitas = DB::table('master_modalitas')
+        ->select('*')
+        ->get();
         
-        return view('pasien.list-pemeriksaan-pasien', compact('pendaftaran'));
+        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists'));
     }
 
     public function create()
@@ -110,18 +115,18 @@ class PendaftaranPemeriksaanController extends Controller
             'modalitas3' => $request->modalitas3,
         ]);
 
-        return redirect()->route('isi_nanti')->with('success','Pendaftaran berhasil diupdate');
+        return redirect()->route('pasien.daftar-pemeriksaan')->with('success','Pendaftaran berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(PendaftaranPemeriksaan $id)
     {
         //
-        $PendaftaranPemeriksaan->delete();
+        $id->delete();
 
-        return redirect()->route('isi_nanti')->with('success','Pendaftaran berhasil dihapus');
+        return redirect()->route('pasien.daftar-pemeriksaan')->with('success','Pendaftaran berhasil dihapus');
 
     }
 }

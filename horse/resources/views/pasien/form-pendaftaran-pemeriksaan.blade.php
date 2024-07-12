@@ -6,12 +6,13 @@
     <div class="container" style="margin: 0 0 0 9.375rem;">
         <h1 class="title">Surat Daftar Pemeriksaan</h1>
 
-        <form action="" method="post">
+        <form action="{{ route('pasien.store-pemeriksaan') }}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="noPemeriksaan" class="form-label">No. Pemeriksaan</label>
-                        <input type="text" class="form-control" id="noPemeriksaan" name="noPemeriksaan">
+                        <input type="text" class="form-control" id="noPemeriksaan" name="noPemeriksaan" disabled>
                     </div>
                     <div class="mb-3">
                         <label for="namaPasien" class="form-label">Nama Pasien</label>
@@ -25,13 +26,13 @@
                         <label for="jenisKelamin" class="form-label">Jenis Kelamin</label> <br>
                         <div class="d-flex">
                             <div class="form-check me-3">
-                                <input class="form-check-input" type="radio" id="jenisKelaminLaki" name="jenisKelamin"
+                                <input class="form-check-input" type="radio" id="jenisKelaminLaki" name="jenisKelaminPemohon"
                                     value="L" checked>
                                 <label class="form-check-label" for="jenisKelaminLaki">Laki-laki</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" id="jenisKelaminPerempuan"
-                                    name="jenisKelamin" value="P">
+                                    name="jenisKelaminPemohon" value="P">
                                 <label class="form-check-label" for="jenisKelaminPerempuan">Perempuan</label>
                             </div>
                         </div>

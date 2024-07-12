@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TransaksiPemeriksaan;
-use App\Models\PendaftaranPemeriksaan;
-use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Pasien;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PemeriksaanSayaController extends Controller
 {
-
     public function showDetail($id) {
+        $dataId = Auth::user()->id;
         $dataExists = Pasien::where('idUser', $dataId)->exists();
 
         $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*')

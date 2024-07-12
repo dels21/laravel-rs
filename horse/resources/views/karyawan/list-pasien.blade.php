@@ -226,7 +226,7 @@
                                         <div class="col-sm-8">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="jenisKelamin" id="genderMale" value="laki">
-                                                <label class="form-check-label" for="genderMale">Laki</label>
+                                                <label class="form-check-label" for="genderMale">Laki-laki</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="jenisKelamin" id="genderFemale" value="perempuan">
