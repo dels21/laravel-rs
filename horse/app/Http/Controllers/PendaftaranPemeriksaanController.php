@@ -52,7 +52,7 @@ class PendaftaranPemeriksaanController extends Controller
         ->select('*')
         ->get();
         
-        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists'));
+        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists', 'joinModalitas'));
     }
 
     public function create()
