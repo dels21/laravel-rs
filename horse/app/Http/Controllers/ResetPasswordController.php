@@ -22,8 +22,8 @@ class ResetPasswordController extends Controller
                     : back()->withErrors(['email' => __($status)]);
     }
 
-    public function passwordReset(string $token) {
-        return view('auth.reset-password', ['token' => $token]);
+    public function passwordReset(string $token, Request $request) {
+        return view('auth.reset-password', compact('token','request'));
     }
 
 
