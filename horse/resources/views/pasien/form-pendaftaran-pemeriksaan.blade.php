@@ -3,10 +3,10 @@
 @section('setAktifDaftarPemeriksaan', 'active')
 
 @section('content')
-    <div class="container" style="margin: 0 0 0 9.375rem;">
+    <div class="container" style="width: 80%">
         <h1 class="title">Surat Daftar Pemeriksaan</h1>
 
-        <form action="{{ route('pasien.store-pemeriksaan') }}" method="POST">
+        <form action="{{ route('pasien.store-pemeriksaan') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -30,9 +30,13 @@
             <hr>
 
             <div class="container mt-5">
-                <div class="row" id="form-container">
-                    <div class="col-8">
-                        <div class="mb-3">
+                <div id="form-container">
+                    <div class="row mb-3 align-items-center form-row">
+                        <div class="col-1">
+                            <button type="button" class="btn btn-outline-secondary btn-sm remove-btn-form"
+                                disabled>&times;</button>
+                        </div>
+                        <div class="col-7">
                             <label for="modalitas1" class="form-label">Modalitas</label>
                             <select class="form-select" id="modalitas1" name="modalitas[]" aria-label="Pilih modalitas">
                                 <option value="">Pilih modalitas</option>
@@ -42,9 +46,7 @@
                                 <option value="Rontgen">Rontgen</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="mb-3">
+                        <div class="col-4">
                             <label for="harga1" class="form-label">Harga</label>
                             <input type="number" class="form-control" id="harga1" name="harga[]" min="0"
                                 placeholder="Masukkan harga modalitas">
@@ -54,38 +56,82 @@
                 <button id="add-more-btn" type="button" class="btn btn-primary">Tambah Pemeriksaan</button>
             </div>
 
-            <script>
-                document.getElementById('add-more-btn').addEventListener('click', function() {
-                    // Get the container where the form rows are added
-                    var container = document.getElementById('form-container');
+            <div class="row mt-5">
+                <div class="col d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-                    // Clone the first row (both columns)
-                    var firstRow = container.parentElement.children[0];
-                    var newRow = firstRow.cloneNode(true);
+    <script>
+        document.getElementById('add-more-btn').addEventListener('click', function() {
+            // Get the container where the form rows are added
+            var container = document.getElementById('form-container');
 
-                    // Update the id for the new dropdown and text field
-                    var rowCount = container.parentElement.children.length;
-                    var newModalitasId = 'modalitas' + rowCount;
-                    var newHargaId = 'harga' + rowCount;
+            // Clone the first row (both columns)
+            var firstRow = container.querySelector('.form-row');
+            var newRow = firstRow.cloneNode(true);
 
-                    newRow.querySelector('label[for="modalitas1"]').setAttribute('for', newModalitasId);
-                    newRow.querySelector('select#modalitas1').setAttribute('id', newModalitasId);
+            // Update the id for the new dropdown and text field
+            var rowCount = container.children.length + 1;
+            var newModalitasId = 'modalitas' + rowCount;
+            var newHargaId = 'harga' + rowCount;
 
-                    newRow.querySelector('label[for="harga1"]').setAttribute('for', newHargaId);
-                    newRow.querySelector('input#harga1').setAttribute('id', newHargaId);
+            newRow.querySelector('label[for^="modalitas"]').setAttribute('for', newModalitasId);
+            newRow.querySelector('select[id^="modalitas"]').setAttribute('id', newModalitasId);
 
-                    // Append the new row to the container
-                    container.parentNode.insertBefore(newRow, container.nextSibling);
+            newRow.querySelector('label[for^="harga"]').setAttribute('for', newHargaId);
+            newRow.querySelector('input[id^="harga"]').setAttribute('id', newHargaId);
+
+            // Clear the values of the cloned inputs
+            newRow.querySelector('select[id^="modalitas"]').value = "";
+            newRow.querySelector('input[id^="harga"]').value = "";
+
+            // Enable and add event listener for the remove button
+            var removeBtn = newRow.querySelector('.remove-btn-form');
+            removeBtn.disabled = false;
+            removeBtn.classList.remove('btn-outline-secondary');
+            removeBtn.classList.add('btn-outline-danger');
+            removeBtn.addEventListener('click', function() {
+                newRow.remove();
+                updateRemoveButtonsState();
+            });
+
+            // Append the new row to the container
+            container.appendChild(newRow);
+
+            // Ensure the remove button on the first row is enabled
+            updateRemoveButtonsState();
+        });
+
+        // Function to update the state of remove buttons
+        function updateRemoveButtonsState() {
+            var container = document.getElementById('form-container');
+            var removeButtons = container.querySelectorAll('.remove-btn-form');
+
+            if (removeButtons.length === 1) {
+                removeButtons[0].disabled = true;
+                removeButtons[0].classList.remove('btn-outline-danger');
+                removeButtons[0].classList.add('btn-outline-secondary');
+            } else {
+                removeButtons.forEach(function(button) {
+                    button.disabled = false;
+                    button.classList.remove('btn-outline-secondary');
+                    button.classList.add('btn-outline-danger');
                 });
-            </script>
+            }
+        }
 
-    </div>
-    <div class="row mt-5">
-        <div class="col d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
+        // Initial event listener for the first remove button
+        document.querySelector('.remove-btn-form').addEventListener('click', function() {
+            if (document.getElementById('form-container').children.length > 1) {
+                this.closest('.form-row').remove();
+                updateRemoveButtonsState();
+            }
+        });
 
-    </form>
-    </div>
+        // Initial call to ensure correct state on page load
+        updateRemoveButtonsState();
+    </script>
 @endsection
