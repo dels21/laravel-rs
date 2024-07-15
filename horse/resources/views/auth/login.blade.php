@@ -12,7 +12,7 @@
 
         <div class="form-outline mb-4">
             <label class="form-label" for="form2Example22">Password</label>
-            <input type="password" id="form2Example22" class="form-control" 
+            <input type="password" id="form2Example22" class="form-control"
             placeholder="Masukkan password anda disini"/>
         </div>
 
@@ -59,16 +59,19 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif --}}
-    
+
                 <x-primary-button class="ms-3 btn btn-lg">
                     {{ __('Log in') }}
                 </x-primary-button>
             </div>
-            
+
         </div>
         <div class="d-flex justify-content-center">
             <a class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
                 Belum punya akun?
+             </a>
+            <a class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                Lupa password?
              </a>
         </div>
     </form>

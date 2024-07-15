@@ -13,8 +13,14 @@ use App\Http\Controllers\PemeriksaanSayaController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use App\Http\Controllers\DetailPemeriksaanController;
 use App\Http\Controllers\MasterJenisPemeriksaanController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return view('welcome');
@@ -163,7 +169,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+
+Route::middleware('guest')->group(function(){
+    Route::get('/forgot-password', function () {
+        return view('auth.forgot-password');
+    })->name('password.request');
+
+    Route::post('/forgot-password', [ResetPasswordController::class, 'passwordEmail'])->name('password.request');
+
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'passwordReset'])->name('password.reset');
+
+
+    Route::post('/reset-password', [ResetPasswordController::class, 'passwordUpdate'])->name('password.update');
+
+})
+
+
+
+
+
 ?>
+
+
