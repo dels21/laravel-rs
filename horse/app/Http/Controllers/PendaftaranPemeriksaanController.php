@@ -63,23 +63,11 @@ class PendaftaranPemeriksaanController extends Controller
     public function store(Request $request)
     {
         PendaftaranPemeriksaan::create([
-            'noPemeriksaan' => $request->noPemeriksaan,
-            'namaPasien' => $request->namaPasien,
-            'tanggalLahir' => $request->tanggalLahir,
-            'jenisKelamin' => $request->jenisKelamin,
-            'alamat' => $request->alamat,
-            'jenisKelaminPemohon' => $request->jenisKelaminPemohon,
-            'hasilKeDokter' => $request->hasilKeDokter,
-            'tanggal' => $request->tanggal,
-            'teleponMobile' => $request->teleponMobile,
-            'teleponDarurat' => $request->teleponDarurat,
-            'dokterPengirim' => $request->dokterPengirim,
-            'ruangan' => $request->ruangan,
-            'teleponDokter' => $request->teleponDokter,
-            'diagnosa' => $request->diagnosa,
-            'modalitas1' => $request->modalitas1,
-            'modalitas2' => $request->modalitas2,
-            'modalitas3' => $request->modalitas3,
+            'nomorPendaftaran' => $request->nomorPendaftaran,
+            'idPasien' => $request->idPasien,
+            'namaDokterPengirim' => $request->namaDokterPengirim,
+            'attachment' => $request->attachment,
+            'tanggalDaftar' => $request->tanggalDaftar,
         ]);
     }
 

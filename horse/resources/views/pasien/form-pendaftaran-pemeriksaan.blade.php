@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        <label for="tanggalDaftar" class="form-label">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggalDaftar" name="tanggalDaftar">
                     </div>
                     <div class="mb-3">
                         <label for="attachment" class="form-label">Attachment</label>
@@ -21,8 +21,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="idDokter" class="form-label">Nama Dokter Pengirim</label>
-                        <input type="text" class="form-control" id="idDokter" name="idDokter">
+                        <label for="namaDokterPengirim" class="form-label">Nama Dokter Pengirim</label>
+                        <input type="text" class="form-control" id="namaDokterPengirim" name="namaDokterPengirim">
                     </div>
                 </div>
             </div>
@@ -38,18 +38,16 @@
                         </div>
                         <div class="col-7">
                             <label for="modalitas1" class="form-label">Modalitas</label>
-                            <select class="form-select" id="modalitas1" name="modalitas[]" aria-label="Pilih modalitas">
-                                <option value="">Pilih modalitas</option>
-                                <option value="MRI">MRI</option>
-                                <option value="CT Scan">CT Scan</option>
-                                <option value="Ultrasound">Ultrasound</option>
-                                <option value="Rontgen">Rontgen</option>
+                            <select class="form-control" id="inputAlamatIp" name="alamatIp">
+                                @foreach ($joinModalitas as $list)
+                                <option value={{ $list->kodeModalitas }}>{{ $list->namaModalitas }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-4">
                             <label for="harga1" class="form-label">Harga</label>
                             <input type="number" class="form-control" id="harga1" name="harga[]" min="0"
-                                placeholder="Masukkan harga modalitas">
+                                placeholder="Masukkan harga modalitas" disabled>
                         </div>
                     </div>
                 </div>
