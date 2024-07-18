@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id('nomorPendaftaran');
             $table->foreignId('idPasien')->constrained('pasien','idPasien')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('namaDokterPengirim',length:50);
-            // $table->
+            $table->string('attachment');
             $table->date('tanggalDaftar');
+            $table->string('modalitas');
             $table->bool('verifikasi')->default(0);
 
             $table->timestamps();

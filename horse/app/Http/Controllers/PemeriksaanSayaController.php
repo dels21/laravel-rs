@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TransaksiPemeriksaan;
-use App\Models\PendaftaranPemeriksaan;
-use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Pasien;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PemeriksaanSayaController extends Controller
 {
-
     public function showDetail($id) {
         $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*')
             ->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')

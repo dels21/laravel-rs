@@ -32,19 +32,14 @@ Route::middleware(['auth', 'pasien'])->group(function () {
     Route::prefix('/pasien')->group(function () {
         Route::get('/dashboard', [DashboardPasienController::class, 'showDashboard'])->name('pasien.dashboard-pasien');
 
-        Route::get('/pemeriksaan', function () {
-            return view('pasien.list-pemeriksaan-pasien');
-        });
+        Route::get('/daftar-pemeriksaan', [PendaftaranPemeriksaanController::class, 'index'])->name('pasien.pendaftaran-pemeriksaan');
+        Route::post('/store-pemeriksaan', [PendaftaranPemeriksaanController::class, 'store'])->name('pasien.store-pemeriksaan');
 
         Route::get('/lengkapi-data-diri', [DashboardPasienController::class, 'lengkapiDataDiri'])->name('pasien.lengkapi-data-diri');
         Route::post('/lengkapi-data-diri-submit', [PasienController::class, 'store'])->name('pasien.lengkapi-data-diri-submit');
 
 
-        Route::get('/daftar-pemeriksaan', function () {
-            return view('pasien.form-pendaftaran-pemeriksaan');
-        });
-
-        Route::get('/pemeriksaan', [PemeriksaanSayaController::class, 'showData'])->name('pemeriksaan_saya');
+        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
         // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');
 

@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-{{-- 
+
        <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -44,7 +44,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)
+                                        @foreach ($pendaftaran as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->noPemeriksaan}}</td>
@@ -52,9 +52,9 @@
                                             <td>{{$item->jamMulai}}</td>
                                             <td>{{$item->jamSelesai}}</td>
                                             <td>{{$item->ruangan}}</td>
-                                            <td>{{$item->status}}</td> --}}
+                                            <td>{{$item->status}}</td> 
                                             {{-- <td><a class="detail-link" data-toggle="modal" data-target="#myModal">Detail</a></td>   --}}
-                                        {{-- </tr>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -92,7 +92,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @foreach ($pendaftaran as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nomorPendaftaran }}</td>
@@ -100,7 +100,7 @@
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>
                                     <td>{{ $item->keterangan }}</td>
-                                    <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
+                                    {{-- <td><a href="{{ route('detail_pemeriksaan_pasien', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
