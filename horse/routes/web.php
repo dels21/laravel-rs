@@ -10,6 +10,7 @@ use App\Http\Controllers\ListPemeriksaanKaryawanController;
 use App\Http\Controllers\ModalitasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemeriksaanSayaController;
+use App\Http\Controllers\PemeriksaanDokterController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use App\Http\Controllers\DetailPemeriksaanController;
 use App\Http\Controllers\MasterJenisPemeriksaanController;
@@ -36,6 +37,10 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
+        Route::get('/daftar-pemeriksaan', function () {
+            return view('pasien.form-pendaftaran-pemeriksaan');
+        });
+
         Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
         // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');
@@ -50,6 +55,11 @@ Route::middleware(['auth', 'dokter'])->group(function () {
         Route::get('/list-pasien', function () {
             return view('dokter.list-pemeriksaan-dokter');
         });
+
+        Route::get('list-pasien', [PemeriksaanDokterController::class, 'showData'])->name('pemeriksaan_dokter');
+        Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanDokterController::class, 'showDetail'])->name('detail_pemeriksaan_dokter');
+        Route::get('/edit-detail/{idDetailPemeriksaan}', [PemeriksaanDokterController::class, 'editDetail'])->name('edit_detail_pemeriksaan');
+        Route::post('/update-diagnosis', [PemeriksaanDokterController::class, 'updateDiagnosis'])->name('update.diagnosis');
 
         Route::get('/form-detail', function () {
             return view('dokter.form_detail');

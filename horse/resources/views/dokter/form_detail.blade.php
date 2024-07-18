@@ -11,6 +11,37 @@
 @endsection
 
 @section('content')
+<div class="container mt-5">
+    <!-- Display success and error messages -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+</div>
+<form action="{{ route('update.diagnosis') }}" method="POST">
+    @csrf
+    <input type="hidden" name="id" value="{{ $detail->idDetailPemeriksaan }}">
     <div class="container">
         <div class="mb-5 mt-5 row">
             <div class="col">
@@ -27,7 +58,7 @@
                 <h6>Kode Pemeriksaan</h6>
             </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="kodePemeriksaan" value="kodekodekodekode">
+                <input type="text" readonly class="form-control" id="kodePemeriksaan" value="{{ $detail->nomorPemeriksaan }}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -35,7 +66,7 @@
                 <h6>ID Pasien</h6>
             </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="idPasien" value="id pasien id pasien">
+                <input type="text" readonly class="form-control" id="idPasien" value="{{ $detail->idPasien }}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -43,7 +74,7 @@
                 <h6>Nama Pasien</h6>
             </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="namaPasien" value="nama pasien nama pasien">
+                <input type="text" readonly class="form-control" id="namaPasien" value="{{ $detail->name }}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -51,7 +82,7 @@
                 <h6>Jenis Kelamin</h6>
             </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="jenisKelamin" value="Perempuan">
+                <input type="text" readonly class="form-control" id="jenisKelamin" value="{{ $detail->jenisKelamin }}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -59,7 +90,7 @@
                 <h6>Jenis Pemeriksaan</h6>
             </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="jenisPemeriksaan" value="jenis pemeriksaan">
+                <input type="text" readonly class="form-control" id="jenisPemeriksaan" value="{{ $detail->namaJenisPemeriksaan }}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -67,7 +98,7 @@
                 <h6>Status Pemeriksaan</h6>
             </label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control" id="statusPemeriksaan" value="status pemeriksaan">
+                <input type="text" readonly class="form-control" id="statusPemeriksaan" value="{{ $detail->status }}">
             </div>
         </div>
         <div class="mb-5 row">
@@ -95,14 +126,15 @@
             <div class="position-absolute top-0 start-50 translate-middle-x">
                 <div class="mb-3 row">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary">
-                            <i class="bi bi-floppy-fill me-2"></i>Save
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-floppy-fill me-2"></i>Simpan
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</form>
 @endsection
 
 @section('customJS')

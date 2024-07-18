@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pemeriksaan Saya')
+@section('title', 'Detail Pemeriksaan Dokter')
 @section('setAktifPemeriksaanSaya', 'active')
 
 @section('customCSS')
@@ -18,10 +18,10 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="biggest-font mt-5 mb-5">List Pasien</h1>
-        @if ($data->isEmpty())
-            <p>Belum ada pemeriksaan.</p>
-            <p>{{ $loggedInUserId }}</p>
+        <h1 class="biggest-font mt-5 mb-5">Detail Pemeriksaan Dokter</h1>
+        @if ($detail->isEmpty())
+            <p>Belum ada detail pemeriksaan.</p>
+            {{-- <p>{{ $loggedInUserId }}</p> --}}
             @else
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -31,26 +31,28 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Diagnosis</th>
                                 <th>Nama Pasien</th>
+                                <th>Diagnosis</th>
+                                <th>Keterangan</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nomorPendaftaran }}</td>
-                                    <td>{{ $item->nomorPemeriksaan }}</td>
-                                    <td>{{ $item->tanggalPemeriksaan }}</td>
-                                    <td>{{ $item->diagnosis }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td><a href="{{ route('detail_pemeriksaan_dokter', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
-                                </tr>
-                            @endforeach
+                            @foreach ($detail as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->nomorPemeriksaan }}</td>
+                                <td>{{ $item->tanggalPemeriksaan }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->diagnosis }}</td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td>{{ $item->status }}</td>
+                                <td><a href="{{ route('edit_detail_pemeriksaan', $item->idDetailPemeriksaan) }}" class="btn btn-info">Edit</a></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
