@@ -26,42 +26,45 @@
         <div class="row d-flex justify-content-around">
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4">
                 <div class="card border-left-primary shadow mb-5 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Jumlah Karyawan</div>
-                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">9.412 Karyawan</div>
+                                <div class="text-primary text-uppercase mb-1">
+                                    Jumlah Pasien</div>
+                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalPasien }} Pasien
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4">
                 <div class="card border-left-success shadow mb-5 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Karyawan Aktif</div>
-                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">500 Karyawan</div>
+                                    Jumlah Dokter</div>
+                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalDokter }} Dokter
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4">
                 <div class="card border-left-danger shadow mb-5 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Karyawan Non-Aktif</div>
-                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">100 Karyawan</div>
+                                    Jumlah Karyawan</div>
+                                <div class="h2-title-500 mb-0 font-weight-bold text-gray-800">{{ $totalKaryawan }} Karyawan
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,128 +77,42 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>No Pemeriksaan</th>
+                                <th>No Pendaftaran</th>
                                 <th>ID Karyawan</th>
-                                <th>Nama</th>
-                                <th>Telepon Rumah</th>
-                                <th>Alamat</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>ID Radiografer</th>
+                                <th>Nama Dokter Pengirim</th>
+                                <th>Tanggal Pemeriksaan</th>
+                                <th>Diagnosis</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>UAC90</td>
-                                <td>Jahja Setiaatmadja</td>
-                                <td>08999999999</td>
-                                <td>Menara BCA</td>
-                                <td>Aktif</td>
-                                <td><i class="bi bi-pencil-square"></i><i class="bi bi-trash3-fill"></i></td>
-                            </tr>
+                            @foreach ($transaksiPemeriksaan as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nomorPemeriksaan }}</td>
+                                    <td>{{ $item->nomorPendaftaran }}</td>
+                                    <td>{{ $item->idKaryawanRadiografer }}</td>
+                                    <td>{{ $item->idKaryawanDokterRadiologi }}</td>
+                                    <td>{{ $item->namaDokterPengirim }}</td>
+                                    <td>{{ $item->tanggalPemeriksaan }}</td>
+                                    <td>{{ $item->diagnosis }}</td>
+                                    <td>{{ $item->keterangan }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /.container-fluid -->
 
     </div>
-    <!-- End of Main Content -->
+    <!-- /.container-fluid -->
 
 @endsection
 
