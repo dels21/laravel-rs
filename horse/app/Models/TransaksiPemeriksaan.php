@@ -9,11 +9,11 @@ class TransaksiPemeriksaan extends Model
 {
     use HasFactory;
 
-    protected $fillable = 
+    protected $fillable =
     [
         'nomorPendaftaran',
         'idKaryawanRadiografer',
-        'idKaryawanRadiologi',
+        'idKaryawanDokterRadiologi',
         'namaDokterPengirim',
         'tanggalPemeriksaan',
         'diagnosis',

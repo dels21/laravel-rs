@@ -14,8 +14,14 @@ use App\Http\Controllers\PemeriksaanDokterController;
 use App\Http\Controllers\PendaftaranPemeriksaanController;
 use App\Http\Controllers\DetailPemeriksaanController;
 use App\Http\Controllers\MasterJenisPemeriksaanController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,11 +43,7 @@ Route::middleware(['auth', 'pasien'])->group(function () {
             return view('pasien.form-pendaftaran-pemeriksaan');
         });
 
-        Route::get('/daftar-pemeriksaan', function () {
-            return view('pasien.form-pendaftaran-pemeriksaan');
-        });
-
-        Route::get('/pemeriksaan', [PemeriksaanSayaController::class,'showData'])->name('pemeriksaan_saya');
+        Route::get('/pemeriksaan', [PemeriksaanSayaController::class, 'showData'])->name('pemeriksaan_saya');
         // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');
 
@@ -79,9 +81,9 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         // Route::get('/list-pasien', function () {
         //     return view('karyawan.list-pasien');
         // });
-        Route::get('/list-pasien', [PasienController::class,'pasienFromUser'])->name('show_list_pasien');
-        Route::post('/store-pasien', [KaryawanController::class,'store_pasien'])->name('store_pasien');
-        Route::post('/delete-pasien', [KaryawanController::class,'destroy_pasien'])->name('destroy_pasien');
+        Route::get('/list-pasien', [PasienController::class, 'pasienFromUser'])->name('show_list_pasien');
+        Route::post('/store-pasien', [KaryawanController::class, 'store_pasien'])->name('store_pasien');
+        Route::post('/delete-pasien', [KaryawanController::class, 'destroy_pasien'])->name('destroy_pasien');
         Route::post('/edit-pasien', [PasienController::class, 'update_pasien'])->name('edit_pasien');
 
         Route::get('/list-modalitas', [ModalitasController::class, 'show'])->name('show_modalitas');
@@ -105,10 +107,24 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::get('/list-DICOM', function () {
             return view('karyawan.list-DICOM');
         });
-        Route::get('/verifikasi', function () {
-            return view('karyawan.verifikasi');
+        Route::get('/verifikasi', [KaryawanController::class, 'verifikasi']) ->name('verifikasi');
+
+        Route::prefix('/detailverifikasi')->group(function(){
+            Route::get('/{id}', [KaryawanController::class, 'detailverifikasi'])->name('detail_verifikasi');
+
+            Route::post(
+                '/accept',
+                [KaryawanController::class, 'acceptVerif']
+            )->name('accept_verif');
+
+            Route::post(
+                '/reject',
+                [KaryawanController::class, 'rejectVerif']
+            )->name('reject_verif');
+
         });
-        Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class,'index']);
+
+        Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class, 'index']);
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [ListPemeriksaanKaryawanController::class, 'showDetail'])->name('detail_pemeriksaan_karyawan');
 
     });
@@ -121,18 +137,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
         });
 
 
-        Route::get('/list-karyawan',
-        [KaryawanController::class, 'showListKaryawan']
-         )->name('show-list-karyawan');
+        Route::get(
+            '/list-karyawan',
+            [KaryawanController::class, 'showListKaryawan']
+        )->name('show-list-karyawan');
 
-        Route::post('/tambah-karyawan',
-        [KaryawanController::class, 'storeKaryawan']
-         )->name('tambah-karyawan');
+        Route::post(
+            '/tambah-karyawan',
+            [KaryawanController::class, 'storeKaryawan']
+        )->name('tambah-karyawan');
 
-         Route::post('/delete-karyawan', [KaryawanController::class,'destroy_karyawan'])->name('destroy_karyawan');
+        Route::post('/delete-karyawan', [KaryawanController::class, 'destroy_karyawan'])->name('destroy_karyawan');
 
-         Route::post('/update-karyawan', [KaryawanController::class,'update_karyawan'])->name('update_karyawan');
-        });
+        Route::post('/update-karyawan', [KaryawanController::class, 'update_karyawan'])->name('update_karyawan');
+    });
 });
 
 
@@ -157,8 +175,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+
+Route::middleware('guest')->group(function(){
+
+
+})
+
+
+
+
+
 ?>
+
 

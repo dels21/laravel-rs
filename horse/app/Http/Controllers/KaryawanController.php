@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Dokter;
+use App\Models\DetailPemeriksaan;
+use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\Karyawan;
+use App\Models\Dokter;
 use App\Models\Pasien;
+use App\Models\PendaftaranPemeriksaan;
+use App\Models\TransaksiPemeriksaan;
 use Brick\Math\BigInteger;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,7 +47,6 @@ class KaryawanController extends Controller
     public function store(int $userId, Request $request)
     {
         Karyawan::create([
-            'idKaryawan' => $request->idDokter,
             'idUser' => $userId,
             'idKtp' => $request->idKtp,
             'jenisKelamin' => $request->jenisKelamin,
@@ -156,5 +159,83 @@ class KaryawanController extends Controller
             ->get(['users.*', 'karyawan.*']);
         // dd($usersWithKaryawan->all());
         return view('admin.list-karyawan', compact('usersWithKaryawan'));
+    }
+
+    public function verifikasi()
+    {
+
+        // <th>ID Pemeriksaan</th>
+        // <th>Tanggal Pendaftaran</th>
+        // <th>ID Pasien</th>
+        // <th>Nama Pasien</th>
+        // <th>Detail</th>
+
+        $pendaftaran = PendaftaranPemeriksaan::join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
+            ->join('users', 'pasien.idUser', '=', 'users.id')
+            ->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')
+            ->where('pendaftaran_pemeriksaan.verifikasi', 0)
+            ->get();
+
+        // dd($pendaftaran);
+
+        return view('karyawan.verifikasi', compact('pendaftaran'));
+    }
+
+    public function detailverifikasi($nomorPendaftaran)
+    {
+        // dd($nomorPendaftaran);
+        $pendaftaran = PendaftaranPemeriksaan::where('pendaftaran_pemeriksaan.nomorPendaftaran', $nomorPendaftaran)
+            ->join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
+            ->join('users', 'pasien.idUser', '=', 'users.id')
+            ->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')
+            ->first();
+
+        // dd($pendaftaran);
+
+        $detailpemeriksaan = DetailPendaftaranPemeriksaan::where('detail_pendaftaran.noPendaftaran', $nomorPendaftaran)
+            ->join('master_jenis_pemeriksaan as mjp', 'mjp.kodeJenisPemeriksaan', '=', 'detail_pendaftaran.kodeJenisPemeriksaan')
+            ->select('mjp.namaJenisPemeriksaan')
+            ->get();
+
+        $dokter = Dokter::join('users', 'dokter.idUser', '=', 'users.id')
+            ->select('*')
+            ->get();
+
+        // dd($dokter);
+        // dd($detailpemeriksaan);
+
+        return view('karyawan.detailverifikasi', compact('pendaftaran', 'detailpemeriksaan', 'dokter'));
+    }
+    public function acceptVerif(Request $request)
+    {
+        // dd($request->all());
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->update(['verifikasi', 1]);
+
+
+        $pemeriksaan = TransaksiPemeriksaan::create([
+            'nomorPendaftaran' => $request->nomorPendaftaran,
+            'idKaryawanRadiografer' => $request->idKaryawan,
+            'idKaryawanDokterRadiologi' => $request->idDokter,
+        ]);
+        // nomorPemeriksaan (FK ke table transaksi_pemeriksaan)	bigint auto increment
+        // ruangan	varchar
+        // statusKetersediaan	enum ( approve, reject)
+        foreach ($request->ruangan as $key => $ruangan) {
+            $statusKetersediaan = $request->statusKetersediaan[$key];
+
+            DetailPemeriksaan::create([
+                'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
+                'ruangan' => $ruangan,
+                'statusKetersediaan' => $statusKetersediaan,
+            ]);
+        }
+
+        return redirect()->route('verifikasi');
+    }
+
+    public function rejectVerif(Request $request)
+    {
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->delete();
+        return redirect()->route('verifikasi');
     }
 }
