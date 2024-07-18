@@ -9,6 +9,7 @@ use App\Models\Pasien;
 use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PendaftaranPemeriksaanController extends Controller
 {
@@ -62,11 +63,16 @@ class PendaftaranPemeriksaanController extends Controller
 
     public function store(Request $request)
     {
+        $attachment = $request->file('attachment');
+        $fileAttachment = time().".".$attachment->getClientOriginalExtension();
+
+        $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
+        
         PendaftaranPemeriksaan::create([
             'nomorPendaftaran' => $request->nomorPendaftaran,
-            'idPasien' => $request->idPasien,
+            'idPasien' => Auth::user()->id,
             'namaDokterPengirim' => $request->namaDokterPengirim,
-            'attachment' => $request->attachment,
+            'attachment' => $fileAttachment,
             'tanggalDaftar' => $request->tanggalDaftar,
         ]);
     }
@@ -81,26 +87,19 @@ class PendaftaranPemeriksaanController extends Controller
         //
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
+        $attachment = $request->file('attachment');
+        $fileAttachment = time().".".$attachment->getClientOriginalExtension();
+
+        $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
+
         PendaftaranPemeriksaan::update([
-            'noPemeriksaan' => $request->noPemeriksaan,
-            'namaPasien' => $request->namaPasien,
-            'tanggalLahir' => $request->tanggalLahir,
-            'jenisKelamin' => $request->jenisKelamin,
-            'alamat' => $request->alamat,
-            'jenisKelaminPemohon' => $request->jenisKelaminPemohon,
-            'hasilKeDokter' => $request->hasilKeDokter,
-            'tanggal' => $request->tanggal,
-            'teleponMobile' => $request->teleponMobile,
-            'teleponDarurat' => $request->teleponDarurat,
-            'dokterPengirim' => $request->dokterPengirim,
-            'ruangan' => $request->ruangan,
-            'teleponDokter' => $request->teleponDokter,
-            'diagnosa' => $request->diagnosa,
-            'modalitas1' => $request->modalitas1,
-            'modalitas2' => $request->modalitas2,
-            'modalitas3' => $request->modalitas3,
+            'nomorPendaftaran' => $request->nomorPendaftaran,
+            'idPasien' => Auth::user()->id,
+            'namaDokterPengirim' => $request->namaDokterPengirim,
+            'attachment' => $fileAttachment,
+            'tanggalDaftar' => $request->tanggalDaftar,
         ]);
 
         return redirect()->route('pasien.daftar-pemeriksaan')->with('success','Pendaftaran berhasil diupdate');
