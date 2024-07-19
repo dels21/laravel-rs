@@ -66,13 +66,18 @@
             </div>
 
         </div>
-        <div class="d-flex justify-content-center">
-            <a class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
-                Belum punya akun?
-             </a>
-            <a class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                Lupa password?
-             </a>
-        </div>
+            <div class="d-flex justify-content-center">
+                <a class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                    Belum punya akun?
+                </a>
+
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="mt-2 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    Lupa password?
+                 </a>
+
+            </div>
+
     </form>
 </x-guest-layout>
