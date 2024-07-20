@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="namaDokterPengirim" class="form-label">Nama Dokter Pengirim</label>
+                        <label for="namaDokterPengirim" class="form-label mt-2 ">Nama Dokter Pengirim</label>
                         <input type="text" class="form-control" id="namaDokterPengirim" name="namaDokterPengirim">
                     </div>
                 </div>

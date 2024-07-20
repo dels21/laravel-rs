@@ -63,43 +63,36 @@ class PendaftaranPemeriksaanController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $attachment = $request->file('attachment');
         $fileAttachment = time().".".$attachment->getClientOriginalExtension();
 
         $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
-
-        PendaftaranPemeriksaan::create([
-            'nomorPendaftaran' => $request->nomorPendaftaran,
-            'idPasien' => Auth::user()->id,
+        $pasien = Pasien::findOrFail(Auth::user()->id, 'idUser');
+        dd($pasien);
+        $pendaftaran = PendaftaranPemeriksaan::create([
+            'idPasien' => $pasien->idPasien,
             'namaDokterPengirim' => $request->namaDokterPengirim,
             'attachment' => $fileAttachment,
             'tanggalDaftar' => $request->tanggalDaftar,
         ]);
 
-        foreach($request->jenisPemeriksaan as $key => $jenisPemeriksaan){
+        foreach ($request->jenisPemeriksaan as $key => $jenisPemeriksaan){
             $jamMulai = $request->jamMulai[$key];
             $jamSelesai = $request->jamSelesai[$key];
-            
+            $tanggalPemeriksaan = $request->tanggalPemeriksaan[$key];
+
+            DetailPendaftaranPemeriksaan::create([
+                'noPendaftaran' => $pendaftaran->nomorPendaftaran,
+                'kodeJenisPemeriksaan' => $jenisPemeriksaan,
+                'jamMulai' => $jamMulai,
+                'jamSelesai' => $jamSelesai,
+                'tanggalPemeriksaan' => $tanggalPemeriksaan,
+            ]);
 
         }
 
-
-                // $pemeriksaan = TransaksiPemeriksaan::create([
-        //     'nomorPendaftaran' => $request->nomorPendaftaran,
-        //     'idKaryawanRadiografer' => $request->idKaryawan,
-        //     'idKaryawanDokterRadiologi' => $request->idDokter,
-        // ]);
-
-        // foreach ($request->ruangan as $key => $ruangan) {
-        //     $statusKetersediaan = $request->statusKetersediaan[$key];
-
-        //     DetailPemeriksaan::create([
-        //         'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
-        //         'ruangan' => $ruangan,
-        //         'statusKetersediaan' => $statusKetersediaan,
-        //     ]);
-        // }
+        return redirect()->route('pasien.dashboard-pasien')->with('success','Pendaftaran berhasil dibuat');
 
     }
 
