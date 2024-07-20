@@ -11,8 +11,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="tanggalDaftar" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggalDaftar" name="tanggalDaftar">
+                        <label for="inputTanggalDaftar" class="col-sm-4 col-form-label">Tanggal Daftar</label>
+                        <input id="tanggalDaftar" class="block mt-1 w-full form-control" type="date" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}" required autofocus autocomplete="tanggalDaftar" placeholder="Not editable" disabled>
+                        <input type="hidden" name="tanggalDaftar" value="{{ now()->format('Y-m-d') }}">
+
                     </div>
                     <div class="mb-3">
                         <label for="attachment" class="form-label">Attachment</label>
@@ -33,25 +35,31 @@
                 <div id="form-container">
                     <div class="row mb-3 align-items-center form-row">
                         <div class="col-1">
-                            <button type="button" class="btn btn-outline-secondary btn-sm remove-btn-form"
-                                disabled>&times;</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm remove-btn-form" disabled>&times;</button>
                         </div>
-                        <div class="col-7">
-                            <label for="modalitas1" class="form-label">Modalitas</label>
-                            <select class="form-control" id="inputAlamatIp" name="alamatIp">
-                                @foreach ($joinModalitas as $list)
-                                <option value={{ $list->kodeModalitas }}>{{ $list->namaModalitas }}</option>
+                        <div class="col-3">
+                            <label for="jenisPemeriksaan1" class="form-label">Jenis Pemeriksaan</label>
+                            <select class="form-control" id="jenisPemeriksaan1" name="jenisPemeriksaan[]">
+                                @foreach ($joinJenisPemeriksaan as $list)
+                                <option value="{{ $list->kodeJenisPemeriksaan }}">{{ $list->namaJenisPemeriksaan }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-4">
-                            <label for="harga1" class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="harga1" name="harga[]" min="0"
-                                placeholder="Masukkan harga modalitas" disabled>
+                        <div class="col-3">
+                            <label for="tanggalPemeriksaan1" class="form-label">Tanggal Daftar</label>
+                            <input type="date" class="form-control" id="tanggalPemeriksaan1" name="tanggalPemeriksaan[]">
+                        </div>
+                        <div class="col-2">
+                            <label for="jamMulai1" class="form-label">Jam Mulai</label>
+                            <input type="time" class="form-control" id="jamMulai1" name="jamMulai[]">
+                        </div>
+                        <div class="col-2">
+                            <label for="jamSelesai1" class="form-label">Jam Selesai</label>
+                            <input type="time" class="form-control" id="jamSelesai1" name="jamSelesai[]">
                         </div>
                     </div>
                 </div>
-                <button id="add-more-btn" type="button" class="btn btn-primary">Tambah Pemeriksaan</button>
+                <button id="add-more-btn" type="button" class="btn btn-primary">Tambah Jenis Pemeriksaan</button>
             </div>
 
             <div class="row mt-5">
@@ -73,18 +81,28 @@
 
             // Update the id for the new dropdown and text field
             var rowCount = container.children.length + 1;
-            var newModalitasId = 'modalitas' + rowCount;
-            var newHargaId = 'harga' + rowCount;
+            var newTanggalPemeriksaanId = 'tanggalPemeriksaan' + rowCount;
+            var newjenisPemeriksaanId = 'jenisPemeriksaan' + rowCount;
+            var newJamMulaiId = 'jamMulai' + rowCount;
+            var newJamSelesaiId = 'jamSelesai' + rowCount;
 
-            newRow.querySelector('label[for^="modalitas"]').setAttribute('for', newModalitasId);
-            newRow.querySelector('select[id^="modalitas"]').setAttribute('id', newModalitasId);
+            newRow.querySelector('label[for^="tanggalPemeriksaan"]').setAttribute('for', newTanggalPemeriksaanId);
+            newRow.querySelector('input[id^="tanggalPemeriksaan"]').setAttribute('id', newTanggalPemeriksaanId);
 
-            newRow.querySelector('label[for^="harga"]').setAttribute('for', newHargaId);
-            newRow.querySelector('input[id^="harga"]').setAttribute('id', newHargaId);
+            newRow.querySelector('label[for^="jenisPemeriksaan"]').setAttribute('for', newjenisPemeriksaanId);
+            newRow.querySelector('select[id^="jenisPemeriksaan"]').setAttribute('id', newjenisPemeriksaanId);
+
+            newRow.querySelector('label[for^="jamMulai"]').setAttribute('for', newJamMulaiId);
+            newRow.querySelector('input[id^="jamMulai"]').setAttribute('id', newJamMulaiId);
+
+            newRow.querySelector('label[for^="jamSelesai"]').setAttribute('for', newJamSelesaiId);
+            newRow.querySelector('input[id^="jamSelesai"]').setAttribute('id', newJamSelesaiId);
 
             // Clear the values of the cloned inputs
-            newRow.querySelector('select[id^="modalitas"]').value = "";
-            newRow.querySelector('input[id^="harga"]').value = "";
+            newRow.querySelector('input[id^="tanggalPemeriksaan"]').value = "";
+            newRow.querySelector('select[id^="jenisPemeriksaan"]').value = "";
+            newRow.querySelector('input[id^="jamMulai"]').value = "";
+            newRow.querySelector('input[id^="jamSelesai"]').value = "";
 
             // Enable and add event listener for the remove button
             var removeBtn = newRow.querySelector('.remove-btn-form');

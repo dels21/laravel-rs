@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DetailPendaftaranPemeriksaan extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = ['keteranganKetersediaan'];
     protected $table = 'detail_pendaftaran';
 
     public function pendaftaranPemeriksaan()

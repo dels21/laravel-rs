@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id("idDetailPendaftaranPemeriksaan");
             $table->foreignId("noPendaftaran")->constrained("pendaftaran_pemeriksaan",'nomorPendaftaran')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId("kodeJenisPemeriksaan")->constrained("master_jenis_pemeriksaan",'kodeJenisPemeriksaan')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId("kodeModalitas")->constrained("master_modalitas",'kodeModalitas')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date("tanggalPendaftaranPemeriksaan");
             $table->time("jamMulai");
             $table->time("jamSelesai");

@@ -39,7 +39,7 @@ class PendaftaranPemeriksaanController extends Controller
         $item->namaPasien = $pasien ? $pasien->namaPasien : null; // Assuming you want to show namaPasien instead of idPasien
         return $item;
     });
-        
+
         return view('pasien.list-pemeriksaan-pasien', compact('mergedDetails'));
      }
 
@@ -49,11 +49,11 @@ class PendaftaranPemeriksaanController extends Controller
         $dataId = Auth::user()->id;
         $dataExists = Pasien::where('idUser', $dataId)->exists();
         $pendaftaran = PendaftaranPemeriksaan::all();
-        $joinModalitas = DB::table('master_modalitas')
+        $joinJenisPemeriksaan = DB::table('master_jenis_pemeriksaan')
         ->select('*')
         ->get();
-        
-        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists', 'joinModalitas'));
+
+        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists', 'joinJenisPemeriksaan'));
     }
 
     public function create()
@@ -63,11 +63,12 @@ class PendaftaranPemeriksaanController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $attachment = $request->file('attachment');
         $fileAttachment = time().".".$attachment->getClientOriginalExtension();
 
         $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
-        
+
         PendaftaranPemeriksaan::create([
             'nomorPendaftaran' => $request->nomorPendaftaran,
             'idPasien' => Auth::user()->id,
@@ -75,6 +76,31 @@ class PendaftaranPemeriksaanController extends Controller
             'attachment' => $fileAttachment,
             'tanggalDaftar' => $request->tanggalDaftar,
         ]);
+
+        foreach($request->jenisPemeriksaan as $key => $jenisPemeriksaan){
+            $jamMulai = $request->jamMulai[$key];
+            $jamSelesai = $request->jamSelesai[$key];
+            
+
+        }
+
+
+                // $pemeriksaan = TransaksiPemeriksaan::create([
+        //     'nomorPendaftaran' => $request->nomorPendaftaran,
+        //     'idKaryawanRadiografer' => $request->idKaryawan,
+        //     'idKaryawanDokterRadiologi' => $request->idDokter,
+        // ]);
+
+        // foreach ($request->ruangan as $key => $ruangan) {
+        //     $statusKetersediaan = $request->statusKetersediaan[$key];
+
+        //     DetailPemeriksaan::create([
+        //         'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
+        //         'ruangan' => $ruangan,
+        //         'statusKetersediaan' => $statusKetersediaan,
+        //     ]);
+        // }
+
     }
 
     public function show(string $id)
@@ -116,4 +142,6 @@ class PendaftaranPemeriksaanController extends Controller
         return redirect()->route('pasien.daftar-pemeriksaan')->with('success','Pendaftaran berhasil dihapus');
 
     }
+
+
 }
