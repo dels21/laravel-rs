@@ -23,6 +23,8 @@ class PemeriksaanSayaController extends Controller
 
     public function showData(Request $request)
     {
+        $dataId = Auth::user()->id;
+        $dataExists = Pasien::where('idUser', $dataId)->exists();
         // Assuming you have some way of getting the logged-in user ID, let's say $loggedInUserId
         $loggedInUserId = $request->user()->id; // This assumes you're using Laravel's authentication
 
@@ -36,7 +38,7 @@ class PemeriksaanSayaController extends Controller
                 ->paginate(10);
 
 
-        return view('pasien.list-pemeriksaan-pasien', ['data' => $data]);
+        return view('pasien.list-pemeriksaan-pasien', ['data' => $data, 'dataExists' => $dataExists]);
     }
 
 
