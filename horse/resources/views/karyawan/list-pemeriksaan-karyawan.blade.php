@@ -29,12 +29,8 @@
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
-                                <th>No. Pendaftaran</th>
-                                <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>ID Pasien</th>
-                                <th>ID Karyawan Radiographer</th>
-                                <th>ID Karyawan Radiologi</th>
                                 <th>ID Karyawan Radiographer</th>
                                 <th>ID Karyawan Radiologi</th>
                                 <th></th>
