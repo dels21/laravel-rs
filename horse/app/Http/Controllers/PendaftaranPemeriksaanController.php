@@ -10,6 +10,7 @@ use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PendaftaranPemeriksaanController extends Controller
 {
@@ -67,36 +68,45 @@ class PendaftaranPemeriksaanController extends Controller
     public function store(Request $request)
     {
 
-        $pasien = Pasien::where('idUser', Auth::user()->id)->firstOrFail();;
-        $attachment = $request->file('attachment');
-        $fileAttachment = time().".".$attachment->getClientOriginalExtension();
+        try {
+            $pasien = Pasien::where('idUser', Auth::user()->id)->firstOrFail();
 
-        $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
 
-        // dd($pasien);
-        $pendaftaran = PendaftaranPemeriksaan::create([
-            'idPasien' => $pasien->idPasien,
-            'namaDokterPengirim' => $request->namaDokterPengirim,
-            'attachment' => $fileAttachment,
-            'tanggalDaftar' => $request->tanggalDaftar,
-        ]);
+            $attachment = $request->file('attachment');
+            $fileAttachment = time().".".$attachment->getClientOriginalExtension();
 
-        foreach ($request->jenisPemeriksaan as $key => $jenisPemeriksaan){
-            $jamMulai = $request->jamMulai[$key];
-            $jamSelesai = $request->jamSelesai[$key];
-            $tanggalPemeriksaan = $request->tanggalPemeriksaan[$key];
+            $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
 
-            DetailPendaftaranPemeriksaan::create([
-                'noPendaftaran' => $pendaftaran->nomorPendaftaran,
-                'kodeJenisPemeriksaan' => $jenisPemeriksaan,
-                'jamMulai' => $jamMulai,
-                'jamSelesai' => $jamSelesai,
-                'tanggalPendaftaranPemeriksaan' => $tanggalPemeriksaan,
+            // dd($pasien);
+            $pendaftaran = PendaftaranPemeriksaan::create([
+                'idPasien' => $pasien->idPasien,
+                'namaDokterPengirim' => $request->namaDokterPengirim,
+                'attachment' => $fileAttachment,
+                'tanggalDaftar' => $request->tanggalDaftar,
             ]);
 
+            foreach ($request->jenisPemeriksaan as $key => $jenisPemeriksaan){
+                $jamMulai = $request->jamMulai[$key];
+                $jamSelesai = $request->jamSelesai[$key];
+                $tanggalPemeriksaan = $request->tanggalPemeriksaan[$key];
+
+                DetailPendaftaranPemeriksaan::create([
+                    'noPendaftaran' => $pendaftaran->nomorPendaftaran,
+                    'kodeJenisPemeriksaan' => $jenisPemeriksaan,
+                    'jamMulai' => $jamMulai,
+                    'jamSelesai' => $jamSelesai,
+                    'tanggalPendaftaranPemeriksaan' => $tanggalPemeriksaan,
+                ]);
+
+            }
+
+            return redirect()->route('pasien.dashboard-pasien')->with('success','Pendaftaran berhasil dibuat');
+
+        } catch (ModelNotFoundException $e) {
+            // If not found, redirect to 'lengkapi-data-diri' page
+            return redirect()->route('pasien.lengkapi-data-diri');
         }
 
-        return redirect()->route('pasien.dashboard-pasien')->with('success','Pendaftaran berhasil dibuat');
 
     }
 
