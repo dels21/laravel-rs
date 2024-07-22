@@ -73,7 +73,7 @@ class PendaftaranPemeriksaanController extends Controller
         dd($pasien);
         $pendaftaran = PendaftaranPemeriksaan::create([
             'idPasien' => $pasien->idPasien,
-            'namaDokterPengirim' => $request->namaDokterPengirim,
+            'namaDokterPengirim' => $request->namaDokterPengirimss,
             'attachment' => $fileAttachment,
             'tanggalDaftar' => $request->tanggalDaftar,
         ]);
