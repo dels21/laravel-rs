@@ -177,7 +177,7 @@ class KaryawanController extends Controller
 
         $karyawan->delete();
         $user->delete();
-        return redirect()->route('show-list-x`karyawan')->with('success', 'karyawan berhasil dihapus');
+        return redirect()->route('show-list-karyawan')->with('success', 'karyawan berhasil dihapus');
     }
 
     public function destroy_pasien(Request $request)

@@ -87,7 +87,6 @@
                                 <th>ID Radiografer</th>
                                 <th>Nama Dokter Pengirim</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Diagnosis</th>
                                 <th>Keterangan</th>
                             </tr>
                         </thead>
@@ -101,7 +100,6 @@
                                     <td>{{ $item->idKaryawanDokterRadiologi }}</td>
                                     <td>{{ $item->namaDokterPengirim }}</td>
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
-                                    <td>{{ $item->diagnosis }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                 </tr>
                             @endforeach
