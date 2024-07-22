@@ -141,6 +141,15 @@ class KaryawanController extends Controller
 
         return view('karyawan.dashboard-karyawan', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'pemeriksaanTerbaru'));
     }
+    public function destroy_karyawan(Request $request)
+    {
+        $user = User::findOrFail($request->idUser);
+        $karyawan = Karyawan::where('idUser', $request->idUser);
+
+        $karyawan->delete();
+        $user->delete();
+        return redirect()->route('show-list-x`karyawan')->with('success', 'karyawan berhasil dihapus');
+    }
 
     public function destroy_pasien(Request $request)
     {
