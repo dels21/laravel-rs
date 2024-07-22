@@ -9,22 +9,23 @@
 
     <!-- Custom styles for this page -->
     <link href="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 @endsection
 
 @section('content')
+<div class="container-fluid">
 
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1 class="biggest-font mt-5 mb-5">Pemeriksaan</h1>
-
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+    <!-- Page Heading -->
+    <h1 class="biggest-font mt-5 mb-5">List Pemeriksaan Karyawan</h1>
+    @if ($data->isEmpty())
+        <p>Belum ada pemeriksaan.</p>
+        {{-- <p>{{ $loggedInUserId }}</p> --}}
+        @else
+    <!-- DataTales Example -->  
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                             <tr>
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
@@ -54,7 +55,7 @@
                 </div>
             </div>
         </div>
-
+        @endif
     </div>
     
     
@@ -106,7 +107,6 @@
     <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-  
-  
+    <script src="/templating-assets/js/demo/datatables-demo.js"></script>
 
 @endsection
