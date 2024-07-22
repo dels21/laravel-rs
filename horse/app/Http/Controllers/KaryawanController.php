@@ -238,4 +238,30 @@ class KaryawanController extends Controller
         $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->delete();
         return redirect()->route('verifikasi');
     }
+
+    public function storeKaryawan(Request $request)
+    {
+        // dd($request->all());
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role'=>'karyawan'
+        ]);
+
+        Karyawan::create([
+            'idUser'=>$user->id,
+            'idKtp'=>$request->idKtp,
+            'jenisKelamin'=>$request->jenisKelamin,
+            'tanggalLahir'=>$request->tanggalLahir,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'nomorHp'=>$request->nomorHp,
+            'nomorTelpRumah'=>$request->nomorTelpRumah
+        ]);
+
+        return redirect(route('show-list-karyawan', absolute:false));
+    }
+
 }
