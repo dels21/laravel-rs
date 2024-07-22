@@ -2,6 +2,7 @@
 @section('title', 'Halaman Utama Pasien')
 @section('setAktifHalamanUtama', 'active')
 
+
 @section('customCSS')
     <link href="/home-pasien-assets/css/style.css" rel="stylesheet">
 @endsection

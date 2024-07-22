@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date("tanggalPendaftaranPemeriksaan");
             $table->time("jamMulai");
             $table->time("jamSelesai");
-            $table->text("keteranganKetersediaan");
+            $table->text("keteranganKetersediaan")->nullable();
             $table->timestamps();
         });
     }

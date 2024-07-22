@@ -65,11 +65,11 @@ class PasienController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $userId, Request $request)
+    public function store(Request $request)
     {
         //
         // dd($request->all());
-
+        $userId = Auth::user()->id;
         Pasien::create([
             'idUser' =>$userId,
             'tempatLahir' =>$request->tempatLahir,
@@ -93,6 +93,7 @@ class PasienController extends Controller
             'beratBadan' =>$request->beratBadan,
 
         ]);
+
 
         return redirect(route('pasien.dashboard-pasien', absolute:false));
     }

@@ -129,13 +129,13 @@
                 </a>
             </li><!-- End Daftar Pemeriksaan -->
 
-            {{-- @unless ($dataExists) --}}
+            @unless ($dataExists)
             <li class="nav-item">
                 <a class="nav-link @yield('setAktifLengkapiDataDiri')" href="/pasien/lengkapi-data-diri">
                     <i class="bi bi-card-text"></i><span>Lengkapi Data Diri</span>
                 </a>
             </li><!-- End Daftar Pemeriksaan -->
-            {{-- @endunless --}}
+            @endunless
         @endif
         {{-- End Navigation Pasien --}}
 

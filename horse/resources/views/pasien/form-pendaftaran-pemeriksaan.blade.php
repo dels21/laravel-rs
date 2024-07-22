@@ -8,6 +8,8 @@
 
         <form action="{{ route('pasien.store-pemeriksaan') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="idPasien" value="{{ $idPasien }}">
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">

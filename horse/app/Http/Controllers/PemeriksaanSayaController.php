@@ -17,10 +17,10 @@ class PemeriksaanSayaController extends Controller
             ->join('users as u', 'u.id', '=', 'p.idUser')
             ->where('dp.nomorPemeriksaan', '=', $id)
             ->paginate(10);
-    
+
         return view('pasien.detail-pemeriksaan-pasien', compact('detail'));
     }
-    
+
     public function showData(Request $request)
     {
         // Assuming you have some way of getting the logged-in user ID, let's say $loggedInUserId
@@ -39,5 +39,5 @@ class PemeriksaanSayaController extends Controller
         return view('pasien.list-pemeriksaan-pasien', ['data' => $data]);
     }
 
-    
+
 }

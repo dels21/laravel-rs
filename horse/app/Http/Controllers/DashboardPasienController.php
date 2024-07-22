@@ -13,6 +13,8 @@ class DashboardPasienController extends Controller
         $dataId = Auth::user()->id;
         $dataExists = Pasien::where('idUser', $dataId)->exists();
 
+        // dd($dataExists);
+
         return view('pasien.dashboard-pasien', ['dataExists' => $dataExists]);
     }
 

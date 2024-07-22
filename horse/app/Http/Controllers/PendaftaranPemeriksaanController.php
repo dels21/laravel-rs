@@ -48,12 +48,15 @@ class PendaftaranPemeriksaanController extends Controller
     {
         $dataId = Auth::user()->id;
         $dataExists = Pasien::where('idUser', $dataId)->exists();
+        $idPasien = Pasien::where('idUser', $dataId)->first();
+
+        // dd($idPasien);
         $pendaftaran = PendaftaranPemeriksaan::all();
         $joinJenisPemeriksaan = DB::table('master_jenis_pemeriksaan')
         ->select('*')
         ->get();
 
-        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists', 'joinJenisPemeriksaan'));
+        return view('pasien.form-pendaftaran-pemeriksaan', compact('pendaftaran', 'dataId', 'dataExists', 'joinJenisPemeriksaan', 'idPasien'));
     }
 
     public function create()
@@ -63,17 +66,17 @@ class PendaftaranPemeriksaanController extends Controller
 
     public function store(Request $request)
     {
+
+        $pasien = Pasien::where('idUser', Auth::user()->id)->firstOrFail();;
         $attachment = $request->file('attachment');
         $fileAttachment = time().".".$attachment->getClientOriginalExtension();
 
         $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
-        $pasien = Pasien::where('idUser', Auth::user()->id)->firstOrFail();
 
-        dd($request->all());
-        dd($pasien);
+        // dd($pasien);
         $pendaftaran = PendaftaranPemeriksaan::create([
             'idPasien' => $pasien->idPasien,
-            'namaDokterPengirim' => $request->namaDokterPengirimss,
+            'namaDokterPengirim' => $request->namaDokterPengirim,
             'attachment' => $fileAttachment,
             'tanggalDaftar' => $request->tanggalDaftar,
         ]);
@@ -88,7 +91,7 @@ class PendaftaranPemeriksaanController extends Controller
                 'kodeJenisPemeriksaan' => $jenisPemeriksaan,
                 'jamMulai' => $jamMulai,
                 'jamSelesai' => $jamSelesai,
-                'tanggalPemeriksaan' => $tanggalPemeriksaan,
+                'tanggalPendaftaranPemeriksaan' => $tanggalPemeriksaan,
             ]);
 
         }
