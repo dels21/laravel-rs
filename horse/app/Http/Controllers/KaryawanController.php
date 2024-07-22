@@ -247,8 +247,8 @@ class KaryawanController extends Controller
     public function acceptVerif(Request $request)
     {
         // dd($request->all());
-        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->update(['verifikasi', 1]);
 
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->update(['verifikasi' => 1]);
 
         $pemeriksaan = TransaksiPemeriksaan::create([
             'nomorPendaftaran' => $request->nomorPendaftaran,
