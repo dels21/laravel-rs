@@ -42,7 +42,6 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
-                            @foreach ($data as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$item->nomorPendaftaran}}</td>
@@ -53,7 +52,6 @@
                                 <td>{{$item->idKaryawanDokterRadiologi}}</td>
                                 <td><a href="{{ route('detail_pemeriksaan_karyawan', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                             </tr>
-                            @endforeach
                             @endforeach
                         </tbody>
                     </table>
