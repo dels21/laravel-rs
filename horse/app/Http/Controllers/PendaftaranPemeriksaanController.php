@@ -63,12 +63,13 @@ class PendaftaranPemeriksaanController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $attachment = $request->file('attachment');
         $fileAttachment = time().".".$attachment->getClientOriginalExtension();
 
         $pathFileLampiran = Storage::disk('public')->putFileAs('attachment', $attachment, $fileAttachment);
-        $pasien = Pasien::findOrFail(Auth::user()->id, 'idUser');
+        $pasien = Pasien::where('idUser', Auth::user()->id)->firstOrFail();
+
+        dd($request->all());
         dd($pasien);
         $pendaftaran = PendaftaranPemeriksaan::create([
             'idPasien' => $pasien->idPasien,
