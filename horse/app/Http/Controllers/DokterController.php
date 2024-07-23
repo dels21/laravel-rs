@@ -100,6 +100,17 @@ class DokterController extends Controller
         // dd($request->all());
         $dokter = Dokter::findOrFail($request->idDokter,);
 
+        $user = User::findOrFail($dokter->idUser);
+
+        // dd($user);
+
+        $updateData = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        $user->update($updateData);
+
         $dokter->update([
             'idKtp' => $request->idKtp,
             'jenisKelamin' => $request->jenisKelamin,
