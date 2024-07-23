@@ -14,6 +14,8 @@ class PasienController extends Controller
     {
         $user = User::findOrFail($request->idUser);
 
+        // dd($request->all());
+
         $pasien = Pasien::where('idUser', $request->idUser);
         $updateData = [
             'name' => $request->name,
@@ -23,6 +25,8 @@ class PasienController extends Controller
         $user->update($updateData);
         $pasien->update([
             'tempatLahir' =>$request->tempatLahir,
+            'statusPerkawinan' =>$request->statusPerkawinan,
+            'tipeIdentitas' =>$request->tipeIdentitas,
             'tanggalLahir' =>$request->tanggalLahir,
             'noIdentitas' =>$request->noIdentitas,
             'nomorRumah' =>$request->nomorRumah,
