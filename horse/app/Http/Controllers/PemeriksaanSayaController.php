@@ -23,17 +23,17 @@ class PemeriksaanSayaController extends Controller
             ->where('dp.nomorPemeriksaan', '=', $id)
             ->paginate(10);
 
-            
+
             return view('pasien.detail-pemeriksaan-pasien', compact('detail', 'dataExists'));
         }
-        
+
         public function showData(Request $request)
         {
             $dataId = Auth::user()->id;
             $dataExists = Pasien::where('idUser', $dataId)->exists();
             // Assuming you have some way of getting the logged-in user ID, let's say $loggedInUserId
-            $loggedInUserId = $request->user()->id; // This assumes you're using Laravel's authentication
-            
+            $loggedInUserId = Auth::user()->id;// This assumes you're using Laravel's authentication
+
             // Fetch the data using Eloquent relationships
             $data = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*')
             ->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
@@ -42,11 +42,11 @@ class PemeriksaanSayaController extends Controller
             // ->with('pendaftaranPemeriksaan.detailPendaftaran') // Eager load detailPendaftaran relationship
             ->where('u.id', '=', $loggedInUserId)
             ->paginate(10);
-            
-            
+
+
             // dd($data);
-            return view('pasien.list-pemeriksaan-pasien', ['data' => $data, 'dataExists' => $dataExists]);
+            return view('pasien.list-pemeriksaan-pasien', ['data' => $data, 'dataExists' => $dataExists, 'loggedInUserId' => $loggedInUserId]);
     }
 
-    
+
 }

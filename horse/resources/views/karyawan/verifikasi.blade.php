@@ -85,7 +85,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Pemeriksaan</th>
+                                <th>ID Pendaftaran</th>
                                 <th>Tanggal Pendaftaran</th>
                                 <th>ID Pasien</th>
                                 <th>Nama Pasien</th>

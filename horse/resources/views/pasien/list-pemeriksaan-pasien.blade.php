@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-{{-- 
+{{--
        <!-- Modal -->
     <div class="modal fade bd-example-modal-xl" id="myModal" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -73,9 +73,9 @@
         <h1 class="biggest-font mt-5 mb-5">Pemeriksaan Saya</h1>
         @if ($data->isEmpty())
             <p>Belum ada pemeriksaan.</p>
-            <p>{{ $loggedInUserId }}</p>
+            {{-- <p>{{ $loggedInUserId }}</p> --}}
             @else
-        <!-- DataTales Example -->  
+        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
@@ -83,7 +83,6 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>Diagnosis</th>
@@ -95,7 +94,6 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nomorPendaftaran }}</td>
                                     <td>{{ $item->nomorPemeriksaan }}</td>
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->diagnosis }}</td>

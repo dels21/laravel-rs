@@ -69,12 +69,12 @@ class PasienController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(int $userId, Request $request)
+    public function store(Request $request)
     {
         //
         // dd($request->all());
         Pasien::create([
-            'idUser' =>$userId,
+            'idUser' =>Auth::user()->id,
             'tempatLahir' =>$request->tempatLahir,
             'tanggalLahir' =>$request->tanggalLahir,
             'noIdentitas' =>$request->noIdentitas,
