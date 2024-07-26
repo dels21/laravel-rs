@@ -19,8 +19,9 @@
         <p>Belum ada detail pemeriksaan.</p>
     @else
         <div class="card shadow mb-4">
+            <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -51,4 +52,26 @@
         </div>
     @endif
 </div>
+</div>
+@endsection
+
+@section('customJS')
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/templating-assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/templating-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/templating-assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/templating-assets/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/templating-assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+
 @endsection

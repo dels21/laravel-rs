@@ -10,6 +10,9 @@
 @section('content')
 <form method="POST" action="{{ route('pasien.lengkapi-data-diri-submit') }}">
     @csrf
+
+    
+
     <div class="container ps-5 pe-5">
 
         {{-- No dan Tipe Identitas --}}
@@ -173,7 +176,7 @@
             </div>
         </div>
         {{-- End Kewarganegaraan dan Tanggal Daftar --}}
-        
+
         <div class="flex justify-content-center">
             <div class="d-flex items-center justify-content-center mt-4">
                 <button type="submit" class="btn btn-primary btn-lg mb-3">Submit</button>

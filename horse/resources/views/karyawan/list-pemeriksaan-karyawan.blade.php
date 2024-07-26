@@ -9,39 +9,35 @@
 
     <!-- Custom styles for this page -->
     <link href="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 @endsection
 
 @section('content')
+<div class="container-fluid">
 
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1 class="biggest-font mt-5 mb-5">Pemeriksaan</h1>
-
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+    <!-- Page Heading -->
+    <h1 class="biggest-font mt-5 mb-5">List Pemeriksaan Karyawan</h1>
+    @if ($data->isEmpty())
+        <p>Belum ada pemeriksaan.</p>
+        {{-- <p>{{ $loggedInUserId }}</p> --}}
+        @else
+    <!-- DataTales Example -->  
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No. Pendaftaran</th>
-                                <th>No. Pemeriksaan</th>
                                 <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>ID Pasien</th>
                                 <th>ID Karyawan Radiographer</th>
                                 <th>ID Karyawan Radiologi</th>
-                                <th>ID Karyawan Radiographer</th>
-                                <th>ID Karyawan Radiologi</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
                             @foreach ($data as $item)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
@@ -54,13 +50,12 @@
                                 <td><a href="{{ route('detail_pemeriksaan_karyawan', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                             </tr>
                             @endforeach
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
+        @endif
     </div>
     
     
@@ -112,7 +107,6 @@
     <script src="/templating-assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-  
-  
+    <script src="/templating-assets/js/demo/datatables-demo.js"></script>
 
 @endsection

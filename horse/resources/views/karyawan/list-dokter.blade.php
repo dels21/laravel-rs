@@ -26,10 +26,10 @@
                 style="width: 7.5rem;" id="addDokterBtn" data-toggle="modal" data-target="#myModal">
                 <i class="bi bi-plus-lg me-2"></i> Tambah
             </button>
-            <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
+            {{-- <button type="button" class="btn btn-danger mx-2 d-flex align-items-center justify-content-center"
                 style="width: 7.5rem;">
                 <i class="bi bi-trash3-fill me-2"></i> Hapus
-            </button>
+            </button> --}}
         </div>
 
         <!-- Modal -->

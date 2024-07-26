@@ -22,10 +22,10 @@ class PemeriksaanDokterController extends Controller
             ->join('users as u', 'u.id', '=', 'p.idUser')
             ->where('dp.nomorPemeriksaan', '=', $id)
             ->paginate(10);
-    
+
         return view('dokter.detail-pemeriksaan-dokter', compact('detail'));
     }
-    
+
     public function showData()
     {
         // Assuming you have some way of getting the logged-in user ID, let's say $loggedInUserId
@@ -40,9 +40,9 @@ class PemeriksaanDokterController extends Controller
                 ->join('dokter as d', 'd.idDokter', '=', 'transaksi_pemeriksaan.idKaryawanDokterRadiologi')
                 ->join('users as u', 'u.id', '=', 'p.idUser')
                 // ->with('pendaftaranPemeriksaan.detailPendaftaran') // Eager load detailPendaftaran relationship
-                ->where('d.idUser', $loggedInUserId) 
+                ->where('d.idUser', $loggedInUserId)
                 ->paginate(10);
-        
+
         // dd($data);
         return view('dokter.list-pemeriksaan-dokter', compact('data', 'loggedInUserId'));
     }
@@ -75,10 +75,12 @@ class PemeriksaanDokterController extends Controller
     $id = $request->input('id');
 
     $detailPemeriksaan = DetailPemeriksaan::find($id);
+
+    // dd($detailPemeriksaan);
     if ($detailPemeriksaan) {
         $detailPemeriksaan->keterangan = $hasilPemeriksaan;
         $detailPemeriksaan->save();
-        return redirect()->back()->with('success', 'Hasil pemeriksaan berhasil diperbarui.');
+        return redirect()->route('detail_pemeriksaan_dokter', $detailPemeriksaan->nomorPemeriksaan)->with('success', 'Hasil pemeriksaan berhasil diperbarui.');
     }
 }
 
