@@ -23,7 +23,6 @@ class PemeriksaanSayaController extends Controller
             ->where('dp.nomorPemeriksaan', '=', $id)
             ->paginate(10);
 
-
             return view('pasien.detail-pemeriksaan-pasien', compact('detail', 'dataExists'));
         }
 

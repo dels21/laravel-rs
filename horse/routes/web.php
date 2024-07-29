@@ -110,6 +110,10 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
 
         Route::get('/list-pemeriksaan', [ListPemeriksaanKaryawanController::class, 'index']);
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [ListPemeriksaanKaryawanController::class, 'showDetail'])->name('detail_pemeriksaan_karyawan');
+
+        Route::post('/update-status', [ListPemeriksaanKaryawanController::class, 'updateStatus'])->name('update_status');
+        Route::post('/update-diagnosis-keterangan', [ListPemeriksaanKaryawanController::class, 'updateDiagnosisKeterangan'])->name('update_diagnosis_keterangan');
+
     });
 });
 
