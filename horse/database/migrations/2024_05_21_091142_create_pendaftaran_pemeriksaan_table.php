@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('attachment');
             $table->date('tanggalDaftar');
             $table->string('modalitas');
-            $table->bool('verifikasi')->default(0);
+            $table->integer('verifikasi')->default(0);
 
             $table->timestamps();
         });

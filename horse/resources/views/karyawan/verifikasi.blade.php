@@ -109,6 +109,39 @@
             </div>
         </div>
 
+
+        <h4 class=" mt-5 mb-5">Pendaftaran Tertolak</h4>
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID Pendaftaran</th>
+                                <th>Tanggal Pendaftaran</th>
+                                <th>ID Pasien</th>
+                                <th>Nama Pasien</th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pendaftaranTertolak as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nomorPendaftaran }}</td>
+                                    <td>{{ $item->tanggalDaftar }}</td>
+                                    <td>{{ $item->idPasien }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td class="detail-link"><a href="{{ route('detail_verifikasi', $item->nomorPendaftaran) }}">Detail</a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- /.container-fluid -->
 

@@ -215,10 +215,10 @@ class KaryawanController extends Controller
         // <th>Detail</th>
 
         $pendaftaran = PendaftaranPemeriksaan::join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')->join('users', 'pasien.idUser', '=', 'users.id')->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')->where('pendaftaran_pemeriksaan.verifikasi', 0)->get();
-
+        $pendaftaranTertolak = PendaftaranPemeriksaan::join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')->join('users', 'pasien.idUser', '=', 'users.id')->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')->where('pendaftaran_pemeriksaan.verifikasi', -1)->get();
         // dd($pendaftaran);
 
-        return view('karyawan.verifikasi', compact('pendaftaran'));
+        return view('karyawan.verifikasi', compact('pendaftaran', 'pendaftaranTertolak'));
     }
 
     public function detailverifikasi($nomorPendaftaran)
@@ -251,22 +251,25 @@ class KaryawanController extends Controller
         // nomorPemeriksaan (FK ke table transaksi_pemeriksaan)	bigint auto increment
         // ruangan	varchar
         // statusKetersediaan	enum ( approve, reject)
-        foreach ($request->ruangan as $key => $ruangan) {
-            $statusKetersediaan = $request->statusKetersediaan[$key];
+        if($request->ruangan){
+            foreach ($request->ruangan as $key => $ruangan) {
+                $statusKetersediaan = $request->statusKetersediaan[$key];
 
-            DetailPemeriksaan::create([
-                'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
-                'ruangan' => $ruangan,
-                'statusKetersediaan' => $statusKetersediaan,
-            ]);
-        }
+                DetailPemeriksaan::create([
+                    'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
+                    'ruangan' => $ruangan,
+                    'statusKetersediaan' => $statusKetersediaan,
+                ]);
+            }
+
+        };
 
         return redirect()->route('verifikasi');
     }
 
     public function rejectVerif(Request $request)
     {
-        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->delete();
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->update(['verifikasi' => -1]);
         return redirect()->route('verifikasi');
     }
 
