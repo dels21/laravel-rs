@@ -46,11 +46,12 @@ class PasienController extends Controller
 
 
      public function pasienFromUser(){
+        $role = Auth::user()->role;
         $usersWithPasien = User::join('pasien', 'users.id', '=', 'pasien.idUser')
             ->where('users.role', 'pasien')
             ->get(['users.*', 'pasien.*']);
 
-        return view('karyawan.list-pasien', compact('usersWithPasien'));
+        return view("$role.list-pasien", compact('usersWithPasien'));
      }
     public function index()
     {

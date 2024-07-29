@@ -74,9 +74,6 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
         Route::post('/store-dokter', [DokterController::class, 'store'])->name('store_dokter');
         Route::delete('/delete-dokter', [DokterController::class, 'destroy'])->name('destroy_dokter');
 
-        // Route::get('/list-pasien', function () {
-        //     return view('karyawan.list-pasien');
-        // });
         Route::get('/list-pasien', [PasienController::class, 'pasienFromUser'])->name('show_list_pasien');
         Route::post('/store-pasien', [KaryawanController::class, 'store_pasien'])->name('store_pasien');
         Route::post('/delete-pasien', [KaryawanController::class, 'destroy_pasien'])->name('destroy_pasien');
@@ -144,6 +141,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/delete-karyawan', [KaryawanController::class, 'destroy_karyawan'])->name('destroy_karyawan');
 
         Route::post('/update-karyawan', [KaryawanController::class, 'update_karyawan'])->name('update_karyawan');
+
+        Route::get('/list-dokter', [DokterController::class, 'dokterFromUser'])->name('show_list_dokter_admin');
+        Route::post('/update-dokter', [DokterController::class, 'update'])->name('update_dokter_admin');
+        Route::post('/store-dokter', [DokterController::class, 'store'])->name('store_dokter_admin');
+        Route::delete('/delete-dokter', [DokterController::class, 'destroy'])->name('destroy_dokter_admin');
+
+        Route::get('/list-pasien', [PasienController::class, 'pasienFromUser'])->name('show_list_pasien_admin');
+        Route::post('/store-pasien', [KaryawanController::class, 'store_pasien'])->name('store_pasien_admin');
+        Route::post('/delete-pasien', [KaryawanController::class, 'destroy_pasien'])->name('destroy_pasien_admin');
+        Route::post('/edit-pasien', [PasienController::class, 'update_pasien'])->name('edit_pasien_admin');
+
+
     });
 });
 
@@ -158,21 +167,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'karyawan'])->group(function () {
 
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+    Route::prefix('karyawan')->group(function () {
 
-require __DIR__ . '/auth.php';
-
-
-
-Route::get('/', function () {
-    return view('welcome');
+    });
 });
 
 
 
-Route::middleware('guest')->group(function(){
 
+
+
+
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+require __DIR__ . '/auth.php';
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::middleware('guest')->group(function(){
 
 })
 

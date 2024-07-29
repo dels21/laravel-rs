@@ -31,8 +31,9 @@ class DokterController extends Controller
             ->where('users.role', 'dokter')
             ->get(['users.*', 'dokter.*']);
         // dd($dokterFromUser->all());
+        $role = Auth::user()->role;
 
-        return view('karyawan.list-dokter', compact('dokterFromUser'));
+        return view("$role.list-dokter", compact('dokterFromUser'));
     }
     /**
      * Show the form for creating a new resource.
@@ -98,6 +99,7 @@ class DokterController extends Controller
         //
 
         // dd($request->all());
+        $role = Auth::user()->role;
         $dokter = Dokter::findOrFail($request->idDokter,);
 
         $user = User::findOrFail($dokter->idUser);

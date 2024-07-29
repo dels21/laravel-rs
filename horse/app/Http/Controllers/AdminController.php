@@ -71,7 +71,7 @@ class AdminController extends Controller
     {
 
         $pasienController = new PasienController();
-        $karyawanController = new KaryawanController();
+        $karyawanController = new KaryawanController($pasienController);
         $dokterController = new DokterController();
         $pemeriksaanController = new TransaksiPemeriksaanController();
 
