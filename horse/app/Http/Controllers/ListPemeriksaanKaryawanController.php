@@ -18,12 +18,29 @@ class ListPemeriksaanKaryawanController extends Controller
     {
         DB::statement("SET sql_mode = ''");
         $data = DB::table('transaksi_pemeriksaan as tp')
-        ->select('tp.*', 'pp.*', 'tp.tanggalPemeriksaan', 'dp.jamMulaiPemeriksaanAlat', 'dp.jamSelesaiPemeriksaanAlat', 'dp.ruangan')
-        ->join('pendaftaran_pemeriksaan as pp', 'tp.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
-        ->leftJoin('detail_pemeriksaan as dp', 'tp.nomorPemeriksaan', '=', 'dp.nomorPemeriksaan')
-        ->groupBy('tp.nomorPemeriksaan')
-        ->get();
+            ->join('pendaftaran_pemeriksaan as pp', 'tp.nomorPendaftaran', '=', 'pp.nomorPendaftaran')
+            ->leftJoin('detail_pemeriksaan as dp', 'tp.nomorPemeriksaan', '=', 'dp.nomorPemeriksaan')
+            ->groupBy('tp.nomorPemeriksaan')
+            ->join('karyawan as k', 'k.idKaryawan', '=', 'tp.idKaryawanRadiografer')
+            ->join('dokter as d', 'd.idDokter', '=', 'tp.idKaryawanDokterRadiologi')
+            ->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')
+            ->join('users as u_karyawan', 'u_karyawan.id', '=', 'k.idUser')
+            ->join('users as u_dokter', 'u_dokter.id', '=', 'd.idUser')
+            ->join('users as u_pasien', 'u_pasien.id', '=', 'p.idUser')
+            ->select(
+                'tp.*',
+                'pp.*',
+                'tp.tanggalPemeriksaan',
+                'dp.jamMulaiPemeriksaanAlat',
+                'dp.jamSelesaiPemeriksaanAlat',
+                'dp.ruangan',
+                'u_karyawan.name as karyawan_name',
+                'u_dokter.name as dokter_name',
+                'u_pasien.name as pasien_name'
+            )
+            ->get();
 
+        // dd($data);
         return view('karyawan.list-pemeriksaan-karyawan', compact('data'));
     }
 
