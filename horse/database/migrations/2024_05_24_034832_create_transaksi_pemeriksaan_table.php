@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId("idKaryawanDokterRadiologi")->constrained("dokter",'idDokter')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date("tanggalPemeriksaan")->nullable();
             $table->text("keterangan")->nullable();
+            $table->text("diagnosis")->nullable();
             $table->timestamps();
         });
     }

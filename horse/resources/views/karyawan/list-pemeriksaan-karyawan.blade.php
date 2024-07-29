@@ -43,7 +43,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$item->nomorPendaftaran}}</td>
                                 <td>{{$item->nomorPemeriksaan}}</td>
-                                <td>{{$item->tanggalPemeriksaan}}</td>
+                                <td>{{$item->tanggalDaftar}}</td>
                                 <td>{{$item->pasien_name}}</td>
                                 <td>{{$item->karyawan_name}}</td>
                                 <td>{{$item->dokter_name}}</td>
