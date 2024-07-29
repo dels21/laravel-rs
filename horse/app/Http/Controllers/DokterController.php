@@ -48,7 +48,7 @@ class DokterController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -71,7 +71,9 @@ class DokterController extends Controller
             'nomorHp' => $request->nomorHp,
             'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
-
+        if(Auth::user()->role == "admin"){
+            return redirect()->route('show_list_dokter_admin')->with('success', 'Dokter berhasil ditambahkan');
+        }
         return redirect()->route('show_list_dokter')->with('success', 'Dokter berhasil ditambahkan');
     }
 
@@ -122,6 +124,10 @@ class DokterController extends Controller
             'nomorHp' => $request->nomorHp,
             'nomorTelpRumah' => $request->nomorTelpRumah
         ]);
+        if(Auth::user()->role == "admin"){
+            return redirect()->route('show_list_dokter_admin')->with('success', 'Dokter berhasil diupdate');
+        }
+
 
         return redirect()->route('show_list_dokter')->with('success', 'Dokter berhasil diupdate');
     }
@@ -136,6 +142,10 @@ class DokterController extends Controller
 
         $dokter->delete();
         $user->delete();
+
+        if(Auth::user()->role == "admin"){
+            return redirect()->route('show_list_dokter_admin')->with('success', 'Dokter berhasil dihapus');
+        }
 
         return redirect()->route('show_list_dokter')->with('success', 'Dokter berhasil dihapus');
     }

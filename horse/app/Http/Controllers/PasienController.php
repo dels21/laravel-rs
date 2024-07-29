@@ -39,8 +39,9 @@ class PasienController extends Controller
             'tinggiBadan' =>$request->tinggiBadan,
             'beratBadan' =>$request->beratBadan
         ]);
-
-
+        if(Auth::user()->role == "admin"){
+            return redirect()->route('show_list_pasien_admin')->with('success','Pasien berhasil diupdate');
+        }
         return redirect()->route('show_list_pasien')->with('success','Pasien berhasil diupdate');
     }
 
@@ -70,12 +71,12 @@ class PasienController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(int $userId, Request $request)
     {
         //
         // dd($request->all());
         Pasien::create([
-            'idUser' =>Auth::user()->id,
+            'idUser' => $userId,
             'tempatLahir' =>$request->tempatLahir,
             'tanggalLahir' =>$request->tanggalLahir,
             'noIdentitas' =>$request->noIdentitas,
