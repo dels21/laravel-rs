@@ -20,7 +20,7 @@
         <p>Belum ada pemeriksaan.</p>
         {{-- <p>{{ $loggedInUserId }}</p> --}}
         @else
-    <!-- DataTales Example -->  
+    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -31,9 +31,9 @@
                                 <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>ID Pasien</th>
-                                <th>ID Karyawan Radiographer</th>
-                                <th>ID Karyawan Radiologi</th>
+                                <th>Nama Pasien</th>
+                                <th>Nama Karyawan</th>
+                                <th>Nama Dokter</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -43,10 +43,10 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$item->nomorPendaftaran}}</td>
                                 <td>{{$item->nomorPemeriksaan}}</td>
-                                <td>{{$item->tanggalPemeriksaan}}</td>
-                                <td>{{$item->idPasien}}</td>
-                                <td>{{$item->idKaryawanRadiografer}}</td>
-                                <td>{{$item->idKaryawanDokterRadiologi}}</td>
+                                <td>{{$item->tanggalDaftar}}</td>
+                                <td>{{$item->pasien_name}}</td>
+                                <td>{{$item->karyawan_name}}</td>
+                                <td>{{$item->dokter_name}}</td>
                                 <td><a href="{{ route('detail_pemeriksaan_karyawan', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                             </tr>
                             @endforeach
@@ -55,10 +55,11 @@
                 </div>
             </div>
         </div>
+
         @endif
     </div>
-    
-    
+
+
     <!-- /.container-fluid -->
 
 @endsection
@@ -76,7 +77,7 @@
                 }
             });
         }
-        
+
     </script>
     <script>
         function showDetail(id){
@@ -90,7 +91,7 @@
                 }
             });
         }
-        
+
     </script>
     <!-- Bootstrap core JavaScript-->
     <script src="/templating-assets/vendor/jquery/jquery.min.js"></script>

@@ -27,6 +27,16 @@
                             <span>Karyawan</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/list-pasien">
+                            <span>Pasien</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/list-dokter">
+                            <span>Dokter</span>
+                        </a>
+                    </li>
                 </ul>
             </li><!-- End List Data -->
         @endif

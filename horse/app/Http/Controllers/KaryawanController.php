@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class KaryawanController extends Controller
 {
@@ -27,7 +28,6 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-
         $karyawan = Karyawan::all();
 
         return view('isi_nanti', compact('karyawan'));
@@ -54,10 +54,9 @@ class KaryawanController extends Controller
             'alamat' => $request->alamat,
             'kota' => $request->kota,
             'nomorHp' => $request->nomorHp,
-            'nomorTelpRumah' => $request->nomorTelpRumah
+            'nomorTelpRumah' => $request->nomorTelpRumah,
         ]);
     }
-
 
     /**
      * Display the specified resource.
@@ -90,7 +89,7 @@ class KaryawanController extends Controller
             'alamat' => $request->alamat,
             'kota' => $request->kota,
             'nomorHp' => $request->nomorHp,
-            'nomorTelpRumah' => $request->nomorTelpRumah
+            'nomorTelpRumah' => $request->nomorTelpRumah,
         ]);
 
         return redirect()->route('isi_nanti')->with('success', 'Karyawan berhasil diupdate');
@@ -114,16 +113,16 @@ class KaryawanController extends Controller
 
         $user->update($updateData);
         $karyawan->update([
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah,
         ]);
 
-        return redirect()->route('show-list-karyawan')->with('success','Karyawan berhasil diupdate');
+        return redirect()->route('show-list-karyawan')->with('success', 'Karyawan berhasil diupdate');
     }
     public function store_pasien(Request $request)
     {
@@ -136,6 +135,10 @@ class KaryawanController extends Controller
         ]);
 
         $this->pasienController->store($user->id, $request);
+
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('show_list_pasien_admin')->with('success', 'Pasien berhasil ditambahkan');
+        }
 
         return redirect()->route('show_list_pasien')->with('success', 'Pasien berhasil ditambahkan');
     }
@@ -167,7 +170,6 @@ class KaryawanController extends Controller
         $totalKaryawan = $this->getTotalKaryawan();
         $pemeriksaanTerbaru = $pemeriksaanController->recentPemeriksaan();
 
-
         return view('karyawan.dashboard-karyawan', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'pemeriksaanTerbaru'));
     }
     public function destroy_karyawan(Request $request)
@@ -187,6 +189,11 @@ class KaryawanController extends Controller
 
         $pasien->delete();
         $user->delete();
+
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('show_list_pasien')->with('success', 'Pasien berhasil dihapus');
+        }
+
         return redirect()->route('show_list_pasien')->with('success', 'Pasien berhasil dihapus');
     }
 
@@ -201,43 +208,29 @@ class KaryawanController extends Controller
 
     public function verifikasi()
     {
-
         // <th>ID Pemeriksaan</th>
         // <th>Tanggal Pendaftaran</th>
         // <th>ID Pasien</th>
         // <th>Nama Pasien</th>
         // <th>Detail</th>
 
-        $pendaftaran = PendaftaranPemeriksaan::join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
-            ->join('users', 'pasien.idUser', '=', 'users.id')
-            ->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')
-            ->where('pendaftaran_pemeriksaan.verifikasi', 0)
-            ->get();
-
+        $pendaftaran = PendaftaranPemeriksaan::join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')->join('users', 'pasien.idUser', '=', 'users.id')->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')->where('pendaftaran_pemeriksaan.verifikasi', 0)->get();
+        $pendaftaranTertolak = PendaftaranPemeriksaan::join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')->join('users', 'pasien.idUser', '=', 'users.id')->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')->where('pendaftaran_pemeriksaan.verifikasi', -1)->get();
         // dd($pendaftaran);
 
-        return view('karyawan.verifikasi', compact('pendaftaran'));
+        return view('karyawan.verifikasi', compact('pendaftaran', 'pendaftaranTertolak'));
     }
 
     public function detailverifikasi($nomorPendaftaran)
     {
         // dd($nomorPendaftaran);
-        $pendaftaran = PendaftaranPemeriksaan::where('pendaftaran_pemeriksaan.nomorPendaftaran', $nomorPendaftaran)
-            ->join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')
-            ->join('users', 'pasien.idUser', '=', 'users.id')
-            ->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')
-            ->first();
+        $pendaftaran = PendaftaranPemeriksaan::where('pendaftaran_pemeriksaan.nomorPendaftaran', $nomorPendaftaran)->join('pasien', 'pendaftaran_pemeriksaan.idPasien', '=', 'pasien.idPasien')->join('users', 'pasien.idUser', '=', 'users.id')->select('pendaftaran_pemeriksaan.nomorPendaftaran', 'users.name', 'pendaftaran_pemeriksaan.tanggalDaftar', 'pasien.idPasien')->first();
 
         // dd($pendaftaran);
 
-        $detailpemeriksaan = DetailPendaftaranPemeriksaan::where('detail_pendaftaran.noPendaftaran', $nomorPendaftaran)
-            ->join('master_jenis_pemeriksaan as mjp', 'mjp.kodeJenisPemeriksaan', '=', 'detail_pendaftaran.kodeJenisPemeriksaan')
-            ->select('mjp.namaJenisPemeriksaan')
-            ->get();
+        $detailpemeriksaan = DetailPendaftaranPemeriksaan::where('detail_pendaftaran.noPendaftaran', $nomorPendaftaran)->join('master_jenis_pemeriksaan as mjp', 'mjp.kodeJenisPemeriksaan', '=', 'detail_pendaftaran.kodeJenisPemeriksaan')->select('mjp.namaJenisPemeriksaan')->get();
 
-        $dokter = Dokter::join('users', 'dokter.idUser', '=', 'users.id')
-            ->select('*')
-            ->get();
+        $dokter = Dokter::join('users', 'dokter.idUser', '=', 'users.id')->select('*')->get();
 
         // dd($dokter);
         // dd($detailpemeriksaan);
@@ -258,22 +251,25 @@ class KaryawanController extends Controller
         // nomorPemeriksaan (FK ke table transaksi_pemeriksaan)	bigint auto increment
         // ruangan	varchar
         // statusKetersediaan	enum ( approve, reject)
-        foreach ($request->ruangan as $key => $ruangan) {
-            $statusKetersediaan = $request->statusKetersediaan[$key];
+        if($request->ruangan){
+            foreach ($request->ruangan as $key => $ruangan) {
+                $statusKetersediaan = $request->statusKetersediaan[$key];
 
-            DetailPemeriksaan::create([
-                'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
-                'ruangan' => $ruangan,
-                'statusKetersediaan' => $statusKetersediaan,
-            ]);
-        }
+                DetailPemeriksaan::create([
+                    'nomorPemeriksaan' => $pemeriksaan->nomorPemeriksaan,
+                    'ruangan' => $ruangan,
+                    'statusKetersediaan' => $statusKetersediaan,
+                ]);
+            }
+
+        };
 
         return redirect()->route('verifikasi');
     }
 
     public function rejectVerif(Request $request)
     {
-        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->delete();
+        $pendaftaran = PendaftaranPemeriksaan::where('nomorPendaftaran', $request->nomorPendaftaran)->update(['verifikasi' => -1]);
         return redirect()->route('verifikasi');
     }
 
@@ -285,21 +281,20 @@ class KaryawanController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role'=>'karyawan'
+            'role' => 'karyawan',
         ]);
 
         Karyawan::create([
-            'idUser'=>$user->id,
-            'idKtp'=>$request->idKtp,
-            'jenisKelamin'=>$request->jenisKelamin,
-            'tanggalLahir'=>$request->tanggalLahir,
-            'alamat'=>$request->alamat,
-            'kota'=>$request->kota,
-            'nomorHp'=>$request->nomorHp,
-            'nomorTelpRumah'=>$request->nomorTelpRumah
+            'idUser' => $user->id,
+            'idKtp' => $request->idKtp,
+            'jenisKelamin' => $request->jenisKelamin,
+            'tanggalLahir' => $request->tanggalLahir,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'nomorHp' => $request->nomorHp,
+            'nomorTelpRumah' => $request->nomorTelpRumah,
         ]);
 
-        return redirect(route('show-list-karyawan', absolute:false));
+        return redirect(route('show-list-karyawan', absolute: false));
     }
-
 }
