@@ -30,7 +30,7 @@
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
-                                <th>Tanggal Pemeriksaan</th>
+                                <th>Tanggal Pendaftaran</th>
                                 <th>Nama Pasien</th>
                                 <th>Nama Karyawan</th>
                                 <th>Nama Dokter</th>

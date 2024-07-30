@@ -42,7 +42,7 @@ Route::middleware(['auth', 'pasien'])->group(function () {
         // Route::get('/detail-pemeriksaan/{id}', [PemeriksaanSayaController::class,'showDetail'])->name('detail_pemeriksaan_pasien');
         Route::get('/detail-pemeriksaan/{nomorPemeriksaan}', [PemeriksaanSayaController::class, 'showDetail'])->name('detail_pemeriksaan_pasien');
     });
-});
+});  
 
 Route::middleware(['auth', 'dokter'])->group(function () {
     Route::prefix('/dokter')->group(function () {

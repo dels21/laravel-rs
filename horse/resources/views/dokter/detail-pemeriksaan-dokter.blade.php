@@ -19,7 +19,7 @@
 
         <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Detail Pemeriksaan Dokter</h1>
-        @if ($detail->isEmpty())
+        @if ($detailPemeriksaan->isEmpty())
             <p>Belum ada detail pemeriksaan.</p>
             {{-- <p>{{ $loggedInUserId }}</p> --}}
             @else
@@ -32,7 +32,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>No. Pemeriksaan</th>
-                                <th>Tanggal Pemeriksaan</th>
+                                <th>Jenis Pemeriksaan</th>
                                 <th>Nama Pasien</th>
                                 <th>Diagnosis</th>
                                 <th>Keterangan</th>
@@ -41,12 +41,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($detail as $item)
+                            @foreach ($detailPemeriksaan as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nomorPemeriksaan }}</td>
-                                <td>{{ $item->tanggalPemeriksaan }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $detailPendaftaran[$loop->iteration-1]->namaJenisPemeriksaan }}</td>
+                                <td>{{ $detailPendaftaran[$loop->iteration-1]->name }}</td>
                                 <td>{{ $item->diagnosis }}</td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td>{{ $item->status }}</td>

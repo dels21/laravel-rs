@@ -33,7 +33,7 @@
                                 <th>No</th>
                                 <th>No. Pendaftaran</th>
                                 <th>No. Pemeriksaan</th>
-                                <th>Tanggal Pemeriksaan</th>
+                                <th>Tanggal Daftar</th>
                                 <th>Nama Pasien</th>
                                 <th>Action</th>
                             </tr>
@@ -44,7 +44,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nomorPendaftaran }}</td>
                                     <td>{{ $item->nomorPemeriksaan }}</td>
-                                    <td>{{ $item->tanggalPemeriksaan }}</td>
+                                    <td>{{ $item->tanggalDaftar }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td><a href="{{ route('detail_pemeriksaan_dokter', $item->nomorPemeriksaan) }}" class="btn btn-info">Detail</a></td>
                                 </tr>
