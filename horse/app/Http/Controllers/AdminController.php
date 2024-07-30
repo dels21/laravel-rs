@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Middleware\Karyawan;
 use App\Models\Admin;
+use App\Models\Pasien;
 use App\Models\TransaksiPemeriksaan;
 use Illuminate\Http\Request;
 
@@ -71,14 +72,14 @@ class AdminController extends Controller
     {
 
         $pasienController = new PasienController();
-        $karyawanController = new KaryawanController();
+        $karyawanController = new KaryawanController($pasienController);
         $dokterController = new DokterController();
         $pemeriksaanController = new TransaksiPemeriksaanController();
 
         $totalPasien = $pasienController->getTotalPasien();
         $totalDokter = $dokterController->getTotalDokter();
         $totalKaryawan = $karyawanController->getTotalKaryawan();
-        $transaksiPemeriksaan = TransaksiPemeriksaan::all();
+        $transaksiPemeriksaan = $pemeriksaanController->recentPemeriksaan();
 
         // dd($transaksiPemeriksaan);
         return view('admin.dashboard-admin', compact('totalPasien', 'totalDokter', 'totalKaryawan', 'transaksiPemeriksaan'));

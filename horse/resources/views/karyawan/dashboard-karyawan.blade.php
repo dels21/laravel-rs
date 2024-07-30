@@ -82,23 +82,23 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>ID Pasien</th>
-                                <th>ID Dokter</th>
-                                <th>ID Radiografer</th>
-                                <th>No Pendaftaran</th>
-                                <th>No Pemeriksaan</th>
+                                <th>Nama Pasien</th>
+                                <th>Nama Dokter</th>
+                                <th>Nama Radiografer</th>
+                                <th>Nomor Pendaftaran</th>
+                                <th>Nomor Pemeriksaan</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pemeriksaanTerbaru as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->tanggal }}</td>
-                                    <td>{{ $item->idPasien }}</td>
-                                    <td>{{ $item->idDokter }}</td>
-                                    <td>{{ $item->idRadio }}</td>
-                                    <td>{{ $item->noPendaftaran }}</td>
-                                    <td>{{ $item->noPemeriksaan }}</td>
+                                    <td>{{ $item->tanggalPemeriksaan }}</td>
+                                    <td>{{ $item->namaPasien }}</td>
+                                    <td>{{ $item->namaDokter }}</td>
+                                    <td>{{ $item->namaKaryawan }}</td>
+                                    <td>{{ $item->nomorPendaftaran }}</td>
+                                    <td>{{ $item->nomorPemeriksaan }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

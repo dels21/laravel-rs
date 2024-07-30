@@ -81,10 +81,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No Pemeriksaan</th>
-                                <th>No Pendaftaran</th>
-                                <th>ID Karyawan</th>
-                                <th>ID Radiografer</th>
+                                <th>Nomor Pemeriksaan</th>
+                                <th>Nomor Pendaftaran</th>
+                                <th>Nama Karyawan</th>
+                                <th>Nama Radiografer</th>
                                 <th>Nama Dokter Pengirim</th>
                                 <th>Tanggal Pemeriksaan</th>
                                 <th>Keterangan</th>
@@ -96,8 +96,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nomorPemeriksaan }}</td>
                                     <td>{{ $item->nomorPendaftaran }}</td>
-                                    <td>{{ $item->idKaryawanRadiografer }}</td>
-                                    <td>{{ $item->idKaryawanDokterRadiologi }}</td>
+                                    <td>{{ $item->namaKaryawan }}</td>
+                                    <td>{{ $item->namaDokter }}</td>
                                     <td>{{ $item->namaDokterPengirim }}</td>
                                     <td>{{ $item->tanggalPemeriksaan }}</td>
                                     <td>{{ $item->keterangan }}</td>

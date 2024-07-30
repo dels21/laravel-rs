@@ -161,7 +161,7 @@ class DokterController extends Controller
         $pemeriksaanMenunggu = $pemeriksaanController->countPemeriksaanMenunggu($user->id);
         $pemeriksaanBerjalan = $pemeriksaanController->countPemeriksaanBerjalan($user->id);
         $pemeriksaanTerbaru = $pemeriksaanController->recentPemeriksaan($user->id);
-
+    
 
         return view('dokter.dashboard-dokter', compact('pemeriksaanSelesai', 'pemeriksaanMenunggu', 'pemeriksaanBerjalan', 'pemeriksaanTerbaru'));
     }

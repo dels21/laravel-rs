@@ -104,20 +104,34 @@ class TransaksiPemeriksaanController extends Controller
     {
         $data = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
             ->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')
-            ->orderBy('transaksi_pemeriksaan.tanggalPemeriksaan', 'desc') // Use orderBy instead of order
+            ->join('dokter', 'dokter.idDokter', '=', 'transaksi_pemeriksaan.idKaryawanDokterRadiologi')
+            ->join('users as dokter_users', function ($join) {
+                $join->on('dokter_users.id', '=', 'dokter.idUser')
+                    ->where('dokter_users.role', 'dokter');
+            })
+            ->join('pasien', 'pasien.idPasien', '=', 'pendaftaran_pemeriksaan.idPasien')
+            ->join('users as pasien_users', function ($join) {
+                $join->on('pasien_users.id', '=', 'pasien.idUser')
+                    ->where('pasien_users.role', 'pasien');
+            })
+            ->join('karyawan', 'karyawan.idKaryawan', '=', 'transaksi_pemeriksaan.idKaryawanRadiografer')
+            ->join('users as karyawan_users', function ($join) {
+                $join->on('karyawan_users.id', '=', 'karyawan.idUser')
+                    ->where('karyawan_users.role', 'karyawan');
+            })
+            ->orderBy('transaksi_pemeriksaan.tanggalPemeriksaan', 'desc')
             ->take(10)
             ->get([
-                'transaksi_pemeriksaan.nomorPendaftaran as noPendaftaran',
-                'transaksi_pemeriksaan.nomorPemeriksaan as noPemeriksaan',
-                'transaksi_pemeriksaan.tanggalPemeriksaan as tanggal',
-                'pendaftaran_pemeriksaan.idPasien as idPasien',
-                'transaksi_pemeriksaan.idKaryawanRadiografer as idRadio',
-                'transaksi_pemeriksaan.idKaryawanDokterRadiologi as idDokter',
-                'detail_pemeriksaan.jamMulaiPemeriksaanAlat as jamMulai',
-                'detail_pemeriksaan.jamSelesaiPemeriksaanAlat as jamSelesai',
-                'detail_pemeriksaan.ruangan as ruangan',
-                'detail_pemeriksaan.status as status'
+                'transaksi_pemeriksaan.nomorPendaftaran',
+                'transaksi_pemeriksaan.nomorPemeriksaan',
+                'transaksi_pemeriksaan.tanggalPemeriksaan',
+                'transaksi_pemeriksaan.keterangan',
+                'pendaftaran_pemeriksaan.namaDokterPengirim',
+                'dokter_users.name as namaDokter',
+                'pasien_users.name as namaPasien',
+                'karyawan_users.name as namaKaryawan'
             ]);
+            // dd($data);
 
         return $data;
     }
