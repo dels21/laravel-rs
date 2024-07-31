@@ -9,5 +9,5 @@ class DetailHasilPemeriksaanRadiologi extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'detailhasilpemeriksaanradiologi';
+    protected $table = 'detail_hasil_pemeriksaan_radiologi';
 }

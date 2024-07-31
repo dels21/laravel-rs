@@ -41,6 +41,7 @@
 </div>
 <form action="{{ route('update.diagnosis') }}" method="POST">
     @csrf
+    <input type="hidden" name="nomorPemeriksaan" value="{{ $detail->nomorPemeriksaan }}">
     <input type="hidden" name="idDetailPemeriksaan" value="{{ $detail->idDetailPemeriksaan }}">
     <input type="hidden" name="tanggalLaporan" value="{{ date('Y-m-d') }}">
 
@@ -121,7 +122,7 @@
                 <h6>Hasil Pemeriksaan</h6>
             </label>
             <div class="col-sm-10">
-                <textarea type="text" class="form-control" id="hasilPemeriksaan" name="hasilPemeriksaan" style="height: 10rem"></textarea>
+                <textarea type="text" class="form-control" id="hasilPemeriksaan" name="laporan" style="height: 10rem"></textarea>
             </div>
         </div>
         <div class="position-relative">

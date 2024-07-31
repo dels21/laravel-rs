@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('hasil_pemeriksaan_radiologi', function (Blueprint $table) {
             $table->id("idHasilPemeriksaan");
             $table->foreignId("nomorPemeriksaan")->constrained("transaksi_pemeriksaan",'nomorPemeriksaan')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId("idKaryawan")->constrained("karyawan",'idKaryawan')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("idDokter")->constrained("dokter",'idDokter')->cascadeOnDelete()->cascadeOnUpdate();
             $table->date("tanggalLaporan");
             $table->timestamps();
         });

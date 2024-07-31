@@ -45,23 +45,23 @@
                 <div class="card rounded-3 text-black container-fluid ">
                   <div class="row g-0 h-100">
                     <img src="https://media.istockphoto.com/id/1312706504/photo/modern-hospital-building.jpg?s=612x612&w=0&k=20&c=DT6YDRZMH5G5dL-Qv6VwPpVDpIDxJqkAY4Gg0ojGi58=" class="col-lg-6 " style="object-fit: cover;padding: 0;">
-                      
+
                     <div class="col-lg-6 ">
                       <div class="card-body p-md-5 mx-md-4 scrollable-container"  style="scrollbar-width: none;">
-        
+
                         <div class="text-center">
                           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                             style="width: 185px;" alt="logo">
-                          <h4 class="mt-1 mb-5 pb-1">Reinert Hospital</h4>
+                          <h4 class="mt-1 mb-5 pb-1">HORSE</h4>
                         </div>
-        
+
                         <div>
                             {{$slot}}
                         </div>
-        
+
                       </div>
                     </div>
-                    
+
                   </div>
                 </div>
             </section>
@@ -72,12 +72,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script>
           var inputField = document.getElementById('tanggalLahir');
-          
+
           inputField.addEventListener('change', function() {
               var selectedDate = inputField.value;
               // console.log(selectedDate);
           });
       </script>
-      
+
       </body>
 </html>
