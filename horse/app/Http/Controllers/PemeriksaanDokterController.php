@@ -91,17 +91,20 @@ class PemeriksaanDokterController extends Controller
         'hasilPemeriksaan.required' => 'Hasil Pemeriksaan wajib diisi.',
     ]);
 
-    $hasilPemeriksaan = $request->input('hasilPemeriksaan');
-    $id = $request->input('id');
+    // $hasilPemeriksaan = $request->input('hasilPemeriksaan');
+    // $id = $request->input('id');
 
-    $detailPemeriksaan = DetailPemeriksaan::find($id);
+    // $detailPemeriksaan = DetailPemeriksaan::find($id);
 
-    // dd($detailPemeriksaan);
-    if ($detailPemeriksaan) {
-        $detailPemeriksaan->keterangan = $hasilPemeriksaan;
-        $detailPemeriksaan->save();
-        return redirect()->route('detail_pemeriksaan_dokter', $detailPemeriksaan->nomorPemeriksaan)->with('success', 'Hasil pemeriksaan berhasil diperbarui.');
-    }
+    // // dd($detailPemeriksaan);
+    // if ($detailPemeriksaan) {
+    //     $detailPemeriksaan->keterangan = $hasilPemeriksaan;
+    //     $detailPemeriksaan->save();
+    //     return redirect()->route('detail_pemeriksaan_dokter', $detailPemeriksaan->nomorPemeriksaan)->with('success', 'Hasil pemeriksaan berhasil diperbarui.');
+    // }
+
+    dd($request->all());
+
 }
 
 }

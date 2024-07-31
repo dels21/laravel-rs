@@ -41,7 +41,9 @@
 </div>
 <form action="{{ route('update.diagnosis') }}" method="POST">
     @csrf
-    <input type="hidden" name="id" value="{{ $detail->idDetailPemeriksaan }}">
+    <input type="hidden" name="idDetailPemeriksaan" value="{{ $detail->idDetailPemeriksaan }}">
+    <input type="hidden" name="tanggalLaporan" value="{{ date('Y-m-d') }}">
+
     <div class="container">
         <div class="mb-5 mt-5 row">
             <div class="col">

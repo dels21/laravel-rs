@@ -129,7 +129,8 @@ class TransaksiPemeriksaanController extends Controller
                 'pendaftaran_pemeriksaan.namaDokterPengirim',
                 'dokter_users.name as namaDokter',
                 'pasien_users.name as namaPasien',
-                'karyawan_users.name as namaKaryawan'
+                'karyawan_users.name as namaKaryawan',
+                'pendaftaran_pemeriksaan.tanggalDaftar as tanggalDaftar'
             ]);
             // dd($data);
 

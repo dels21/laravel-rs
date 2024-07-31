@@ -82,7 +82,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal Pemeriksaan</th>
+                                <th>Tanggal Pendaftaran</th>
                                 <th>Nama Pasien</th>
                                 <th>Nama Dokter</th>
                                 <th>Nama Radiografer</th>
@@ -94,7 +94,7 @@
                             @foreach ($pemeriksaanTerbaru as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->tanggalPemeriksaan }}</td>
+                                    <td>{{ $item->tanggalDaftar }}</td>
                                     <td>{{ $item->namaPasien }}</td>
                                     <td>{{ $item->namaDokter }}</td>
                                     <td>{{ $item->namaKaryawan }}</td>
