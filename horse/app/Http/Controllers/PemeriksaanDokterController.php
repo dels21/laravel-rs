@@ -22,7 +22,10 @@ class PemeriksaanDokterController extends Controller
 
         $detailPendaftaran = TransaksiPemeriksaan::select('*')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->join('detail_pendaftaran as dpp', 'pp.nomorPendaftaran', '=', 'dpp.noPendaftaran')->join('master_jenis_pemeriksaan as mjp', 'dpp.kodeJenisPemeriksaan', '=', 'mjp.kodeJenisPemeriksaan')->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')->join('users as u', 'u.id', '=', 'p.idUser')->where('transaksi_pemeriksaan.nomorPemeriksaan', '=', $id)->paginate(10);
 
-        // dd($detailPendaftaran);
+
+        $hasil = TransaksiPemeriksaan::join('hasil_pemeriksaan_radiologi as hpr', 'hpr.nomorPemeriksaan','=','transaksi_pemeriksaan.nomorPemeriksaan')->select('*')->where('transaksi_pemeriksaan.nomorPemeriksaan', $id)->first();
+        $detailHasil = DetailHasilPemeriksaanRadiologi::select('*')->where('detail_hasil_pemeriksaan_radiologi.idHasilPemeriksaan', $hasil->idHasilPemeriksaan)->get();
+
 
         // $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*', 'p.*', 'dpp.*', 'jp.*')
         // ->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
@@ -35,7 +38,7 @@ class PemeriksaanDokterController extends Controller
         // ->paginate(10);
         // dd($detail);
 
-        return view('dokter.detail-pemeriksaan-dokter', compact('detailPemeriksaan', 'detailPendaftaran'));
+        return view('dokter.detail-pemeriksaan-dokter', compact('detailPemeriksaan', 'detailPendaftaran', 'detailHasil'));
     }
 
     public function showData()
@@ -62,6 +65,7 @@ class PemeriksaanDokterController extends Controller
     {
         $details = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*', 'p.*', 'dpp.*', 'jp.*')->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')->join('users as u', 'u.id', '=', 'p.idUser')->join('detail_pendaftaran as dpp', 'dpp.noPendaftaran', '=', 'pp.nomorPendaftaran')->join('master_jenis_pemeriksaan as jp', 'jp.kodeJenisPemeriksaan', '=', 'dpp.kodeJenisPemeriksaan')->where('dp.idDetailPemeriksaan', '=', $id)->paginate(10);
         $detail = $details->first();
+
         // dd($details);
         return view('dokter.form_detail', compact('detail'));
     }
@@ -117,14 +121,36 @@ class PemeriksaanDokterController extends Controller
             return $item->idDetailPemeriksaan == $targetId;
         });
 
-
         // dd($detailPendaftaran[$index]->kodeJenisPemeriksaan);
+        $hasil = HasilPemeriksaanRadiologi::firstOrCreate(
+            ['nomorPemeriksaan' => $request->nomorPemeriksaan],
+            [
+                'idDokter' => $dokter->idDokter,
+                'tanggalLaporan' => $request->tanggalLaporan,
+            ],
+        );
 
-        $detailhasil = DetailHasilPemeriksaanRadiologi::create([
-            'idHasilPemeriksaan' => $hasil->idHasilPemeriksaan,
-            'kodeJenisPemeriksaan' => $detailPendaftaran[$index]->kodeJenisPemeriksaan,
-            'laporan' => $request->laporan,
-        ]);
+        // Check if the record exists
+        $existingRecord = DetailHasilPemeriksaanRadiologi::where('idHasilPemeriksaan', $hasil->idHasilPemeriksaan)
+            ->where('kodeJenisPemeriksaan', $detailPendaftaran[$index]->kodeJenisPemeriksaan)
+            ->first();
+
+        // dd($existingRecord);
+
+        if ($existingRecord) {
+            // If the record exists, update the 'laporan' field
+            // $existingRecord->laporan = $request->laporan;
+            $existingRecord->update([
+                'laporan' => $request->laporan
+            ]);
+        } else {
+            // If the record does not exist, create a new one
+            $detailhasil = DetailHasilPemeriksaanRadiologi::create([
+                'idHasilPemeriksaan' => $hasil->idHasilPemeriksaan,
+                'kodeJenisPemeriksaan' => $detailPendaftaran[$index]->kodeJenisPemeriksaan,
+                'laporan' => $request->laporan,
+            ]);
+        }
 
         // foreach ($request->jenisPemeriksaan as $key => $jenisPemeriksaan){
         //     $jamMulai = $request->jamMulai[$key];

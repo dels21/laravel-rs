@@ -46,7 +46,7 @@
                                 <td>{{ $item->nomorPemeriksaan }}</td>
                                 <td>{{ $detailPendaftaran[$loop->iteration-1]->namaJenisPemeriksaan }}</td>
                                 <td>{{ $detailPendaftaran[$loop->iteration-1]->name }}</td>
-                                <td>{{ $item->keterangan }}</td>    
+                                <td>{{ $detailHasil[$loop->iteration-1]->laporan }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td><a href="{{ route('edit_detail_pemeriksaan', $item->idDetailPemeriksaan) }}" class="btn btn-info">Edit</a></td>
                             </tr>

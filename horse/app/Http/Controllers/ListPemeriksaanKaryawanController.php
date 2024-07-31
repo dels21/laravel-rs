@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterJenisPemeriksaan;
 use Illuminate\Http\Request;
 use App\Models\TransaksiPemeriksaan;
+use App\Models\DetailPendaftaranPemeriksaan;
 use App\Models\DetailPemeriksaan;
 use App\Models\PendaftaranPemeriksaan;
 use Illuminate\Support\Facades\DB;
@@ -27,10 +29,26 @@ class ListPemeriksaanKaryawanController extends Controller
     {
         $detail = TransaksiPemeriksaan::join('detail_pemeriksaan', 'detail_pemeriksaan.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')->join('pendaftaran_pemeriksaan', 'pendaftaran_pemeriksaan.nomorPendaftaran', '=', 'transaksi_pemeriksaan.nomorPendaftaran')->where('detail_pemeriksaan.nomorPemeriksaan', '=', $id)->select('transaksi_pemeriksaan.*', 'pendaftaran_pemeriksaan.*', 'detail_pemeriksaan.*')->paginate(10);
 
+
+        $idPem =  $id;
+        $pendaftaran = PendaftaranPemeriksaan::join('transaksi_pemeriksaan as tp', 'tp.nomorPendaftaran', '=', 'pendaftaran_pemeriksaan.nomorPendaftaran')
+        ->select('*')->where('tp.nomorPemeriksaan',$id)
+        ->first();
+
+        $detailPendaftaran = DetailPendaftaranPemeriksaan::join('master_jenis_pemeriksaan as mjp', 'detail_pendaftaran.kodeJenisPemeriksaan', '=', 'mjp.kodeJenisPemeriksaan')
+        ->select('*')->where('detail_pendaftaran.noPendaftaran', $pendaftaran->nomorPendaftaran)->select('*')->get();
+        // dd($detailPendaftaran);
+
+
         $diagnosis = TransaksiPemeriksaan::findOrFail($id)->diagnosis;
         $keterangan = TransaksiPemeriksaan::findOrFail($id)->keterangan;
 
-        return view('karyawan.detail-pemeriksaan-karyawan', compact('detail', 'diagnosis', 'keterangan'));
+
+
+
+
+
+        return view('karyawan.detail-pemeriksaan-karyawan', compact('detail', 'diagnosis', 'keterangan', 'detailPendaftaran'));
     }
 
     public function updateStatus(Request $request)
@@ -70,7 +88,7 @@ class ListPemeriksaanKaryawanController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly createwwd resource in storage.
      */
     public function store(Request $request)
     {

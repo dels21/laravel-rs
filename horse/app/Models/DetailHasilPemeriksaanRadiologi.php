@@ -10,4 +10,6 @@ class DetailHasilPemeriksaanRadiologi extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'detail_hasil_pemeriksaan_radiologi';
+
+    protected $primaryKey = 'idDetailHasilPemeriksaan';
 }
