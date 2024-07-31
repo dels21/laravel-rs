@@ -34,8 +34,7 @@
                                 <th>No. Pemeriksaan</th>
                                 <th>Jenis Pemeriksaan</th>
                                 <th>Nama Pasien</th>
-                                <th>Diagnosis</th>
-                                <th>Keterangan</th>
+                                <th>Hasil Pemeriksaan</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -47,8 +46,7 @@
                                 <td>{{ $item->nomorPemeriksaan }}</td>
                                 <td>{{ $detailPendaftaran[$loop->iteration-1]->namaJenisPemeriksaan }}</td>
                                 <td>{{ $detailPendaftaran[$loop->iteration-1]->name }}</td>
-                                <td>{{ $item->diagnosis }}</td>
-                                <td>{{ $item->keterangan }}</td>
+                                <td>{{ $item->keterangan }}</td>    
                                 <td>{{ $item->status }}</td>
                                 <td><a href="{{ route('edit_detail_pemeriksaan', $item->idDetailPemeriksaan) }}" class="btn btn-info">Edit</a></td>
                             </tr>
