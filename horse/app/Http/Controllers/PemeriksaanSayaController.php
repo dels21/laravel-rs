@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiPemeriksaan;
 use App\Models\PendaftaranPemeriksaan;
 use App\Models\DetailPendaftaranPemeriksaan;
+use App\Models\DetailHasilPemeriksaanRadiologi;
 use App\Models\Pasien;
 use App\Models\User;
 
@@ -23,7 +24,22 @@ class PemeriksaanSayaController extends Controller
             ->where('dp.nomorPemeriksaan', '=', $id)
             ->paginate(10);
 
-            return view('pasien.detail-pemeriksaan-pasien', compact('detail', 'dataExists'));
+            $detailPemeriksaan = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'dp.*')->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->where('dp.nomorPemeriksaan', '=', $id)->paginate(10);
+
+            $detailPendaftaran = TransaksiPemeriksaan::select('*')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->join('detail_pendaftaran as dpp', 'pp.nomorPendaftaran', '=', 'dpp.noPendaftaran')->join('master_jenis_pemeriksaan as mjp', 'dpp.kodeJenisPemeriksaan', '=', 'mjp.kodeJenisPemeriksaan')->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')->join('users as u', 'u.id', '=', 'p.idUser')->where('transaksi_pemeriksaan.nomorPemeriksaan', '=', $id)->paginate(10);
+            // dd($detailPendaftaran);
+            $hasil = TransaksiPemeriksaan::join('hasil_pemeriksaan_radiologi as hpr', 'hpr.nomorPemeriksaan','=','transaksi_pemeriksaan.nomorPemeriksaan')->select('*')->where('transaksi_pemeriksaan.nomorPemeriksaan', $id)->first();
+            if($hasil){
+                // dd($hasil);
+                $detailHasil = DetailHasilPemeriksaanRadiologi::select('*')->where('detail_hasil_pemeriksaan_radiologi.idHasilPemeriksaan', $hasil->idHasilPemeriksaan)->get();
+                // $detailHasil = null;
+            }
+            else{
+                // dd($hasil);
+                $detailHasil = null;
+            }
+
+            return view('pasien.detail-pemeriksaan-pasien', compact('detail', 'dataExists', 'detailPemeriksaan', 'detailPendaftaran', 'detailHasil'));
         }
 
         public function showData(Request $request)

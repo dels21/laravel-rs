@@ -24,7 +24,15 @@ class PemeriksaanDokterController extends Controller
 
 
         $hasil = TransaksiPemeriksaan::join('hasil_pemeriksaan_radiologi as hpr', 'hpr.nomorPemeriksaan','=','transaksi_pemeriksaan.nomorPemeriksaan')->select('*')->where('transaksi_pemeriksaan.nomorPemeriksaan', $id)->first();
-        $detailHasil = DetailHasilPemeriksaanRadiologi::select('*')->where('detail_hasil_pemeriksaan_radiologi.idHasilPemeriksaan', $hasil->idHasilPemeriksaan)->get();
+        if($hasil){
+            // dd($hasil);
+            $detailHasil = DetailHasilPemeriksaanRadiologi::select('*')->where('detail_hasil_pemeriksaan_radiologi.idHasilPemeriksaan', $hasil->idHasilPemeriksaan)->get();
+            // $detailHasil = null;
+        }
+        else{
+            // dd($hasil);
+            $detailHasil = null;
+        }
 
 
         // $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*', 'p.*', 'dpp.*', 'jp.*')

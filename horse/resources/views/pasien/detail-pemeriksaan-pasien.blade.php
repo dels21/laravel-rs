@@ -33,8 +33,9 @@
                                 <th>No</th>
                                 <th>No. Pemeriksaan</th>
                                 <th>Tanggal Pemeriksaan</th>
-                                <th>Jam Mulai Pemeriksaan Alat</th>
-                                <th>Jam Selesai Pemeriksaan Alat</th>
+                                <th>Jenis Pemeriksaan</th>
+                                <th>Jam Mulai</th>
+                                <th>Jam Selesai </th>
                                 <th>Ruangan</th>
                                 <th>Status</th>
                             </tr>
@@ -44,11 +45,21 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nomorPemeriksaan }}</td>
-                                <td>{{ $item->tanggalPemeriksaan }}</td>
-                                <td>{{ $item->jamMulaiPemeriksaanAlat }}</td>
-                                <td>{{ $item->jamSelesaiPemeriksaanAlat }}</td>
+                                {{-- <td>{{ $item->tanggalPemeriksaan }}</td> --}}
+                                <td>{{ $detailPendaftaran[$loop->iteration-1]->tanggalPendaftaranPemeriksaan }}</td>
+                                <td>{{ $detailPendaftaran[$loop->iteration-1]->namaJenisPemeriksaan }}</td>
+                                <td>{{ $detailPendaftaran[$loop->iteration-1]->jamMulai }}</td>
+                                <td>{{ $detailPendaftaran[$loop->iteration-1]->jamSelesai }}</td>
                                 <td>{{ $item->ruangan }}</td>
                                 <td>{{ $item->status }}</td>
+
+
+
+{{--
+                                <td>@if(isset($detailHasil[$loop->iteration-1]->laporan))
+                                    {{ $detailHasil[$loop->iteration-1]->laporan }}
+                                @endif</td> --}}
+                                {{-- <td>{{ $item->status }}</td> --}}
                             </tr>
                         @endforeach
                         </tbody>
