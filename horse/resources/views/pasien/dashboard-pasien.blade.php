@@ -24,10 +24,10 @@
                 <div class="col-lg-4 d-flex align-items-stretch">
                     <div class="content">
                         <h3>Why Choose Our Hospital?</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                            asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
-                            optio ad corporis.</p>
+                        <p>At our hospital, we prioritize your health and well-being with a team of skilled professionals
+                            dedicated to your care. Our state-of-the-art facilities and compassionate approach ensure the
+                            best possible outcomes. Trust us for innovative treatments and a comfortable, supportive
+                            environment.</p>
                     </div>
                 </div>
                 <div class="col-lg-8 d-flex align-items-stretch">
@@ -37,24 +37,21 @@
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-receipt"></i>
                                     <h4>Customer Focus</h4>
-                                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
-                                        aliquip</p>
+                                    <p>We are committed to meeting your needs with exceptional service and attention.</p>
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-cube-alt"></i>
-                                    <h4>Strive for Excelence</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                        deserunt</p>
+                                    <h4>Strive for Excellence</h4>
+                                    <p>We are dedicated to achieving the highest standards in all we do.</p>
                                 </div>
                             </div>
                             <div class="col-xl-4 d-flex align-items-stretch">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-cube-alt"></i>
                                     <h4>Integrity</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                        deserunt</p>
+                                    <p>We uphold the highest ethical standards in all our actions.</p>
                                 </div>
                             </div>
                         </div>
@@ -72,30 +69,27 @@
             </div>
             <div
                 class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed
-                    minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero
-                    laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
-
+                <h3>Exceptional Care and Services</h3>
+                <p>We provide comprehensive and compassionate care tailored to your needs. Our dedicated team ensures that
+                    each patient receives personalized attention, ensuring comfort and the highest quality of service.
+                    Experience excellence with our state-of-the-art facilities and committed staff.</p>
                 <div class="icon-box">
                     <div class="icon"><i class="bx bx-fingerprint"></i></div>
                     <h4 class="title">Our Team</h4>
-                    <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                        excepturi sint occaecati cupiditate non provident</p>
+                    <p class="description">Our skilled professionals are dedicated to providing exceptional care, working
+                        collaboratively to ensure the best outcomes for our patients.</p>
                 </div>
-
                 <div class="icon-box">
                     <div class="icon"><i class="bx bx-gift"></i></div>
                     <h4 class="title">Facilities</h4>
-                    <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                        blanditiis praesentium voluptatum deleniti atque</p>
+                    <p class="description">We offer state-of-the-art facilities equipped with the latest technology to
+                        provide top-notch medical care in a comfortable environment.</p>
                 </div>
-
                 <div class="icon-box">
                     <div class="icon"><i class="bx bx-atom"></i></div>
                     <h4 class="title">Procedure</h4>
-                    <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis
-                        odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                    <p class="description">Our streamlined procedures ensure efficiency and effectiveness, minimizing wait
+                        times while maximizing the quality of care.</p>
                 </div>
             </div>
         </div>
