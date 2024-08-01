@@ -13,6 +13,21 @@
 @endsection
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="thankYouModalLabel">Hasil Pemeriksaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -22,50 +37,63 @@
         @if ($detail->isEmpty())
             <p>Belum ada detail pemeriksaan.</p>
             {{-- <p>{{ $loggedInUserId }}</p> --}}
-            @else
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>No. Pemeriksaan</th>
-                                <th>Tanggal Pemeriksaan</th>
-                                <th>Jenis Pemeriksaan</th>
-                                <th>Jam Mulai</th>
-                                <th>Jam Selesai </th>
-                                <th>Ruangan</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($detail as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nomorPemeriksaan }}</td>
-                                {{-- <td>{{ $item->tanggalPemeriksaan }}</td> --}}
-                                <td>{{ $detailPendaftaran[$loop->iteration-1]->tanggalPendaftaranPemeriksaan }}</td>
-                                <td>{{ $detailPendaftaran[$loop->iteration-1]->namaJenisPemeriksaan }}</td>
-                                <td>{{ $detailPendaftaran[$loop->iteration-1]->jamMulai }}</td>
-                                <td>{{ $detailPendaftaran[$loop->iteration-1]->jamSelesai }}</td>
-                                <td>{{ $item->ruangan }}</td>
-                                <td>{{ $item->status }}</td>
+        @else
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>No. Pemeriksaan</th>
+                                    <th>Tanggal Pemeriksaan</th>
+                                    <th>Jenis Pemeriksaan</th>
+                                    <th>Jam Mulai</th>
+                                    <th>Jam Selesai </th>
+                                    <th>Ruangan</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($detail as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nomorPemeriksaan }}</td>
+                                        {{-- <td>{{ $item->tanggalPemeriksaan }}</td> --}}
+                                        <td>{{ $detailPendaftaran[$loop->iteration - 1]->tanggalPendaftaranPemeriksaan }}
+                                        </td>
+                                        <td>{{ $detailPendaftaran[$loop->iteration - 1]->namaJenisPemeriksaan }}</td>
+                                        <td>{{ $detailPendaftaran[$loop->iteration - 1]->jamMulai }}</td>
+                                        <td>{{ $detailPendaftaran[$loop->iteration - 1]->jamSelesai }}</td>
+                                        <td>{{ $item->ruangan }}</td>
+                                        <td>
+                                            @if ($item->status == 'Hasil sudah siap')
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#thankYouModal" data-index="{{ $loop->index }}">
+                                                    Hasil sudah siap
+                                                </button>
+                                            @else
+                                                {{ $item->status }}
+                                            @endif
+                                        </td>
 
 
 
-{{--
-                                <td>@if(isset($detailHasil[$loop->iteration-1]->laporan))
+
+
+                                        {{--
+                                <td>@if (isset($detailHasil[$loop->iteration - 1]->laporan))
                                     {{ $detailHasil[$loop->iteration-1]->laporan }}
                                 @endif</td> --}}
-                                {{-- <td>{{ $item->status }}</td> --}}
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                                        {{-- <td>{{ $item->status }}</td> --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
         @endif
     </div>
 @endsection
@@ -88,5 +116,20 @@
 
     <!-- Page level custom scripts -->
     <script src="/templating-assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var thankYouModal = document.getElementById('thankYouModal');
+            thankYouModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget; // Button that triggered the modal
+                var index = button.getAttribute('data-index'); // Extract info from data-* attributes
+                var laporan = @json($detailHasil); // Pass the detailHasil array to JavaScript
+
+                // Update the modal's content.
+                var modalBody = thankYouModal.querySelector('.modal-body');
+                modalBody.textContent = laporan[index].laporan;
+            });
+        });
+    </script>
 
 @endsection

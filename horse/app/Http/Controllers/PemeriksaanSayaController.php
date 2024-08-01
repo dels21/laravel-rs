@@ -39,6 +39,8 @@ class PemeriksaanSayaController extends Controller
                 $detailHasil = null;
             }
 
+            // dd($detailHasil);
+
             return view('pasien.detail-pemeriksaan-pasien', compact('detail', 'dataExists', 'detailPemeriksaan', 'detailPendaftaran', 'detailHasil'));
         }
 
