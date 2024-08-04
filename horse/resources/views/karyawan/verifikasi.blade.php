@@ -100,7 +100,7 @@
                                     <td>{{ $item->tanggalDaftar }}</td>
                                     <td>{{ $item->idPasien }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td class="detail-link"><a href="{{ route('detail_verifikasi', $item->nomorPendaftaran) }}">Detail</a></td>
+                                    <td><a href="{{ route('detail_verifikasi', $item->nomorPendaftaran) }}" class="btn btn-info">Detail</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -133,7 +133,7 @@
                                     <td>{{ $item->tanggalDaftar }}</td>
                                     <td>{{ $item->idPasien }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td class="detail-link"><a href="{{ route('detail_verifikasi', $item->nomorPendaftaran) }}">Detail</a></td>
+                                    <td><a href="{{ route('detail_verifikasi', $item->nomorPendaftaran) }}" class="btn btn-info">Detail</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -95,11 +95,11 @@
                 </a>
             </li><!-- End Verifikasi -->
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="bi bi-box-seam-fill"></i><span>Kirim Data</span>
                 </a>
-            </li><!-- End Verifikasi -->
+            </li><!-- End Verifikasi --> --}}
         @endif
         {{-- End Navigation Karyawan --}}
 
