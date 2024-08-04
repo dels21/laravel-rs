@@ -19,9 +19,9 @@ class Admin
         // $role = $user->role;
         // \Log::info('Authenticated user role: ' . $role);
         if(Auth::user()->role !='admin'){
-            if(Auth::user()->role =='pasien') return redirect('/pasien');
-            if(Auth::user()->role =='dokter') return redirect('/dokter');
-            if(Auth::user()->role =='karyawan') return redirect('/karyawan');
+            if(Auth::user()->role =='pasien') return redirect('/pasien/dashboard');
+            if(Auth::user()->role =='dokter') return redirect('/dokter/dashboard');
+            if(Auth::user()->role =='karyawan') return redirect('/karyawan/dashboard');
         }
         return $next($request);
     }

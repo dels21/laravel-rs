@@ -16,9 +16,9 @@ class Pasien
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::user()->role !='pasien'){
-            if(Auth::user()->role =='admin') return redirect('/admin');
-            if(Auth::user()->role =='dokter') return redirect('/dokter');
-            if(Auth::user()->role =='karyawan') return redirect('/karyawan');
+            if(Auth::user()->role =='admin') return redirect('/admin/dashboard');
+            if(Auth::user()->role =='dokter') return redirect('/dokter/dashboard');
+            if(Auth::user()->role =='karyawan') return redirect('/karyawan/dashboard');
         }
         return $next($request);
     }

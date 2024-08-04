@@ -16,9 +16,9 @@ class Karyawan
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::user()->role !='karyawan'){
-            if(Auth::user()->role =='pasien') return redirect('/pasien');
-            if(Auth::user()->role =='admin') return redirect('/admin');
-            if(Auth::user()->role =='dokter') return redirect('/dokter');
+            if(Auth::user()->role =='pasien') return redirect('/pasien/dashboard');
+            if(Auth::user()->role =='admin') return redirect('/admin/dashboard');
+            if(Auth::user()->role =='dokter') return redirect('/dokter/dashboard');
         }
         return $next($request);
     }
