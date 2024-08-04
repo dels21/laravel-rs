@@ -24,10 +24,6 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware(['auth', 'pasien'])->group(function () {
     Route::prefix('/pasien')->group(function () {
         Route::get('/dashboard', [DashboardPasienController::class, 'showDashboard'])->name('pasien.dashboard-pasien');
@@ -160,7 +156,7 @@ Route::middleware(['auth', 'karyawan'])->group(function () {
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 require __DIR__ . '/auth.php';
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 Route::middleware('guest')->group(function () {});
 
