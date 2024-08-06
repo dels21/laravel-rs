@@ -15,7 +15,7 @@
 @section('content')
 <div class="container">
     <h1 class="biggest-font mt-5 mb-5">List Detail Pemeriksaan Karyawan</h1>
-    @if ($detail->isEmpty())
+    @if ($detail->isEmpty() || $detailPendaftaran->isEmpty())
     <p>Belum ada detail pemeriksaan.</p>
     @else
         <p>Nomor pemeriksaan : {{ $detail[0]->nomorPemeriksaan  }}</p>
