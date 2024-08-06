@@ -19,7 +19,7 @@
 
         <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Detail Pemeriksaan Dokter</h1>
-        @if ($detailPemeriksaan->isEmpty())
+        @if ($detailPendaftaran->isEmpty() || $detailPemeriksaan->isEmpty())
             <p>Belum ada detail pemeriksaan.</p>
             {{-- <p>{{ $loggedInUserId }}</p> --}}
             @else

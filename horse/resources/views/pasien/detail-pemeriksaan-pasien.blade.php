@@ -34,9 +34,8 @@
 
         <!-- Page Heading -->
         <h1 class="biggest-font mt-5 mb-5">Detail Pemeriksaan Saya</h1>
-        @if ($detail->isEmpty())
-            <p>Belum ada detail pemeriksaan.</p>
-            {{-- <p>{{ $loggedInUserId }}</p> --}}
+        @if ($detail->isEmpty() || $detailPendaftaran->isEmpty())
+        <p>Belum ada detail pemeriksaan.</p>
         @else
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -61,8 +60,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nomorPemeriksaan }}</td>
                                         {{-- <td>{{ $item->tanggalPemeriksaan }}</td> --}}
-                                        <td>{{ $detailPendaftaran[$loop->iteration - 1]->tanggalPendaftaranPemeriksaan }}
-                                        </td>
+                                        <td>{{ $detailPendaftaran[$loop->iteration - 1]->tanggalPendaftaranPemeriksaan }}</td>
                                         <td>{{ $detailPendaftaran[$loop->iteration - 1]->namaJenisPemeriksaan }}</td>
                                         <td>{{ $detailPendaftaran[$loop->iteration - 1]->jamMulai }}</td>
                                         <td>{{ $detailPendaftaran[$loop->iteration - 1]->jamSelesai }}</td>

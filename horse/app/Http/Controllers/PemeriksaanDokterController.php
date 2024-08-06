@@ -20,7 +20,7 @@ class PemeriksaanDokterController extends Controller
     {
         $detailPemeriksaan = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'dp.*')->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->where('dp.nomorPemeriksaan', '=', $id)->paginate(10);
 
-        $detailPendaftaran = TransaksiPemeriksaan::select('*')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->join('detail_pendaftaran as dpp', 'pp.nomorPendaftaran', '=', 'dpp.noPendaftaran')->join('master_jenis_pemeriksaan as mjp', 'dpp.kodeJenisPemeriksaan', '=', 'mjp.kodeJenisPemeriksaan')->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')->join('users as u', 'u.id', '=', 'p.idUser')->where('transaksi_pemeriksaan.nomorPemeriksaan', '=', $id)->paginate(10);
+        $detailPendaftaran = TransaksiPemeriksaan::select('*')->join('pendaftaran_pemeriksaan as pp', 'transaksi_pemeriksaan.nomorPendaftaran', '=', 'pp.nomorPendaftaran')->join('detail_pendaftaran as dpp', 'pp.nomorPendaftaran', '=', 'dpp.noPendaftaran')->join('master_jenis_pemeriksaan as mjp', 'dpp.kodeJenisPemeriksaan', '=', 'mjp.kodeJenisPemeriksaan')->join('pasien as p', 'p.idPasien', '=', 'pp.idPasien')->join('users as u', 'u.id', '=', 'p.idUser')->where('transaksi_pemeriksaan.nomorPemeriksaan', '=', $id)->get();
 
 
         $hasil = TransaksiPemeriksaan::join('hasil_pemeriksaan_radiologi as hpr', 'hpr.nomorPemeriksaan','=','transaksi_pemeriksaan.nomorPemeriksaan')->select('*')->where('transaksi_pemeriksaan.nomorPemeriksaan', $id)->first();
@@ -34,6 +34,7 @@ class PemeriksaanDokterController extends Controller
             $detailHasil = null;
         }
 
+        
 
         // $detail = TransaksiPemeriksaan::select('transaksi_pemeriksaan.*', 'pp.*', 'u.*', 'dp.*', 'p.*', 'dpp.*', 'jp.*')
         // ->join('detail_pemeriksaan as dp', 'dp.nomorPemeriksaan', '=', 'transaksi_pemeriksaan.nomorPemeriksaan')
@@ -45,6 +46,7 @@ class PemeriksaanDokterController extends Controller
         // ->where('dp.idDetailPemeriksaan', '=', $id)
         // ->paginate(10);
         // dd($detail);
+
 
         return view('dokter.detail-pemeriksaan-dokter', compact('detailPemeriksaan', 'detailPendaftaran', 'detailHasil'));
     }
